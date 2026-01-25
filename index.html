@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Touch Spa | Elevate Your Well-being</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#10B981",
+              "background-light": "#FDFCF9",
+              "background-dark": "#0F172A",
+              secondary: {
+                light: "#ECFDF5",
+                dark: "#064E3B",
+              }
+            },
+            fontFamily: {
+              display: ["Playfair Display", "serif"],
+              sans: ["Plus Jakarta Sans", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "1rem",
+              '2xl': "1.5rem",
+              '3xl': "2rem",
+            },
+          },
+        },
+      };
+      function toggleTheme() {
+        document.documentElement.classList.toggle('dark');
+        const isDark = document.documentElement.classList.contains('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      }
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
+<style type="text/tailwindcss">
+        .glass-nav {
+            @apply backdrop-blur-xl;
+        }
+        .hero-overlay {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4));
+        }
+        .custom-shadow {
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
+        }
+        .theme-toggle-btn {
+            @apply flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300;
+            @apply bg-slate-100 hover:bg-slate-200 text-slate-600;
+            @apply dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-300;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-slate-900 bg-background-light dark:bg-background-dark dark:text-slate-100 transition-colors duration-300">
+<nav class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-slate-200/50 dark:border-slate-800/50 bg-white/80 dark:bg-background-dark/80">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-white">spa</span>
+</div>
+<span class="text-2xl font-bold font-display tracking-tight">Touch Spa</span>
+</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Services</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Locations</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Book Service</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Professionals</a>
+</div>
+<div class="flex items-center gap-3">
+<button aria-label="Toggle Theme" class="theme-toggle-btn" onclick="toggleTheme()">
+<span class="material-symbols-outlined dark:hidden">dark_mode</span>
+<span class="material-symbols-outlined hidden dark:block">light_mode</span>
+</button>
+<button class="text-sm font-medium hover:text-primary transition-colors hidden sm:block px-2">Log In</button>
+<button class="bg-primary hover:bg-emerald-600 text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all transform hover:scale-105">
+                    Sign Up
+                </button>
+</div>
+</div>
+</div>
+</nav>
+<section class="relative pt-20">
+<div class="mx-auto max-w-[1400px] px-4 py-8">
+<div class="relative h-[600px] rounded-3xl overflow-hidden shadow-2xl">
+<img alt="Peaceful wellness background" class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAj1zBaieukzVpV2-bTr2JmH0RKwkCFT3WUdM3NzvLRTcIolKYj-ebvxoyhlcb2hfjzmirMNGq2Y0HDV2-CUZuXc4E6NmA8IJPASUXhanZulueTgKZNeAQhsZy_gyr0Ox4b_OaLSCXRirq2o7u0pZ3_boN9uK9vwNG5a0yeeg69tlzWXNoN7qUCXZfYZxUVJhlCyO6fBX0yESaKvHiaXMzuXB7JOyPxH53uRRF4HBXjSuPtqKlpUqt3AMV6Q0tZjWdi4e2n8ZrdpHU"/>
+<div class="absolute inset-0 hero-overlay flex flex-col items-center justify-center text-center px-4">
+<h1 class="text-5xl md:text-7xl font-display font-bold text-white mb-6 tracking-tight">
+                    Relaxation, Delivered to You
+                </h1>
+<p class="text-lg md:text-xl text-white/90 max-w-2xl mb-12">
+                    Find peace with the best massage, barber, and spa services near you. Book top-rated professionals instantly.
+                </p>
+<div class="w-full max-w-4xl bg-white dark:bg-slate-900 rounded-2xl p-2 flex flex-col md:flex-row gap-2 shadow-2xl">
+<div class="flex-1 flex items-center px-4 border-b md:border-b-0 md:border-r border-slate-100 dark:border-slate-800">
+<span class="material-symbols-outlined text-slate-400 mr-2">search</span>
+<input class="w-full border-none focus:ring-0 bg-transparent text-slate-800 dark:text-white placeholder-slate-400" placeholder="Service, Salon, or Stylist" type="text"/>
+</div>
+<div class="flex-1 flex items-center px-4">
+<span class="material-symbols-outlined text-slate-400 mr-2">location_on</span>
+<input class="w-full border-none focus:ring-0 bg-transparent text-slate-800 dark:text-white placeholder-slate-400" placeholder="Location" type="text"/>
+</div>
+<button class="bg-primary hover:bg-emerald-600 text-white px-10 py-4 rounded-xl font-bold transition-all">
+                        Search
+                    </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-white dark:bg-slate-900/50">
+<div class="max-w-7xl mx-auto px-4">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-display font-bold mb-4">How It Works</h2>
+<div class="h-1 w-20 bg-primary mx-auto rounded-full"></div>
+</div>
+<div class="grid md:grid-cols-3 gap-12">
+<div class="text-center group">
+<div class="w-20 h-20 bg-emerald-50 dark:bg-emerald-950/30 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-4xl">travel_explore</span>
+</div>
+<h3 class="text-xl font-bold mb-3">Discover</h3>
+<p class="text-slate-500 dark:text-slate-400">Explore a wide range of wellness services and top-rated professionals in your area.</p>
+</div>
+<div class="text-center group">
+<div class="w-20 h-20 bg-emerald-50 dark:bg-emerald-950/30 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-4xl">chat</span>
+</div>
+<h3 class="text-xl font-bold mb-3">Consult</h3>
+<p class="text-slate-500 dark:text-slate-400">Talk to experts directly and customize your treatment according to your needs.</p>
+</div>
+<div class="text-center group">
+<div class="w-20 h-20 bg-emerald-50 dark:bg-emerald-950/30 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-4xl">self_improvement</span>
+</div>
+<h3 class="text-xl font-bold mb-3">Relax</h3>
+<p class="text-slate-500 dark:text-slate-400">Sit back and enjoy your premium wellness experience at home or in-studio.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16">
+<div class="max-w-7xl mx-auto px-4">
+<div class="flex justify-between items-end mb-10">
+<div>
+<h2 class="text-2xl font-display font-bold">Browse by Category</h2>
+</div>
+<a class="text-primary font-semibold flex items-center hover:underline text-sm" href="#">
+                View All <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-2xl overflow-hidden mb-3 bg-slate-100 dark:bg-slate-800">
+<img alt="Massage" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0ZDniv8_EiSZ--1mhQdAjLrth2MV-Fl3ZgYJOQLOg2BQYIgO87TElMrLhqntm3QqezfOPGRw6QfI9KNEV5M6Lu2awkPfKOtFhscBiVW-jMjJvH8OzL6MkyW917-kGaMGJrQhIdBOb7wjYbO55J5IyWWdaKBygPGNeLfWyVaQ2STjBg6elfp5rL9-na1CqMMaP_xvMMdHkUpJlGpr9gLe_IQLBvlLvc2TrjqRkRpDWfW5Mg6v88P05qlvMZB9n6eBJsmIS_zmdAHw"/>
+</div>
+<p class="text-center font-medium group-hover:text-primary transition-colors">Massage</p>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-2xl overflow-hidden mb-3 bg-slate-100 dark:bg-slate-800">
+<img alt="Barber" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA0KJ0_vIpTiloXRrOthMohV_z12fYa7DaeJd8Vk4VKe4tr_pk4ZvLiiIEJL93lc5aBWUsfEXpcSBZdaW9LVw2LZKssW9ZYzS_3ut4lCTt41D4dafgEbMrHACtAX5dCB_5IDcpJNUFBDmZmvbRB11IbSizM7RvqH9SOiZA4Y48KoF2kuAPgCvyisZkxwksejIXN4kRYKI4Fb7duDsnFr1maGw8eZgp17VI8lyym2Y2qfQeQFbO6Vux00-j3WGznVmecU6Y-F19kio"/>
+</div>
+<p class="text-center font-medium group-hover:text-primary transition-colors">Barber</p>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-2xl overflow-hidden mb-3 bg-slate-100 dark:bg-slate-800">
+<img alt="Nails" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdVfcfMRnM8ppd16pnJoHgD2mR15dv-0QWIDc_Jl9LjeiT1a5MNzU12uRwKZhcmlKuofWAUrKGsfgecz1G0tbKg-Wj6zVhcA286H7JNitOBGCo8tG1FYlpKRGcqgEc06UBz4CfIzUSjE6WY1N0CFN5zEEX3-VSNifPMdCTYyFmi5MiHjBcuDWaMMLblo78005SG_IJPop9XrP5d-AQHxxZAj23nzwDemvOei3CHmjFIwJq9dWZ2corr6YpXU7RxJlTTOj7ODebXQY"/>
+</div>
+<p class="text-center font-medium group-hover:text-primary transition-colors">Nails</p>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-2xl overflow-hidden mb-3 bg-slate-100 dark:bg-slate-800">
+<img alt="Facial" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCibET05khLIDCKOnKEro_vkdG3bwtTAlypsMJ_GOZUI6zu_psBsPuUt_NhIRM72hhc89ds3X-TidwflneDEr1RbpKumrNDoa-7k2m0jGtosHQeP24_zNojpIqY_8i1xNzuo4gdCd_fTH1T4-gdppfz7M1mVD4gsA-n6fM4P3XM4Mb8AOzPXCVOMAfPS_e_OPc5E5eHWbXwvpk7xcSlOgLZEuw0emD5F6euUptiT6jb4wejPnfmXA7Q6uAy5NvoLDK3APr4zSLRlLM"/>
+</div>
+<p class="text-center font-medium group-hover:text-primary transition-colors">Facial</p>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-2xl overflow-hidden mb-3 bg-slate-100 dark:bg-slate-800">
+<img alt="Waxing" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPI-EcX0QqVP7ErQDVvgDvfC3g4Kalpf389mnMnOoEaQUUqW_V75lgOkdLAThcNKgTdRrlIznYsxdtLZsCvoe5L0Awal_IYqu6OBmTRjCAWJcZok8L9N7O859tYJxk3Y6Cl8mO-Hf2E9VvBhXx7C5R92XQtXCc0UX8yXiUUyz8mHW_sYNBhrbysRII3ghbv5aFK7ZpA33IkgZhf6kna-qdve9ePEyC1Ey7BgnrgFxnP0hnManSmSt8IYcQCBj4XUoE4gh8Bg7e8dg"/>
+</div>
+<p class="text-center font-medium group-hover:text-primary transition-colors">Waxing</p>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-2xl overflow-hidden mb-3 bg-slate-100 dark:bg-slate-800">
+<img alt="Home Visit" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjnoqZLmxFgH19v_4B8JcVm4GP1Gi0xkgbqquWTZqQA0g34qLbNIZ8OgjpNLvV1rmVZzC4PT2CPr_V3MVYvOI_5_8FGH9_rjer8TDoCX2f23zu0jsdcQXo3uvlixsRXnZzKR9O--yQnSxQMavSpCDKJlLhQRqAWDHvgK3r5U_FLe-7bJS2B479EQkg7fhSpAaBir2nhGL_sHtZ11QE3CBKzifRNwGihJLJEkxJXDEMaOx1MNJsD44MFptFTrO38zgOahKJFwZ1Xgk"/>
+</div>
+<p class="text-center font-medium group-hover:text-primary transition-colors">Home Visit</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 bg-emerald-50/50 dark:bg-slate-900">
+<div class="max-w-7xl mx-auto px-4">
+<div class="mb-10">
+<h2 class="text-2xl font-display font-bold mb-2">Top Rated Professionals</h2>
+<p class="text-slate-500 dark:text-slate-400">Book the best talent near you</p>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden custom-shadow group">
+<div class="relative h-48">
+<img alt="Sarah Martin" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDI9cLBK-gf7Jc2Gw9ps2slzllQ5-IgDUbrZUtY_SFPlKyOkn2xdaE_zYY-OISFjRrPSScZN_dn2SwHvVIhUeggqsPG9hKZynbNdgm5ntWqFPYhBFGFqTIp5b4TOCTBMZIwOvI-QrbHPdNNxCXi6i10FgJrd46JdmkbMxnD23ewmtE3rpAm7hJdv8v_ERpS1s1DBIuquOOUGXw6FrPCQ8_o5IHj9JSRPEK7r8iMd5I5vhidq4COWdezF6UPoZXsywjzICD3ijPytTc"/>
+<div class="absolute top-3 right-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm px-2 py-1 rounded-lg flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-yellow-400 text-[16px]">star</span>
+<span class="text-xs font-bold">4.9</span>
+</div>
+</div>
+<div class="p-5">
+<h3 class="font-bold text-lg">Sarah Martin</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span> 1.2 miles away
+                    </p>
+<div class="flex items-center justify-between mt-6">
+<span class="font-bold text-primary">$85<span class="text-xs font-normal text-slate-400">/hr</span></span>
+<button class="bg-primary/10 hover:bg-primary text-primary hover:text-white px-4 py-2 rounded-xl text-sm font-bold transition-all">Book Now</button>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden custom-shadow group">
+<div class="relative h-48">
+<img alt="Michael Njunguna" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwJapyI47_6Bx2S__s7oD94zMp2DRpnrQQMxXe2fANzBU1DFw40yTE_ogiUYc8PiAW7PwQ4XNhrCOfH8tTFOy1gDHdrbuQ5zq3LXFBouPjRuNwEC-dP_M-60NIDcnmynnj6po7UMPg2So9hhYiCI0ascxZW9EEnO15xZIDvrWCFR6XbsE5j5egSxC4x59FNhQ9dfVxQUFYYGsCkI4Vm8cMHRMv3VN2DEYtUALaaod5ashuALYEchk2e0xa5QWfs127nX5-NQ65MYM"/>
+<div class="absolute top-3 right-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm px-2 py-1 rounded-lg flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-yellow-400 text-[16px]">star</span>
+<span class="text-xs font-bold">5.0</span>
+</div>
+</div>
+<div class="p-5">
+<h3 class="font-bold text-lg">Michael Njunguna</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span> 3.5 miles away
+                    </p>
+<div class="flex items-center justify-between mt-6">
+<span class="font-bold text-primary">$45<span class="text-xs font-normal text-slate-400">/cut</span></span>
+<button class="bg-primary/10 hover:bg-primary text-primary hover:text-white px-4 py-2 rounded-xl text-sm font-bold transition-all">Book Now</button>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden custom-shadow group">
+<div class="relative h-48">
+<img alt="Serenity Spa" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAboCNFY1aSPr0zNR7uiRqZMHtyRbg6way_WwQce5PoSEu4mE_d8854krvraF4vF01Gv6PWH3Xg-fnv2oVoZ6a2c3Mxh4pXsBXqQC1kI_8qbgqpLJt38Ob9u0BQAOhXEnm0Zv99sUgY8ZIZHddfvvZ5xqj1NK55TEV3oIl8WA_Td2WVZckP3wQKdBz8Ys8kIF6gwdum7u5pCtY4y__XEJNQuOWVl4N18TNtZKEk8N4v-OeHkKAPMnzwkFlzIQyaV8Yk8TY1FoCTisA"/>
+<div class="absolute top-3 right-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm px-2 py-1 rounded-lg flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-yellow-400 text-[16px]">star</span>
+<span class="text-xs font-bold">4.8</span>
+</div>
+</div>
+<div class="p-5">
+<h3 class="font-bold text-lg">Serenity Spa</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span> 0.8 miles away
+                    </p>
+<div class="flex items-center justify-between mt-6">
+<span class="font-bold text-primary">$$$</span>
+<button class="bg-primary/10 hover:bg-primary text-primary hover:text-white px-4 py-2 rounded-xl text-sm font-bold transition-all">Book Now</button>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden custom-shadow group">
+<div class="relative h-48">
+<img alt="Glow Studio" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3vuEPCZe0tnyMGoBpOx0U3OYTozXxqx6IF2dtuJCBEYnFiaxS94EcZsT9KquLSwm8-AU70WMEMKn4MHmNVJJveMoOKBRyi6-333Ufa78lGgWpZq0g59-5I0EfOcYcu5IXup48baZKigq5P8BIctf9MoEYOp3EJqbj4SKEJUAt-ApmksMtDCrRsDSCtpahKhwLYlU2rr3DtxKC20uRHTfdY3KA_Bi6B49n8Ck_JRtYwLLAh9Ldie-yj5nZ44y1Un_PKyhXXy2Ov44"/>
+<div class="absolute top-3 right-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm px-2 py-1 rounded-lg flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-yellow-400 text-[16px]">star</span>
+<span class="text-xs font-bold">4.9</span>
+</div>
+</div>
+<div class="p-5">
+<h3 class="font-bold text-lg">Glow Studio</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span> 5.0 miles away
+                    </p>
+<div class="flex items-center justify-between mt-6">
+<span class="font-bold text-primary">$$</span>
+<button class="bg-primary/10 hover:bg-primary text-primary hover:text-white px-4 py-2 rounded-xl text-sm font-bold transition-all">Book Now</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16">
+<div class="max-w-7xl mx-auto px-4">
+<div class="bg-emerald-100 dark:bg-emerald-900/30 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="max-w-xl">
+<span class="bg-white/50 dark:bg-white/10 text-primary dark:text-primary px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase mb-4 inline-block">Limited Time Offer</span>
+<h2 class="text-3xl md:text-4xl font-display font-bold mb-4">New here? Save 15% on your first home visit.</h2>
+<p class="text-slate-600 dark:text-slate-300 text-lg">Experience luxury without leaving your doorstep. Use code <span class="font-bold text-primary">TOUCH15</span> at checkout.</p>
+</div>
+<button class="bg-primary hover:bg-emerald-600 text-white px-10 py-4 rounded-2xl font-bold transition-all shadow-lg hover:shadow-emerald-500/20 whitespace-nowrap">
+                Claim Offer
+            </button>
+</div>
+</div>
+</section>
+<a class="fixed bottom-8 right-8 w-14 h-14 bg-emerald-500 text-white rounded-full flex items-center justify-center shadow-2xl z-50 hover:scale-110 transition-transform" href="#">
+<svg class="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.187-2.59-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.512-2.96-2.626-.087-.114-.694-.925-.694-1.765 0-.84.438-1.248.594-1.419.114-.124.307-.158.488-.158h.4c.143 0 .324-.055.494.354.167.399.576 1.399.626 1.499.05.1.083.217.017.35-.067.133-.1.217-.2.333-.1.117-.209.262-.299.354-.108.11-.221.23-.095.447.125.216.558.918 1.196 1.488.82.733 1.509.96 1.725 1.066.216.106.342.089.469-.058.127-.147.545-.634.691-.85.146-.217.292-.184.492-.11.2.074 1.272.6 1.492.709.219.11.365.163.42.257.054.095.054.548-.09 1.053z"></path></svg>
+</a>
+<footer class="bg-white dark:bg-slate-950 pt-20 pb-10 border-t border-slate-100 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4">
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+<div>
+<div class="flex items-center gap-2 mb-6">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[16px]">spa</span>
+</div>
+<span class="text-xl font-bold font-display tracking-tight">Touch Spa</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">The easiest way to book wellness and beauty professionals near you. Relax, reset, and rejuvenate.</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">public</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">camera_alt</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">alternate_email</span>
+</a>
+</div>
+</div>
+<div>
+<h4 class="font-bold mb-6 text-sm uppercase tracking-wider">Company</h4>
+<ul class="space-y-4 text-slate-500 dark:text-slate-400">
+<li><a class="hover:text-primary transition-colors" href="#">About Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Blog</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Press</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6 text-sm uppercase tracking-wider">Services</h4>
+<ul class="space-y-4 text-slate-500 dark:text-slate-400">
+<li><a class="hover:text-primary transition-colors" href="#">Massage</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Barber</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Nails</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Facials</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6 text-sm uppercase tracking-wider">Support</h4>
+<ul class="space-y-4 text-slate-500 dark:text-slate-400">
+<li><a class="hover:text-primary transition-colors" href="#">Help Center</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Safety</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+</div>
+<div class="pt-8 border-t border-slate-100 dark:border-slate-800 text-center">
+<p class="text-sm text-slate-400">© 2026 Touch Spa Inc. All rights reserved.</p>
+</div>
+</div>
+</footer>
+
+</body></html>

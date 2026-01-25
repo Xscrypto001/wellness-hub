@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Touch Spa | Personal Wellness Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#10B981", // Emerald 500 from the logo color
+              "background-light": "#F9FAFB",
+              "background-dark": "#111827",
+            },
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.75rem",
+            },
+          },
+        },
+      };
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<nav class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between h-16 items-center">
+<div class="flex items-center gap-2">
+<span class="material-icons text-primary text-3xl">spa</span>
+<span class="text-xl font-bold tracking-tight">Touch Spa</span>
+</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Services</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Locations</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Book Now</a>
+</div>
+<div class="flex items-center space-x-4">
+<button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-icons text-slate-500">notifications</span>
+</button>
+<div class="h-10 w-10 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center overflow-hidden">
+<img alt="User Profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi-QEfk-Umsl2sbPTwvNU0GSU_GTUplBZvQ-wHTlzWfjatgS2-Es7C8gP88BvyuYwWNF3-TfaJ_TA6BIVBEAA9y34y3-dXLteZZXpVtDHfcVc0adIQZhbfneuNpcAO3H52MiQKrameAV3EwWd0OZ6RiG3orVC2lXgKj3_Zals-VCgbecFHtnAydX5uzL9Vfv4qu7-F48VXAIkcDfUbW8CCAZ517kp3OSZdEvnDI6KPds_jTxbT4XBOXUOm_I0JgyFabsmM-Re38Xc"/>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="mb-8">
+<h1 class="text-3xl font-bold">Welcome back, Sarah! 👋</h1>
+<p class="text-slate-500 dark:text-slate-400 mt-1">Here is what's happening with your wellness journey today.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<div class="lg:col-span-3 space-y-6">
+<div class="bg-gradient-to-br from-primary to-emerald-600 p-6 rounded-2xl text-white shadow-lg shadow-emerald-500/20">
+<div class="flex justify-between items-start mb-4">
+<span class="text-xs font-semibold uppercase tracking-wider opacity-80">Membership Level</span>
+<span class="material-icons">workspace_premium</span>
+</div>
+<div class="text-2xl font-bold mb-1">Gold Member</div>
+<div class="text-emerald-100 text-sm mb-6">450 Points Earned</div>
+<div class="w-full bg-white/20 h-2 rounded-full overflow-hidden">
+<div class="bg-white h-full" style="width: 75%"></div>
+</div>
+<p class="text-[10px] mt-2 opacity-80">50 points until next reward</p>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 bg-primary/10 text-primary font-semibold rounded-xl transition-all" href="#">
+<span class="material-icons">dashboard</span>
+                        Dashboard
+                    </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-all" href="#">
+<span class="material-icons">calendar_month</span>
+                        My Bookings
+                    </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-all" href="#">
+<span class="material-icons">history</span>
+                        History
+                    </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-all" href="#">
+<span class="material-icons">credit_card</span>
+                        Payments
+                    </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-all" href="#">
+<span class="material-icons">settings</span>
+                        Account Settings
+                    </a>
+</nav>
+</div>
+<div class="lg:col-span-9 space-y-8">
+<section>
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-xl font-bold flex items-center gap-2">
+<span class="material-icons text-primary">event_available</span>
+                            Upcoming Bookings
+                        </h2>
+<a class="text-primary text-sm font-semibold hover:underline" href="#">View All</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-5 rounded-2xl flex gap-4 hover:shadow-md transition-shadow">
+<div class="w-20 h-20 rounded-xl bg-slate-100 dark:bg-slate-700 overflow-hidden flex-shrink-0">
+<img alt="Facial treatment" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkI1zA3x0X5GlpMThnYVvnN8Bof1crwb4RTJdzCjKDsLHXBrWh46zeDtGzgJ6ob-JyOxxxqLqLPxNqPttD9L-nAzfVDxo6URUS65DfvSifzCVTHr8bCHq5ezl4zC54lX0f9_Hi2qfx8FL-drWAbfX_ngmuDJPj6iXdKg769aUpDhdreJm5BpIGrDASnGOC3ggvmyAZu9HASij5uvXDzUhGkR-YwfD5pkiNOBCcIsDwdbhiU3wHuJd_6sRmEI6wku2X-2qL4fcZR7Q"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-bold text-lg">Deep Tissue Massage</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">with Michael Njunguna</p>
+</div>
+<span class="bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wide">Confirmed</span>
+</div>
+<div class="mt-3 flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
+<span class="flex items-center gap-1"><span class="material-icons text-xs">calendar_today</span> Oct 24, 2023</span>
+<span class="flex items-center gap-1"><span class="material-icons text-xs">schedule</span> 2:30 PM</span>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-5 rounded-2xl flex gap-4 hover:shadow-md transition-shadow">
+<div class="w-20 h-20 rounded-xl bg-slate-100 dark:bg-slate-700 overflow-hidden flex-shrink-0">
+<img alt="Consultation" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3rlbA7ClCaEwewdTJ0lDF6ImKIaskuVlV8rJvYcEGmx6Qw4Q76VlOuZEvmwfG91nlQQO817UEY58w0rYDlc9h67ez_nOaET83fQll16wmc3VmBUcB6nCZ90yEel3aCOvOk5ozjwdgzHQIYb55ML1OO801jTUQy0xxSSZmuR_PcAYuOZj9vtMjtBhkT4yYtgBvf4Xga7lacX3-XvJRNAiO9nSW1qaHjNciWxJ2jvPEOpk0qVd26EGkkqIsgoyAalpbWO0F2EkC_mY"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-bold text-lg">Skin Consultation</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">with Glow Studio</p>
+</div>
+<span class="bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wide">Pending</span>
+</div>
+<div class="mt-3 flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
+<span class="flex items-center gap-1"><span class="material-icons text-xs">calendar_today</span> Oct 28, 2023</span>
+<span class="flex items-center gap-1"><span class="material-icons text-xs">schedule</span> 10:00 AM</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section>
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-xl font-bold flex items-center gap-2">
+<span class="material-icons text-primary">auto_awesome</span>
+                            Recommended for You
+                        </h2>
+<span class="text-slate-400 text-xs">Based on your recent massage</span>
+</div>
+<div class="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
+<div class="min-w-[240px] bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden group cursor-pointer">
+<div class="h-32 overflow-hidden relative">
+<img alt="Hot Stone" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCV9IWIrJNJKGdRDGWwObIm04ZmdCa9sh01EToRsPR2rRwgrd6LVie4PiEg7QU5KfwrIfR3KnPoeX2DUkLbSYPUr98oK6ByrB4DQ_ZUcDLhgzrR6qpyAgscmo25NE8KlcHiJ4Hg4aKM8zjnoB6pcpmjAytU4gvBG4ydmA4Ke988pUindP1VIElaCMdlU8gjfIejDhSz6RyCYk7rOxmwp5B0XxPDVKvcfW30ZjUv0fs7gx6kTaMnAzJWB3APY0PueIhQ9ohxNSQIqRo"/>
+<div class="absolute top-2 right-2 bg-white/90 backdrop-blur px-2 py-1 rounded-lg text-xs font-bold text-slate-900 flex items-center gap-1">
+<span class="material-icons text-xs text-amber-400">star</span> 4.9
+                                </div>
+</div>
+<div class="p-4">
+<h4 class="font-bold">Hot Stone Therapy</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Enhance your relaxation</p>
+<div class="mt-3 flex justify-between items-center">
+<span class="text-primary font-bold">$85</span>
+<button class="bg-slate-100 dark:bg-slate-700 p-1.5 rounded-full hover:bg-primary hover:text-white transition-colors">
+<span class="material-icons text-sm">add</span>
+</button>
+</div>
+</div>
+</div>
+<div class="min-w-[240px] bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden group cursor-pointer">
+<div class="h-32 overflow-hidden relative">
+<img alt="Aromatherapy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBC4czrW5KtBqr6AWAVx149VGGQ56ZZAPWTNTS0IDxUqiBdwst3w7iqywB-2KNqC-pOtjKLMe7vCG3kF2mMNFVNxCMJ80vMB_c827nfmnf2-BwWmfH-AXwK_G2bsJhaMTTs7GxKwrqkXDD0QUohCcv_Np3epz3pqVrkS4GXVeOTj0iMll7s5vlis2WTAlnedYAxIS3OBVvcSkvltlFunATwtjzSOpOsoJ57t0LuUrtNWoLPEQtcbaXpaaCKCH07vfWGsIBq-kv-8Ck"/>
+<div class="absolute top-2 right-2 bg-white/90 backdrop-blur px-2 py-1 rounded-lg text-xs font-bold text-slate-900 flex items-center gap-1">
+<span class="material-icons text-xs text-amber-400">star</span> 4.8
+                                </div>
+</div>
+<div class="p-4">
+<h4 class="font-bold">Aromatherapy Session</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Lavender &amp; Eucalyptus</p>
+<div class="mt-3 flex justify-between items-center">
+<span class="text-primary font-bold">$60</span>
+<button class="bg-slate-100 dark:bg-slate-700 p-1.5 rounded-full hover:bg-primary hover:text-white transition-colors">
+<span class="material-icons text-sm">add</span>
+</button>
+</div>
+</div>
+</div>
+<div class="min-w-[240px] bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden group cursor-pointer">
+<div class="h-32 overflow-hidden relative">
+<img alt="Sauna" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASSvRwUTvS7_qX8EOvA9ap3cB4vKZe-XkvLyWQufa2BYdvx8WNZqASkj9KGj3-FjHrqHkUcF5J8CIUqmysJU5bOTf37SGUQc48uDrF6UWwykHU2IJ7F3-bB5voKhK9jjMbtwC_J2gKbPsyKzNoE4E8haiS-yTktjKB3HqdIkoXJ-6ik1q_fNtvQJaVIUQcj8pLWkdBI1agCIF9EFYJAgKqEPW3ZwKhKsYRz4MlU0CexhfMGs0EiZn-XBqt20V4swnqW9Lj9OarbvQ"/>
+<div class="absolute top-2 right-2 bg-white/90 backdrop-blur px-2 py-1 rounded-lg text-xs font-bold text-slate-900 flex items-center gap-1">
+<span class="material-icons text-xs text-amber-400">star</span> 5.0
+                                </div>
+</div>
+<div class="p-4">
+<h4 class="font-bold">Swedish Sauna Bath</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Full body detox</p>
+<div class="mt-3 flex justify-between items-center">
+<span class="text-primary font-bold">$45</span>
+<button class="bg-slate-100 dark:bg-slate-700 p-1.5 rounded-full hover:bg-primary hover:text-white transition-colors">
+<span class="material-icons text-sm">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<section>
+<h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+<span class="material-icons text-primary">forum</span>
+                            Recent Consultations
+                        </h2>
+<div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl overflow-hidden">
+<div class="divide-y divide-slate-100 dark:divide-slate-700">
+<div class="p-4 flex items-center gap-4">
+<div class="h-10 w-10 rounded-full bg-slate-200 dark:bg-slate-600 flex-shrink-0">
+<img alt="Expert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3bEDqnNMRaZyrPf4hi0qFJXBhxcnFQlxRssry7BrXSPDgNtHCKbxAymeED2zrXDfxLMhXqzI28b3vW52FPP45iSu-c0spa7eDm6Grovp3vd2_N1133TsIdaX6z1EIb_rhAD7z_VwinYICwMCUBvgd_48_Bga-AzjTLp5_bvEyNWhjD48tLrIiHAlVmsj2A_wLF7koS92QjZJiuYgOX7-xAtF6fs0X3qxQaMr2E7O5_SPlLom8SBZ1Zm5AsHkg2pD6oCdhtMbJoeg"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<p class="text-sm font-bold">Post-Session Follow-up</p>
+<span class="text-[10px] text-slate-400">Yesterday</span>
+</div>
+<p class="text-xs text-slate-500 truncate">"Drink plenty of water today and avoid..."</p>
+</div>
+</div>
+<div class="p-4 flex items-center gap-4">
+<div class="h-10 w-10 rounded-full bg-slate-200 dark:bg-slate-600 flex-shrink-0">
+<img alt="Expert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKVRdpYUh3PsPwIaD7h28U5HVgDfI2macD3wl5lTqHVYWecDJzl6AdmRRIqTNVyQtQ1cKnaoUE9pEZRO1eiBewt1sr3DQXvZUdpbENDM8ZhT5Ctmq7CmVlVC-uvvDOGYz1cebRFsVOsHldNYvfxwykXiILfOvk55UdgTzrh7whi19MKjPX1NSD3vr-gGIZK2T0t2dEXhLO8u7VpGiNRGxWYq_WOBOBM615QtuOA-fL743xZHiIRfuk5r9nUT5r2bcUhqm2fzjJgPY"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<p class="text-sm font-bold">Skin Care Routine Review</p>
+<span class="text-[10px] text-slate-400">Oct 18</span>
+</div>
+<p class="text-xs text-slate-500 truncate">"The new cleanser seems to be working..."</p>
+</div>
+</div>
+</div>
+<button class="w-full py-3 bg-slate-50 dark:bg-slate-800/50 text-xs font-bold text-slate-500 hover:text-primary transition-colors">
+                                View All Messages
+                            </button>
+</div>
+</section>
+<section>
+<h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+<span class="material-icons text-primary">account_balance_wallet</span>
+                            Recent Payments
+                        </h2>
+<div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl overflow-hidden">
+<div class="p-4 space-y-4">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600">
+<span class="material-icons text-sm">check_circle</span>
+</div>
+<div>
+<p class="text-sm font-bold">Aromatherapy</p>
+<p class="text-[10px] text-slate-400">Oct 15, 2023</p>
+</div>
+</div>
+<span class="text-sm font-bold">$75.00</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600">
+<span class="material-icons text-sm">check_circle</span>
+</div>
+<div>
+<p class="text-sm font-bold">Full Body Spa</p>
+<p class="text-[10px] text-slate-400">Oct 02, 2023</p>
+</div>
+</div>
+<span class="text-sm font-bold">$120.00</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-slate-400">
+<span class="material-icons text-sm">receipt_long</span>
+</div>
+<div>
+<p class="text-sm font-bold">Monthly Plan</p>
+<p class="text-[10px] text-slate-400">Sep 28, 2023</p>
+</div>
+</div>
+<span class="text-sm font-bold">$49.99</span>
+</div>
+</div>
+<button class="w-full py-3 bg-slate-50 dark:bg-slate-800/50 text-xs font-bold text-slate-500 hover:text-primary transition-colors">
+                                Download Receipts
+                            </button>
+</div>
+</section>
+</div>
+</div>
+</div>
+</main>
+<footer class="mt-16 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-12">
+<div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="material-icons text-primary text-2xl">spa</span>
+<span class="font-bold">Touch Spa</span>
+</div>
+<div class="flex gap-8 text-sm text-slate-500">
+<a class="hover:text-primary" href="#">Help Center</a>
+<a class="hover:text-primary" href="#">Safety</a>
+<a class="hover:text-primary" href="#">Terms of Service</a>
+<a class="hover:text-primary" href="#">Privacy Policy</a>
+</div>
+<div class="text-xs text-slate-400">
+                © 2026 Touch Spa Inc. All rights reserved.
+            </div>
+</div>
+</footer>
+
+</body></html>

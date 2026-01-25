@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Secure Checkout - Touch Spa</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00E676",
+                        "background-light": "#F9FAFB",
+                        "background-dark": "#111827",
+                    },
+                    fontFamily: {
+                        display: ["Plus Jakarta Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "12px",
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 transition-colors duration-200">
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+<span class="material-icons-outlined text-white text-sm">spa</span>
+</div>
+<span class="font-bold text-xl tracking-tight">Touch Spa</span>
+</div>
+<div class="flex items-center gap-4 text-sm font-medium">
+<span class="hidden md:inline text-slate-500 dark:text-slate-400">Step 3 of 3: Payment</span>
+<button class="flex items-center gap-1 text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">
+<span class="material-icons-outlined text-lg">close</span>
+<span>Cancel</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-4 py-8 lg:py-12">
+<div class="grid lg:grid-cols-12 gap-12 items-start">
+<div class="lg:col-span-7 space-y-8">
+<div>
+<h1 class="text-3xl font-bold mb-2">Secure Checkout</h1>
+<p class="text-slate-500 dark:text-slate-400">Complete your booking for a relaxing experience.</p>
+</div>
+<div class="space-y-4">
+<h2 class="text-lg font-semibold">Select Payment Method</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<label class="relative flex items-center p-4 border-2 border-primary bg-primary/5 dark:bg-primary/10 rounded-xl cursor-pointer">
+<input checked="" class="sr-only" name="payment-method" type="radio"/>
+<span class="material-icons-outlined text-primary mr-3">credit_card</span>
+<span class="font-medium">Credit / Debit Card</span>
+<span class="absolute top-4 right-4 text-primary">
+<span class="material-icons-outlined">check_circle</span>
+</span>
+</label>
+<label class="relative flex items-center p-4 border border-slate-200 dark:border-slate-700 hover:border-primary/50 rounded-xl cursor-pointer transition-all">
+<input class="sr-only" name="payment-method" type="radio"/>
+<span class="material-icons-outlined text-slate-400 mr-3">phonelink_ring</span>
+<span class="font-medium">Mobile Money</span>
+</label>
+</div>
+</div>
+<form class="space-y-6">
+<div class="space-y-4">
+<div>
+<label class="block text-sm font-medium mb-1.5 text-slate-700 dark:text-slate-300">Cardholder Name</label>
+<input class="w-full px-4 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" placeholder="John Doe" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium mb-1.5 text-slate-700 dark:text-slate-300">Card Number</label>
+<div class="relative">
+<input class="w-full pl-4 pr-12 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" placeholder="0000 0000 0000 0000" type="text"/>
+<div class="absolute right-3 top-1/2 -translate-y-1/2 flex gap-1">
+<img alt="Visa" class="h-4 w-auto grayscale dark:invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdA6qiwa1Z_bDS0EbBeGMQUAuhZ9CKHsKoq5mI3waVnTCPwn0Lx5l3uOyu8LyWJXHuXPNs5Fj26nFZ0oohZ4U4HOHM2HY8u2VdwHlhvT5sFccs9FOeWnOZ46V8vqT0LUK8-fE3WrDK2v7zqEkijpsEOBTWooRhMV_yqV3wkNTi6Pl9LzgGRyxonN5cv74Otsl8O1WvbUmcHB80qkbUytTTWTAVpd_vA7pzIfgADgf2QRZ_59Rv1ZgLArg9-lqZs1xc8Zv5qcSFmfc"/>
+<img alt="Mastercard" class="h-4 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClrEXUuqnUoXy0O6xZ0gmgfiz1fZGV9N2BTg9MlEyP2Q9R71TqeDKjx-yZBLjybMUqeQFQsTGvy5eA8lRhrxVlTO8y98OIAhlwBLQeScmSJ2wZZu8TrWHXk1XgbPWpbB9RhNJGoJn247sh_iOKRga-06khsfqu_9VJbFRPySXa8tatyfjK-3iPcxEHn4YpOyUXkna5GDOYtZTWkozpLzx_GTu1PIhxpT8V2lzjjtZ3yAniTUJy4j3Fc38-fN-74j5XxMIwUBCVa0U"/>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-sm font-medium mb-1.5 text-slate-700 dark:text-slate-300">Expiry Date</label>
+<input class="w-full px-4 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" placeholder="MM/YY" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium mb-1.5 text-slate-700 dark:text-slate-300">CVV</label>
+<input class="w-full px-4 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" placeholder="•••" type="password"/>
+</div>
+</div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-100 dark:border-slate-800">
+<span class="material-icons-outlined text-slate-400 text-xl">shield</span>
+<p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            Your payment information is processed securely. We do not store full card numbers on our servers. All transactions are encrypted.
+                        </p>
+</div>
+<button class="w-full py-4 bg-primary text-white font-bold text-lg rounded-xl hover:shadow-lg hover:shadow-primary/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2" type="submit">
+<span class="material-icons-outlined">lock</span>
+                        Confirm &amp; Pay ksh 2,125
+                    </button>
+</form>
+</div>
+<div class="lg:col-span-5">
+<div class="sticky top-24 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+<div class="p-6 border-b border-slate-100 dark:border-slate-700">
+<h2 class="text-xl font-bold mb-4">Booking Summary</h2>
+<div class="flex items-center gap-4">
+<img alt="Sarah Martin" class="w-16 h-16 rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsWLQPtTMNAriK2bGzgPk97sXQaNL52ueVLmb7w_oFxJu2u7pJnzwHKZJ9G7Dh9tQeH0r5qBbLlxPL6jNxaQ7NqpCuuH8jINQCRNGUC5nBxeFOCePaJS5qlbRR3bH0y4M06aFncrhInbj5IoiGRiH_xsLhVB515kVV7XtXzLr2NhTrdus6l94pcf6DSm-eF9VT9smEYJ74SAjAzRxh_jAUxnhZNlh9ApoYx-0HIY6QRHK0hMrpYjGnw-zM0gUtj_bI9iXWjPv5YFQ"/>
+<div>
+<h3 class="font-bold">Deep Tissue Massage</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Sarah Martin • 60 min session</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-icons-outlined text-amber-400 text-sm">star</span>
+<span class="text-sm font-medium">4.9</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-6 space-y-6">
+<div class="space-y-3">
+<div class="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+<span class="material-icons-outlined text-slate-400">calendar_today</span>
+<span class="text-sm">Wednesday, October 24, 2024</span>
+</div>
+<div class="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+<span class="material-icons-outlined text-slate-400">schedule</span>
+<span class="text-sm">2:30 PM (Home Visit)</span>
+</div>
+</div>
+<div class="pt-4 border-t border-slate-100 dark:border-slate-700 space-y-3">
+<div class="flex justify-between text-slate-600 dark:text-slate-400">
+<span>Service Subtotal</span>
+<span>ksh 2,500</span>
+</div>
+<div class="flex justify-between text-primary font-medium">
+<span>New Customer Discount (15%)</span>
+<span>- ksh 375</span>
+</div>
+<div class="flex justify-between text-slate-600 dark:text-slate-400">
+<span>Service Fee</span>
+<span>ksh 0.00</span>
+</div>
+<div class="flex justify-between items-center pt-3 border-t border-slate-100 dark:border-slate-700">
+<span class="text-lg font-bold">Total Amount</span>
+<span class="text-2xl font-bold">ksh 2,125</span>
+</div>
+</div>
+<div class="pt-2">
+<label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Applied Promo Code</label>
+<div class="flex items-center justify-between p-3 bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-900 rounded-lg">
+<div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
+<span class="material-icons-outlined text-sm">local_offer</span>
+<span class="font-bold text-sm">TOUCH15</span>
+</div>
+<button class="text-emerald-600 dark:text-emerald-400 text-sm font-semibold hover:underline">Remove</button>
+</div>
+</div>
+</div>
+<div class="px-6 py-4 bg-slate-50 dark:bg-slate-900/50 flex items-center justify-center gap-4 border-t border-slate-100 dark:border-slate-700">
+<img alt="PayPal" class="h-4 opacity-50 dark:invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9jEKwcIc4bzDTqQckdzCETQv5lpvCLpLezlgLin06RHQ8JXv70LfArB4PTsPiaXRfUIQaMjNUSfMOOMePVGEVXB4IY0YeIcJ6jpms9jOVrodbUgD3iXLNem2BJlAOy1tzj1NCYvUtZlpJEqGk4EH7tGQzaedXgD3ffLnD3c2iYzpy9A6vIHJ9uFzFxvoaCH_J8Z-z6PPfK0euqG0h-LAia5WAjYBCNCbmCG-3VpxXAfSVgdkgDJ-k-hXbigMaHQ9EQIjNzr1rNHk"/>
+<img alt="Mastercard" class="h-4 opacity-50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBI29vJToxNgwkR1458JICjAZDagMBuDgF1Q95olp6rQI_qmka40MbyUyBsDZCY9FSyzGenmODbLxTIl5C_7hTgl8si7RPf4cpBukw39jSOkqpabLGcQXArch7_vqVnpdvTsRVCKu8sDXlWVdnqLxhsTiR8kEaKnzA45aBXRKwZrQRU8OLGKgQK83WH3Hijg4ad1D63Mt8GISNKT1UchtQR4RICVMsrH2f0yuZGKJceQJTjVPC8b_pHVmplaYBYPIyXEFcFEeFN9EE"/>
+<img alt="Visa" class="h-2 opacity-50 dark:invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaw7PJsLZdDBC3peVkr7GQ_zLV_7t4mMcpbsMSo_BVN4G7x2RyROilb8rLrd2f70kQ9q411aXsVHmihj173rS2-n5B0LKcc_7mDs-vqnzMRbjPMinPksfg3Bo2bHMczdJ5gPrV8fDVx7ZJMuDrg4AsrgOpJ1hf4JVmKXNv6KHA83zM6szfT3zqFXO7pfFeTShCFeyOugNyh0aVTYvfXbZVqYwwUxLHQTlrHuN2dk5TeEBcdJ0lwR5fdBhCqOD6vIX_weI36mdriEU"/>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="max-w-7xl mx-auto px-4 py-12 text-center space-y-6">
+<div class="flex flex-wrap items-center justify-center gap-8">
+<div class="flex items-center gap-2 text-slate-400">
+<span class="material-icons-outlined">verified_user</span>
+<span class="text-sm">Bank-level Security</span>
+</div>
+<div class="flex items-center gap-2 text-slate-400">
+<span class="material-icons-outlined">sentiment_satisfied</span>
+<span class="text-sm">Happiness Guaranteed</span>
+</div>
+<div class="flex items-center gap-2 text-slate-400">
+<span class="material-icons-outlined">support_agent</span>
+<span class="text-sm">24/7 Concierge Support</span>
+</div>
+</div>
+<p class="text-xs text-slate-400 dark:text-slate-500 max-w-2xl mx-auto">
+            © 2026 Touch Spa Inc. All rights reserved. By clicking "Confirm &amp; Pay", you agree to our Terms of Service and Cancellation Policy. You will be charged ksh 2,125.
+        </p>
+</footer>
+<button class="fixed bottom-6 right-6 p-3 bg-white dark:bg-slate-800 rounded-full shadow-lg border border-slate-200 dark:border-slate-700 z-50" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-icons-outlined block dark:hidden">dark_mode</span>
+<span class="material-icons-outlined hidden dark:block text-primary">light_mode</span>
+</button>
+
+</body></html>
