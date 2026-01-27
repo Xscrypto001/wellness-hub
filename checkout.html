@@ -142,7 +142,7 @@
                             </div>
                             <div class="flex justify-between text-slate-600 dark:text-slate-400">
                                 <span>Service Fee</span>
-                                <span>ksh 0.00</span>
+                                <span>ksh 230.00</span>
                             </div>
                         </div>
                         <div class="pt-2">
@@ -204,7 +204,7 @@
 
     <script>
         // Paystack Configuration
-        const paystackPublicKey = "pk_live_YOUR_PUBLIC_KEY_HERE"; // Replace with your Paystack public key
+        const paystackPublicKey = "pk_live_504e9f8c8aebfa975ff87ba801235867f91f39f9"; 
         const amountInKobo = 2125 * 100; // Convert KSH to kobo (Paystack uses kobo for Naira, but for other currencies use the smallest unit)
         
         function selectPaymentMethod(method) {
@@ -223,9 +223,9 @@
         }
         
         function payWithPaystack() {
-            const email = document.getElementById("email-address").value;
-            const firstName = document.getElementById("first-name").value;
-            const lastName = document.getElementById("last-name").value;
+            const email = 'ikinyapeter93@gmaiail.com';
+            const firstName = 'mary';
+            const lastName = 'mungai';
             const amount = document.getElementById("amount").value;
             
             // Validate inputs
