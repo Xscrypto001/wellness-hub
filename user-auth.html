@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Touch Spa | Welcome</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00E676",
+                        "primary-light": "#66FFA6",
+                        "primary-dark": "#00B248",
+                        "background-light": "#F9FAFB",
+                        "background-dark": "#0F172A",
+                        "card-light": "#FFFFFF",
+                        "card-dark": "#1E293B",
+                    },
+                    fontFamily: {
+                        display: ["Plus Jakarta Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "16px",
+                        'lg': '24px',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                },
+            },
+        };
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        
+        .form-container {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .dark .form-container {
+            background: linear-gradient(135deg, rgba(30,41,59,0.7) 0%, rgba(15,23,42,0.5) 100%);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .dark .glass-effect {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #00E676 0%, #00BFA5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .input-focus-effect:focus {
+            box-shadow: 0 0 0 3px rgba(0, 230, 118, 0.2);
+        }
+        
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-element-delay {
+            animation: float 6s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 transition-colors duration-300 min-h-screen flex items-center justify-center p-4">
+    <!-- Background decorative elements -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-primary/10 blur-3xl"></div>
+        <div class="absolute top-1/4 -left-40 w-80 h-80 rounded-full bg-primary/5 blur-3xl"></div>
+        <div class="absolute -bottom-40 left-1/4 w-80 h-80 rounded-full bg-primary/10 blur-3xl"></div>
+        
+        <!-- Floating elements -->
+        <div class="absolute top-1/3 left-1/4 floating-element">
+            <div class="w-6 h-6 rounded-full bg-primary/20"></div>
+        </div>
+        <div class="absolute top-1/2 right-1/3 floating-element-delay">
+            <div class="w-8 h-8 rounded-full bg-primary/10"></div>
+        </div>
+        <div class="absolute bottom-1/4 left-1/3 floating-element">
+            <div class="w-10 h-10 rounded-full bg-primary/15"></div>
+        </div>
+    </div>
+
+    <div class="container max-w-6xl mx-auto relative z-10">
+        <div class="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12">
+            <!-- Left side - Brand & Info -->
+            <div class="w-full lg:w-1/2 text-center lg:text-left animate-fade-in">
+                <div class="flex items-center justify-center lg:justify-start gap-3 mb-6">
+                    <div class="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center shadow-lg shadow-primary/20">
+                        <span class="material-icons-outlined text-white text-2xl">spa</span>
+                    </div>
+                    <span class="font-bold text-3xl tracking-tight">Touch Spa</span>
+                </div>
+                
+                <h1 class="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                    Welcome to <span class="gradient-text">Serenity</span>
+                </h1>
+                
+                <p class="text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-xl mx-auto lg:mx-0">
+                    Experience ultimate relaxation and rejuvenation. Book personalized spa treatments from certified therapists right at your home.
+                </p>
+                
+                <div class="space-y-4 mb-10 hidden lg:block">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                            <span class="material-icons-outlined text-primary">check_circle</span>
+                        </div>
+                        <span class="text-lg">Certified therapists with 5+ years experience</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                            <span class="material-icons-outlined text-primary">check_circle</span>
+                        </div>
+                        <span class="text-lg">100% hygiene guaranteed equipment</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                            <span class="material-icons-outlined text-primary">check_circle</span>
+                        </div>
+                        <span class="text-lg">Personalized treatments for your needs</span>
+                    </div>
+                </div>
+                
+                <div class="glass-effect rounded-2xl p-6 max-w-md mx-auto lg:mx-0">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                            <span class="material-icons-outlined text-primary text-2xl">sentiment_very_satisfied</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold">"Best spa experience at home!"</p>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">- Sarah, 42 repeat bookings</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right side - Forms -->
+            <div class="w-full lg:w-1/2">
+                <div class="form-container rounded-3xl p-8 lg:p-10 shadow-2xl shadow-primary/5 animate-fade-in">
+                    <!-- Toggle between Login/Signup -->
+                    <div class="flex mb-8">
+                        <button id="loginTab" class="flex-1 py-4 text-center font-bold text-xl rounded-2xl transition-all duration-300 bg-primary text-white">
+                            Login
+                        </button>
+                        <button id="signupTab" class="flex-1 py-4 text-center font-bold text-xl rounded-2xl transition-all duration-300 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700">
+                            Sign Up
+                        </button>
+                    </div>
+                    
+                    <!-- Login Form -->
+                    <form id="loginForm" class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300" for="loginEmail">Email Address</label>
+                            <div class="relative">
+                                <span class="material-icons-outlined absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400">email</span>
+                                <input type="email" id="loginEmail" required class="w-full pl-12 pr-4 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-primary input-focus-effect transition-all" placeholder="your@email.com"/>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300" for="loginPassword">Password</label>
+                            <div class="relative">
+                                <span class="material-icons-outlined absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400">lock</span>
+                                <input type="password" id="loginPassword" required class="w-full pl-12 pr-12 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-primary input-focus-effect transition-all" placeholder="Enter your password"/>
+                                <button type="button" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-primary" onclick="togglePassword('loginPassword')">
+                                    <span class="material-icons-outlined">visibility</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox" class="w-5 h-5 rounded-lg border-2 border-slate-300 dark:border-slate-600 checked:bg-primary focus:ring-primary"/>
+                                <span class="text-sm text-slate-600 dark:text-slate-400">Remember me</span>
+                            </label>
+                            <a href="#" class="text-sm font-medium text-primary hover:text-primary-dark transition-colors">Forgot password?</a>
+                        </div>
+                        
+                        <button type="submit" class="w-full py-4 bg-gradient-to-r from-primary to-primary-dark text-white font-bold rounded-xl text-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 flex items-center justify-center gap-2">
+                            <span class="material-icons-outlined">login</span>
+                            <span>Sign In to Your Account</span>
+                        </button>
+                        
+                        <div class="relative my-6">
+                            <div class="absolute inset-0 flex items-center">
+                                <div class="w-full border-t border-slate-200 dark:border-slate-700"></div>
+                            </div>
+                            <div class="relative flex justify-center text-sm">
+                                <span class="px-4 bg-transparent text-slate-500 dark:text-slate-400">Or continue with</span>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <button type="button" class="py-3 border border-slate-200 dark:border-slate-700 rounded-xl flex items-center justify-center gap-2 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                                <svg class="w-5 h-5" viewBox="0 0 24 24">
+                                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                                </svg>
+                                <span>Google</span>
+                            </button>
+                            <button type="button" class="py-3 border border-slate-200 dark:border-slate-700 rounded-xl flex items-center justify-center gap-2 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                              
+                        </div>
+                    </form>
+                    
+                    <!-- Signup Form (Hidden by default) -->
+                    <form id="signupForm" class="space-y-6 hidden">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300" for="firstName">First Name</label>
+                                <div class="relative">
+                                    <span class="material-icons-outlined absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400">person</span>
+                                    <input type="text" id="firstName" required class="w-full pl-12 pr-4 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-primary input-focus-effect transition-all" placeholder="John"/>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300" for="lastName">Last Name</label>
+                                <div class="relative">
+                                    <span class="material-icons-outlined absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400">person</span>
+                                    <input type="text" id="lastName" required class="w-full pl-12 pr-4 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-primary input-focus-effect transition-all" placeholder="Doe"/>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300" for="signupEmail">Email Address</label>
+                            <div class="relative">
+                                <span class="material-icons-outlined absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400">email</span>
+                                <input type="email" id="signupEmail" required class="w-full pl-12 pr-4 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-primary input-focus-effect transition-all" placeholder="your@email.com"/>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300" for="signupPassword">Password</label>
+                            <div class="relative">
+                                <span class="material-icons-outlined absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400">lock</span>
+                                <input type="password" id="signupPassword" required class="w-full pl-12 pr-12 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-primary input-focus-effect transition-all" placeholder="Create a strong password"/>
+                                <button type="button" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-primary" onclick="togglePassword('signupPassword')">
+                                    <span class="material-icons-outlined">visibility</span>
+                                </button>
+                            </div>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Use at least 8 characters with a mix of letters, numbers & symbols</p>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300" for="confirmPassword">Confirm Password</label>
+                            <div class="relative">
+                                <span class="material-icons-outlined absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400">lock</span>
+                                <input type="password" id="confirmPassword" required class="w-full pl-12 pr-4 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-primary input-focus-effect transition-all" placeholder="Confirm your password"/>
+                            </div>
+                        </div>
+                        
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" class="w-5 h-5 mt-1 rounded-lg border-2 border-slate-300 dark:border-slate-600 checked:bg-primary focus:ring-primary"/>
+                            <span class="text-sm text-slate-600 dark:text-slate-400">I agree to the <a href="#" class="font-medium text-primary hover:text-primary-dark transition-colors">Terms of Service</a> and <a href="#" class="font-medium text-primary hover:text-primary-dark transition-colors">Privacy Policy</a></span>
+                        </label>
+                        
+                        <button type="submit" class="w-full py-4 bg-gradient-to-r from-primary to-primary-dark text-white font-bold rounded-xl text-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 flex items-center justify-center gap-2">
+                            <span class="material-icons-outlined">person_add</span>
+                            <span>Create Your Account</span>
+                        </button>
+                        
+                        <p class="text-center text-sm text-slate-600 dark:text-slate-400">
+                            Already have an account? 
+                            <button type="button" class="font-medium text-primary hover:text-primary-dark transition-colors" onclick="switchToLogin()">Sign in here</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dark/Light mode toggle -->
+    <button class="fixed bottom-6 right-6 p-4 glass-effect rounded-full shadow-lg z-50 transition-all hover:scale-110" onclick="document.documentElement.classList.toggle('dark')">
+        <span class="material-icons-outlined block dark:hidden text-slate-700">dark_mode</span>
+        <span class="material-icons-outlined hidden dark:block text-primary">light_mode</span>
+    </button>
+
+    <script>
+        // Toggle between Login and Signup forms
+        const loginTab = document.getElementById('loginTab');
+        const signupTab = document.getElementById('signupTab');
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        
+        function switchToLogin() {
+            loginTab.classList.add('bg-primary', 'text-white');
+            loginTab.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
+            
+            signupTab.classList.remove('bg-primary', 'text-white');
+            signupTab.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
+            
+            loginForm.classList.remove('hidden');
+            signupForm.classList.add('hidden');
+        }
+        
+        function switchToSignup() {
+            signupTab.classList.add('bg-primary', 'text-white');
+            signupTab.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
+            
+            loginTab.classList.remove('bg-primary', 'text-white');
+            loginTab.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
+            
+            signupForm.classList.remove('hidden');
+            loginForm.classList.add('hidden');
+        }
+        
+        loginTab.addEventListener('click', switchToLogin);
+        signupTab.addEventListener('click', switchToSignup);
+        
+        // Toggle password visibility
+        function togglePassword(inputId) {
+            const passwordInput = document.getElementById(inputId);
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+        }
+        
+        // Form submission handlers
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Simulate login process
+            console.log('Login attempt with:', { email, password });
+            
+            // Show success message
+            showNotification('Successfully logged in! Redirecting...', 'success');
+            
+            // In a real app, you would submit to your backend here
+            // setTimeout(() => { window.location.href = '/dashboard'; }, 1500);
+        });
+        
+        signupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            // Basic validation
+            if (password !== confirmPassword) {
+                showNotification('Passwords do not match!', 'error');
+                return;
+            }
+            
+            if (password.length < 8) {
+                showNotification('Password must be at least 8 characters long', 'error');
+                return;
+            }
+            
+            // Simulate signup process
+            console.log('Signup attempt with:', { firstName, lastName, email, password });
+            
+            // Show success message
+            showNotification('Account created successfully! Welcome to Touch Spa.', 'success');
+            
+            // In a real app, you would submit to your backend here
+            // setTimeout(() => { window.location.href = '/dashboard'; }, 1500);
+        });
+        
+        // Show notification function
+        function showNotification(message, type) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `fixed top-6 right-6 z-50 px-6 py-4 rounded-xl shadow-lg flex items-center gap-3 animate-fade-in ${type === 'success' ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200' : 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200'}`;
+            
+            const icon = document.createElement('span');
+            icon.className = 'material-icons-outlined';
+            icon.textContent = type === 'success' ? 'check_circle' : 'error';
+            
+            const text = document.createElement('span');
+            text.textContent = message;
+            
+            notification.appendChild(icon);
+            notification.appendChild(text);
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+        
+        // Initialize with login form visible
+        document.addEventListener('DOMContentLoaded', function() {
+            switchToLogin();
+            
+            // Add some subtle animation to form inputs
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.classList.add('ring-2', 'ring-primary/20');
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.classList.remove('ring-2', 'ring-primary/20');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
