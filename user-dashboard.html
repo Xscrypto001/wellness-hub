@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Chat with Spa Specialist | Touch Spa</title>
+    <title>Touch Spa | Owner Dashboard</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
@@ -16,11 +16,13 @@
                         primary: "#00E676",
                         "primary-light": "#66FFA6",
                         "primary-dark": "#00B248",
-                        "secondary: "#00BFA5",
+                        "secondary": "#00BFA5",
                         "background-light": "#F9FAFB",
                         "background-dark": "#0F172A",
-                        "chat-bg": "#F0F9FF",
-                        "chat-bg-dark": "#0F172A",
+                        "success": "#10B981",
+                        "warning": "#F59E0B",
+                        "danger": "#EF4444",
+                        "info": "#3B82F6",
                     },
                     fontFamily: {
                         display: ["Plus Jakarta Sans", "sans-serif"],
@@ -28,15 +30,12 @@
                     borderRadius: {
                         DEFAULT: "16px",
                         'lg': '24px',
-                        'xl': '32px',
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'fade-in': 'fadeIn 0.3s ease-out',
-                        'slide-in-left': 'slideInLeft 0.5s ease-out',
-                        'slide-in-right': 'slideInRight 0.5s ease-out',
-                        'pulse-subtle': 'pulseSubtle 2s ease-in-out infinite',
-                        'wave': 'wave 1.8s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
                     },
                     keyframes: {
                         float: {
@@ -47,21 +46,13 @@
                             '0%': { opacity: '0' },
                             '100%': { opacity: '1' },
                         },
-                        slideInLeft: {
-                            '0%': { opacity: '0', transform: 'translateX(-20px)' },
-                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
                         },
-                        slideInRight: {
-                            '0%': { opacity: '0', transform: 'translateX(20px)' },
-                            '100%': { opacity: '1', transform: 'translateX(0)' },
-                        },
-                        pulseSubtle: {
-                            '0%, 100%': { opacity: '1' },
-                            '50%': { opacity: '0.8' },
-                        },
-                        wave: {
-                            '0%, 100%': { transform: 'scale(1)' },
-                            '50%': { transform: 'scale(1.05)' },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 0 0 rgba(0, 230, 118, 0.4)' },
+                            '50%': { boxShadow: '0 0 0 10px rgba(0, 230, 118, 0)' },
                         }
                     }
                 },
@@ -80,137 +71,21 @@
             background-clip: text;
         }
         
-        .chat-container {
-            height: 600px;
-            min-width: 450px;
-        }
-        
-        .profile-container {
-            min-width: 350px;
-        }
-        
-        .message-bubble-user {
-            background: linear-gradient(135deg, #00E676 0%, #00BFA5 100%);
-            color: white;
-            border-radius: 24px 24px 8px 24px;
-            box-shadow: 0 4px 20px rgba(0, 230, 118, 0.2);
-        }
-        
-        .message-bubble-specialist {
-            background: white;
-            color: #334155;
-            border-radius: 24px 24px 24px 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        }
-        
-        .dark .message-bubble-specialist {
-            background: #1E293B;
-            color: #F1F5F9;
-        }
-        
-        .typing-indicator {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 12px 20px;
-        }
-        
-        .typing-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #94A3B8;
-            animation: typingDot 1.4s infinite ease-in-out;
-        }
-        
-        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
-        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
-        
-        @keyframes typingDot {
-            0%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-6px); }
-        }
-        
-        .chat-input {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 230, 118, 0.2);
-        }
-        
-        .dark .chat-input {
-            background: rgba(30, 41, 59, 0.9);
-            border: 1px solid rgba(0, 230, 118, 0.3);
-        }
-        
-        .specialist-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);
+        .dashboard-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.2);
-        }
-        
-        .dark .specialist-card {
-            background: linear-gradient(135deg, rgba(30,41,59,0.95) 0%, rgba(15,23,42,0.85) 100%);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .status-online {
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: #00E676;
-            box-shadow: 0 0 0 4px rgba(0, 230, 118, 0.2);
-            animation: pulseSubtle 2s ease-in-out infinite;
-        }
-        
-        .quick-action-btn {
             transition: all 0.3s ease;
         }
         
-        .quick-action-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 230, 118, 0.15);
+        .dark .dashboard-card {
+            background: linear-gradient(135deg, rgba(30,41,59,0.95) 0%, rgba(15,23,42,0.9) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
         }
         
-        .message-time {
-            font-size: 11px;
-            opacity: 0.7;
-            letter-spacing: 0.3px;
-        }
-        
-        .unread-indicator {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #00E676;
-            animation: wave 1.8s ease-in-out infinite;
-        }
-        
-        .attachment-preview {
-            border-radius: 16px;
-            overflow: hidden;
-            border: 2px solid rgba(0, 230, 118, 0.1);
-        }
-        
-        .emoji-picker-btn {
-            transition: all 0.2s ease;
-        }
-        
-        .emoji-picker-btn:hover {
-            transform: scale(1.1);
-        }
-        
-        .chat-scrollbar::-webkit-scrollbar {
-            width: 6px;
-        }
-        
-        .chat-scrollbar::-webkit-scrollbar-track {
-            background: transparent;
-            border-radius: 10px;
-        }
-        
-        .chat-scrollbar::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, #00E676, #00BFA5);
-            border-radius: 10px;
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 230, 118, 0.15);
         }
         
         .stat-card {
@@ -219,654 +94,1018 @@
         
         .stat-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 230, 118, 0.1);
         }
         
-        .availability-badge {
-            background: linear-gradient(135deg, rgba(0, 230, 118, 0.1) 0%, rgba(0, 191, 165, 0.1) 100%);
-            border: 1px solid rgba(0, 230, 118, 0.2);
+        .live-chat-widget {
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+        
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .status-confirmed {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10B981;
+        }
+        
+        .status-pending {
+            background: rgba(245, 158, 11, 0.1);
+            color: #F59E0B;
+        }
+        
+        .status-cancelled {
+            background: rgba(239, 68, 68, 0.1);
+            color: #EF4444;
+        }
+        
+        .status-completed {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3B82F6;
+        }
+        
+        .payment-status {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+        }
+        
+        .payment-paid { background: #10B981; }
+        .payment-pending { background: #F59E0B; }
+        .payment-cancelled { background: #EF4444; }
+        .payment-refunded { background: #8B5CF6; }
+        
+        .progress-bar {
+            height: 6px;
+            border-radius: 3px;
+            overflow: hidden;
+            background: #E5E7EB;
+        }
+        
+        .dark .progress-bar {
+            background: #374151;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 3px;
+            background: linear-gradient(90deg, #00E676, #00BFA5);
+        }
+        
+        .therapist-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .chart-container {
+            height: 200px;
+            position: relative;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #EF4444;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .floating-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .floating-widget:hover {
+            transform: scale(1.1);
         }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 transition-colors duration-300 min-h-screen p-4">
-    <!-- Background Elements -->
-    <div class="fixed inset-0 overflow-hidden pointer-events-none">
-        <div class="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-primary/5 blur-3xl"></div>
-        <div class="absolute -bottom-20 -left-20 w-96 h-96 rounded-full bg-secondary/5 blur-3xl"></div>
-        
-        <!-- Floating spa elements -->
-        <div class="absolute top-1/4 left-1/4 floating-element">
-            <div class="w-4 h-4 rounded-full bg-primary/20"></div>
-        </div>
-        <div class="absolute top-1/3 right-1/3 floating-element" style="animation-delay: 1s">
-            <div class="w-6 h-6 rounded-full bg-secondary/15"></div>
-        </div>
-        <div class="absolute bottom-1/4 left-1/3 floating-element" style="animation-delay: 2s">
-            <div class="w-8 h-8 rounded-full bg-primary/10"></div>
-        </div>
-    </div>
-
-    <!-- Main Container - Split Layout -->
-    <div class="relative z-10 max-w-7xl mx-auto">
-        <!-- Header -->
-        <div class="mb-8 text-center">
-            <div class="flex items-center justify-center gap-3 mb-4">
-                <div class="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center">
-                    <span class="material-icons-outlined text-white text-2xl">spa</span>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 transition-colors duration-300">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+                    <span class="material-icons-outlined text-white text-lg">spa</span>
                 </div>
-                <span class="font-bold text-3xl tracking-tight">Touch Spa</span>
+                <div>
+                    <span class="font-bold text-2xl tracking-tight">Touch Spa</span>
+                    <span class="text-sm text-slate-500 dark:text-slate-400 ml-2">Owner Dashboard</span>
+                </div>
             </div>
-            <h1 class="text-4xl font-bold mb-2">Premium Spa Consultation</h1>
-            <p class="text-xl text-slate-600 dark:text-slate-300">Chat directly with our head spa specialist</p>
-        </div>
-
-        <div class="flex flex-col lg:flex-row gap-8">
-            <!-- LEFT COLUMN - Specialist Profile -->
-            <div class="lg:w-2/5 profile-container animate-slide-in-left">
-                <div class="specialist-card rounded-3xl shadow-2xl shadow-primary/10 overflow-hidden sticky top-8">
-                    <!-- Profile Header -->
-                    <div class="bg-gradient-to-r from-primary/10 to-secondary/10 p-8">
-                        <div class="flex items-center justify-between mb-6">
-                            <div class="flex items-center gap-4">
-                                <div class="relative">
-                                    <div class="w-24 h-24 rounded-3xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-2xl">
-                                        <span class="material-icons-outlined text-white text-5xl">spa</span>
-                                    </div>
-                                    <div class="status-online absolute -bottom-1 -right-1 border-4 border-white dark:border-slate-800"></div>
-                                </div>
-                                <div>
-                                    <h1 class="text-2xl font-bold mb-1">Samantha Chen</h1>
-                                    <div class="flex items-center gap-2 mb-2">
-                                        <span class="text-lg font-medium gradient-text">Head Spa Specialist</span>
-                                    </div>
-                                    <div class="flex items-center gap-3 text-sm">
-                                        <span class="flex items-center gap-1 text-slate-600 dark:text-slate-400">
-                                            <span class="material-icons-outlined text-base text-amber-400">star</span>
-                                            <span>4.9/5.0</span>
-                                        </span>
-                                        <span class="text-slate-400">•</span>
-                                        <span class="flex items-center gap-1 text-slate-600 dark:text-slate-400">
-                                            <span class="material-icons-outlined text-base text-primary">verified</span>
-                                            <span>Certified Expert</span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="availability-badge inline-flex items-center gap-2 px-4 py-2 rounded-full">
-                            <div class="unread-indicator"></div>
-                            <span class="font-medium text-primary">Available Now</span>
-                        </div>
+            
+            <div class="flex items-center gap-4">
+                <!-- Live Chat Toggle -->
+                <div class="relative">
+                    <button id="liveChatToggle" class="px-4 py-2 bg-primary text-white rounded-xl font-medium flex items-center gap-2 hover:bg-primary-dark transition-colors">
+                        <span class="material-icons-outlined">chat</span>
+                        <span>Live Chat</span>
+                        <span id="unreadCount" class="notification-badge hidden">3</span>
+                    </button>
+                </div>
+                
+                <!-- Date & Time -->
+                <div class="hidden md:block px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-xl">
+                    <div class="text-sm font-medium" id="currentDateTime"></div>
+                </div>
+                
+                <!-- User Menu -->
+                <div class="flex items-center gap-3">
+                    <div class="text-right hidden md:block">
+                        <div class="font-semibold">Samantha Chen</div>
+                        <div class="text-sm text-slate-500 dark:text-slate-400">Owner</div>
                     </div>
-                    
-                    <!-- Profile Details -->
-                    <div class="p-8">
-                        <div class="mb-8">
-                            <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
-                                <span class="material-icons-outlined text-primary">person</span>
-                                About Samantha
-                            </h3>
-                            <p class="text-slate-600 dark:text-slate-400 mb-4">
-                                With over 15 years of experience in therapeutic massage and spa treatments, Samantha specializes in creating personalized wellness plans. She's certified in 8 different massage techniques and has helped over 2,000 clients achieve relaxation and pain relief.
-                            </p>
-                            <div class="space-y-2">
-                                <div class="flex items-center gap-2">
-                                    <span class="material-icons-outlined text-primary text-sm">school</span>
-                                    <span class="text-sm text-slate-600 dark:text-slate-400">Certified in Deep Tissue, Swedish, Hot Stone, and Aromatherapy</span>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="material-icons-outlined text-primary text-sm">workspace_premium</span>
-                                    <span class="text-sm text-slate-600 dark:text-slate-400">International Spa Association Member since 2015</span>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="material-icons-outlined text-primary text-sm">translate</span>
-                                    <span class="text-sm text-slate-600 dark:text-slate-400">Fluent in English, French, and Mandarin</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Stats Grid -->
-                        <div class="grid grid-cols-2 gap-4 mb-8">
-                            <div class="stat-card p-4 bg-white dark:bg-slate-800 rounded-2xl text-center">
-                                <div class="text-2xl font-bold text-primary mb-1">98%</div>
-                                <div class="text-sm text-slate-600 dark:text-slate-400">Client Satisfaction</div>
-                            </div>
-                            <div class="stat-card p-4 bg-white dark:bg-slate-800 rounded-2xl text-center">
-                                <div class="text-2xl font-bold text-primary mb-1">2 min</div>
-                                <div class="text-sm text-slate-600 dark:text-slate-400">Avg Response</div>
-                            </div>
-                            <div class="stat-card p-4 bg-white dark:bg-slate-800 rounded-2xl text-center">
-                                <div class="text-2xl font-bold text-primary mb-1">2,148+</div>
-                                <div class="text-sm text-slate-600 dark:text-slate-400">Clients Helped</div>
-                            </div>
-                            <div class="stat-card p-4 bg-white dark:bg-slate-800 rounded-2xl text-center">
-                                <div class="text-2xl font-bold text-primary mb-1">15 yrs</div>
-                                <div class="text-sm text-slate-600 dark:text-slate-400">Experience</div>
-                            </div>
-                        </div>
-                        
-                        <!-- Specializations -->
-                        <div class="mb-6">
-                            <h3 class="text-lg font-bold mb-3 flex items-center gap-2">
-                                <span class="material-icons-outlined text-primary">workspace_premium</span>
-                                Specializations
-                            </h3>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Deep Tissue</span>
-                                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Sports Therapy</span>
-                                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Chronic Pain</span>
-                                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Stress Relief</span>
-                                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Posture Correction</span>
-                            </div>
-                        </div>
-                        
-                        <!-- Contact Info -->
-                        <div class="border-t border-slate-100 dark:border-slate-700 pt-6">
-                            <div class="flex items-center justify-between text-sm text-slate-600 dark:text-slate-400">
-                                <span class="flex items-center gap-2">
-                                    <span class="material-icons-outlined text-base text-primary">schedule</span>
-                                    <span>Typically replies in 1-2 minutes</span>
-                                </span>
-                                <button class="p-2 bg-slate-100 dark:bg-slate-800 rounded-xl hover:scale-105 transition-transform" onclick="document.documentElement.classList.toggle('dark')">
-                                    <span class="material-icons-outlined block dark:hidden">dark_mode</span>
-                                    <span class="material-icons-outlined hidden dark:block text-primary">light_mode</span>
-                                </button>
-                            </div>
-                        </div>
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold">
+                        SC
                     </div>
                 </div>
             </div>
+        </div>
+    </header>
 
-            <!-- RIGHT COLUMN - Chat Interface -->
-            <div class="lg:w-3/5 animate-slide-in-right">
-                <div class="chat-container bg-white dark:bg-slate-800 rounded-3xl shadow-2xl shadow-primary/10 overflow-hidden">
-                    <!-- Chat Header -->
-                    <div class="bg-gradient-to-r from-primary/5 to-secondary/5 p-6 border-b border-slate-100 dark:border-slate-700">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <div class="relative">
-                                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                                        <span class="material-icons-outlined text-white">spa</span>
-                                    </div>
-                                    <div class="status-online absolute -bottom-1 -right-1 border-3 border-white dark:border-slate-800"></div>
-                                </div>
-                                <div>
-                                    <h2 class="font-bold text-lg">Live Chat with Samantha</h2>
-                                    <div class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
-                                        <span>Online • Head Spa Specialist</span>
-                                        <span>•</span>
-                                        <span class="flex items-center gap-1">
-                                            <span class="material-icons-outlined text-sm text-amber-400">star</span>
-                                            <span>4.9</span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl transition-colors" onclick="toggleMute()" id="muteBtn">
-                                    <span class="material-icons-outlined text-slate-500">volume_up</span>
-                                </button>
-                                <button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl transition-colors" onclick="clearChat()">
-                                    <span class="material-icons-outlined text-slate-500">delete</span>
-                                </button>
-                            </div>
-                        </div>
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Dashboard Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold mb-2">Business Dashboard</h1>
+            <div class="flex flex-wrap items-center gap-4">
+                <p class="text-slate-600 dark:text-slate-400">Real-time insights and management tools for your spa business</p>
+                <div class="flex items-center gap-2 text-sm">
+                    <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full">Live Updates</span>
+                    <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full">24/7 Monitoring</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Overview -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <!-- Total Customers -->
+            <div class="stat-card dashboard-card p-6 rounded-2xl animate-slide-up">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <div class="text-sm text-slate-500 dark:text-slate-400">Total Customers</div>
+                        <div class="text-3xl font-bold">2,148</div>
                     </div>
-                    
-                    <!-- Chat Messages Area -->
-                    <div class="flex-1 p-6 overflow-y-auto chat-scrollbar" id="chatMessages" style="height: 400px;">
-                        <!-- Welcome Message -->
-                        <div class="text-center mb-8">
-                            <div class="inline-block px-4 py-2 bg-slate-100 dark:bg-slate-900 rounded-full text-sm text-slate-600 dark:text-slate-400">
-                                Today, 10:30 AM
-                            </div>
-                        </div>
-                        
-                        <!-- Specialist Welcome -->
-                        <div class="flex items-start gap-3 mb-6">
-                            <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink:0">
-                                <span class="material-icons-outlined text-white">spa</span>
-                            </div>
-                            <div class="max-w-xs md:max-w-md">
-                                <div class="message-bubble-specialist px-5 py-4 mb-1">
-                                    <p class="text-sm leading-relaxed">Hello! I'm Samantha, your personal spa specialist at Touch Spa. 🌿 I'm here to help you create the perfect relaxation experience. How can I assist you today?</p>
-                                </div>
-                                <div class="message-time pl-1">Samantha • 10:30 AM</div>
-                            </div>
-                        </div>
-                        
-                        <!-- User Message -->
-                        <div class="flex items-start gap-3 justify-end mb-6">
-                            <div class="max-w-xs md:max-w-md text-right">
-                                <div class="message-bubble-user px-5 py-4 mb-1">
-                                    <p class="text-sm leading-relaxed">Hi Samantha! I'm looking for a deep tissue massage but not sure which therapist to choose. Can you help?</p>
-                                </div>
-                                <div class="message-time pr-1">You • 10:31 AM</div>
-                            </div>
-                            <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink:0">
-                                <span class="material-icons-outlined text-white">person</span>
-                            </div>
-                        </div>
-                        
-                        <!-- Specialist Response -->
-                        <div class="flex items-start gap-3 mb-6">
-                            <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink:0">
-                                <span class="material-icons-outlined text-white">spa</span>
-                            </div>
-                            <div class="max-w-xs md:max-w-md">
-                                <div class="message-bubble-specialist px-5 py-4 mb-1">
-                                    <p class="text-sm leading-relaxed">Absolutely! For deep tissue, I recommend <span class="font-semibold text-primary">Sarah Martin</span> - she has 8 years of experience and specializes in therapeutic massage. 🎯</p>
-                                    <p class="text-sm leading-relaxed mt-2">Would you like me to check her availability for this week?</p>
-                                </div>
-                                <div class="message-time pl-1">Samantha • 10:32 AM</div>
-                            </div>
-                        </div>
-                        
-                        <!-- Quick Options (Suggested by Specialist) -->
-                        <div class="flex items-start gap-3 mb-6">
-                            <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink:0">
-                                <span class="material-icons-outlined text-white">spa</span>
-                            </div>
-                            <div class="max-w-xs md:max-w-md">
-                                <div class="message-bubble-specialist px-5 py-4 mb-1">
-                                    <p class="text-sm font-medium mb-3">Quick options:</p>
-                                    <div class="space-y-2">
-                                        <button class="quick-action-btn w-full text-left px-4 py-3 bg-primary/5 hover:bg-primary/10 rounded-xl text-sm transition-all" onclick="quickResponse('Yes, please check Sarah\'s availability')">
-                                            ✅ Yes, check Sarah's availability
-                                        </button>
-                                        <button class="quick-action-btn w-full text-left px-4 py-3 bg-primary/5 hover:bg-primary/10 rounded-xl text-sm transition-all" onclick="quickResponse('Can you recommend someone else?')">
-                                            🔄 Recommend another therapist
-                                        </button>
-                                        <button class="quick-action-btn w-full text-left px-4 py-3 bg-primary/5 hover:bg-primary/10 rounded-xl text-sm transition-all" onclick="quickResponse('Tell me more about Sarah\'s experience')">
-                                            ℹ️ More about Sarah's experience
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="message-time pl-1">Samantha • 10:33 AM</div>
-                            </div>
-                        </div>
-                        
-                        <!-- Typing Indicator -->
-                        <div id="typingIndicator" class="flex items-start gap-3 mb-6 hidden">
-                            <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink:0">
-                                <span class="material-icons-outlined text-white">spa</span>
-                            </div>
-                            <div class="message-bubble-specialist px-5 py-4">
-                                <div class="typing-indicator">
-                                    <div class="typing-dot"></div>
-                                    <div class="typing-dot"></div>
-                                    <div class="typing-dot"></div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                        <span class="material-icons-outlined text-primary text-2xl">group</span>
                     </div>
-                    
-                    <!-- Attachment Preview -->
-                    <div id="attachmentPreview" class="px-6 py-3 bg-slate-50 dark:bg-slate-900 border-t border-slate-100 dark:border-slate-700 hidden">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <div class="attachment-preview w-12 h-12 bg-primary/10 flex items-center justify-center">
-                                    <span class="material-icons-outlined text-primary">image</span>
-                                </div>
-                                <div>
-                                    <p class="text-sm font-medium">massage_preference.jpg</p>
-                                    <p class="text-xs text-slate-500 dark:text-slate-400">1.2 MB • Ready to send</p>
-                                </div>
-                            </div>
-                            <button class="p-2 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl" onclick="removeAttachment()">
-                                <span class="material-icons-outlined text-slate-500">close</span>
-                            </button>
-                        </div>
+                </div>
+                <div class="flex items-center text-sm text-slate-600 dark:text-slate-400">
+                    <span class="material-icons-outlined text-green-500 text-sm mr-1">trending_up</span>
+                    <span>+12% this month</span>
+                </div>
+            </div>
+            
+            <!-- Active Bookings -->
+            <div class="stat-card dashboard-card p-6 rounded-2xl animate-slide-up" style="animation-delay: 0.1s">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <div class="text-sm text-slate-500 dark:text-slate-400">Active Now</div>
+                        <div class="text-3xl font-bold">7</div>
                     </div>
-                    
-                    <!-- Chat Input Area -->
-                    <div class="p-4 border-t border-slate-100 dark:border-slate-700">
+                    <div class="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center">
+                        <span class="material-icons-outlined text-green-500 text-2xl">check_circle</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-sm text-slate-600 dark:text-slate-400">
+                    <span class="material-icons-outlined text-green-500 text-sm mr-1">schedule</span>
+                    <span>Today's sessions</span>
+                </div>
+            </div>
+            
+            <!-- Successful -->
+            <div class="stat-card dashboard-card p-6 rounded-2xl animate-slide-up" style="animation-delay: 0.2s">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <div class="text-sm text-slate-500 dark:text-slate-400">Successful</div>
+                        <div class="text-3xl font-bold">1,843</div>
+                    </div>
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center">
+                        <span class="material-icons-outlined text-blue-500 text-2xl">verified</span>
+                    </div>
+                </div>
+                <div class="text-sm text-slate-600 dark:text-slate-400">98% satisfaction rate</div>
+            </div>
+            
+            <!-- Cancellations -->
+            <div class="stat-card dashboard-card p-6 rounded-2xl animate-slide-up" style="animation-delay: 0.3s">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <div class="text-sm text-slate-500 dark:text-slate-400">Cancellations</div>
+                        <div class="text-3xl font-bold">42</div>
+                    </div>
+                    <div class="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center">
+                        <span class="material-icons-outlined text-red-500 text-2xl">cancel</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-sm text-slate-600 dark:text-slate-400">
+                    <span class="material-icons-outlined text-green-500 text-sm mr-1">trending_down</span>
+                    <span>-8% this month</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="grid lg:grid-cols-3 gap-8 mb-8">
+            <!-- Left Column - Upcoming Schedule -->
+            <div class="lg:col-span-2">
+                <div class="dashboard-card rounded-2xl p-6 animate-slide-up">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-bold">Upcoming Schedule</h2>
                         <div class="flex items-center gap-3">
-                            <!-- Attachment Button -->
-                            <button class="p-3 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-2xl transition-colors" onclick="attachFile()">
-                                <span class="material-icons-outlined text-slate-500">attach_file</span>
+                            <button class="px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl text-sm transition-colors">
+                                Today
                             </button>
-                            
-                            <!-- Emoji Button -->
-                            <button class="p-3 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-2xl transition-colors emoji-picker-btn" onclick="toggleEmojiPicker()">
-                                <span class="material-icons-outlined text-slate-500">mood</span>
-                            </button>
-                            
-                            <!-- Message Input -->
-                            <div class="flex-1">
-                                <input type="text" id="chatInput" placeholder="Type your message here..." class="w-full px-5 py-4 chat-input rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all" autocomplete="off"/>
-                            </div>
-                            
-                            <!-- Send Button -->
-                            <button class="p-4 bg-gradient-to-r from-primary to-secondary text-white rounded-2xl hover:shadow-lg hover:shadow-primary/30 transition-all duration-300" onclick="sendMessage()" id="sendBtn">
-                                <span class="material-icons-outlined">send</span>
+                            <button class="px-4 py-2 bg-primary text-white hover:bg-primary-dark rounded-xl text-sm transition-colors">
+                                Add New
                             </button>
                         </div>
+                    </div>
+                    
+                    <!-- Schedule Table -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <th class="text-left py-3 px-4 text-sm font-medium text-slate-500 dark:text-slate-400">Time</th>
+                                    <th class="text-left py-3 px-4 text-sm font-medium text-slate-500 dark:text-slate-400">Customer</th>
+                                    <th class="text-left py-3 px-4 text-sm font-medium text-slate-500 dark:text-slate-400">Therapist</th>
+                                    <th class="text-left py-3 px-4 text-sm font-medium text-slate-500 dark:text-slate-400">Service</th>
+                                    <th class="text-left py-3 px-4 text-sm font-medium text-slate-500 dark:text-slate-400">Address</th>
+                                    <th class="text-left py-3 px-4 text-sm font-medium text-slate-500 dark:text-slate-400">Amount</th>
+                                    <th class="text-left py-3 px-4 text-sm font-medium text-slate-500 dark:text-slate-400">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+                                <!-- Booking 1 -->
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                    <td class="py-4 px-4">
+                                        <div class="font-medium">10:30 AM</div>
+                                        <div class="text-sm text-slate-500 dark:text-slate-400">Today</div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="font-medium">John Mwangi</div>
+                                        <div class="text-sm text-slate-500 dark:text-slate-400">+254 712 345 678</div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="therapist-avatar bg-gradient-to-br from-blue-500 to-cyan-500">SM</div>
+                                            <div>
+                                                <div class="font-medium">Sarah Martin</div>
+                                                <div class="text-xs text-slate-500 dark:text-slate-400">Deep Tissue</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="font-medium">Deep Tissue</div>
+                                        <div class="text-sm text-slate-500 dark:text-slate-400">60 min</div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="text-sm">Westlands, Nairobi</div>
+                                        <div class="text-xs text-slate-500 dark:text-slate-400">Home Visit</div>
+                                    </td>
+                                    <td class="py-4 px-4 font-bold">Ksh 2,500</td>
+                                    <td class="py-4 px-4">
+                                        <span class="status-badge status-confirmed">Confirmed</span>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Booking 2 -->
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                    <td class="py-4 px-4">
+                                        <div class="font-medium">12:00 PM</div>
+                                        <div class="text-sm text-slate-500 dark:text-slate-400">Today</div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="font-medium">Lisa Wang</div>
+                                        <div class="text-sm text-slate-500 dark:text-slate-400">+254 723 456 789</div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="therapist-avatar bg-gradient-to-br from-purple-500 to-pink-500">MR</div>
+                                            <div>
+                                                <div class="font-medium">Michael Rodriguez</div>
+                                                <div class="text-xs text-slate-500 dark:text-slate-400">Swedish</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="font-medium">Swedish Massage</div>
+                                        <div class="text-sm text-slate-500 dark:text-slate-400">90 min</div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="text-sm">Kilimani, Nairobi</div>
+                                        <div class="text-xs text-slate-500 dark:text-slate-400">Office Visit</div>
+                                    </td>
+                                    <td class="py-4 px-4 font-bold">Ksh 3,200</td>
+                                    <td class="py-4 px-4">
+                                        <span class="status-badge status-pending">On the way</span>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Booking 3 -->
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                    <td class="py-4 px-4">
+                                        <div class="font-medium">2:30 PM</div>
+                                        <div class="text-sm text-slate-500 dark:text-slate-400">Today</div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="font-medium">David Ochieng</div>
+                                        <div class="text-sm text-slate-500 dark:text-slate-400">+254 734 567 890</div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="therapist-avatar bg-gradient-to-br from-green-500 to-emerald-500">LW</div>
+                                            <div>
+                                                <div class="font-medium">Lisa Wang</div>
+                                                <div class="text-xs text-slate-500 dark:text-slate-400">Hot Stone</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="font-medium">Hot Stone Therapy</div>
+                                        <div class="text-sm text-slate-500 dark:text-slate-400">75 min</div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="text-sm">Karen, Nairobi</div>
+                                        <div class="text-xs text-slate-500 dark:text-slate-400">Home Visit</div>
+                                    </td>
+                                    <td class="py-4 px-4 font-bold">Ksh 3,800</td>
+                                    <td class="py-4 px-4">
+                                        <span class="status-badge status-confirmed">Confirmed</span>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Booking 4 -->
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                    <td class="py-4 px-4">
+                                        <div class="font-medium">4:00 PM</div>
+                                        <div class="text-sm text-slate-500 dark:text-slate-400">Today</div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="font-medium">Sarah Johnson</div>
+                                        <div class="text-sm text-slate-500 dark:text-slate-400">+254 745 678 901</div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="therapist-avatar bg-gradient-to-br from-orange-500 to-amber-500">JA</div>
+                                            <div>
+                                                <div class="font-medium">James Anderson</div>
+                                                <div class="text-xs text-slate-500 dark:text-slate-400">Sports</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="font-medium">Sports Massage</div>
+                                        <div class="text-sm text-slate-500 dark:text-slate-400">60 min</div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="text-sm">Lavington, Nairobi</div>
+                                        <div class="text-xs text-slate-500 dark:text-slate-400">Gym Visit</div>
+                                    </td>
+                                    <td class="py-4 px-4 font-bold">Ksh 2,800</td>
+                                    <td class="py-4 px-4">
+                                        <span class="status-badge status-pending">Pending</span>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Booking 5 -->
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                    <td class="py-4 px-4">
+                                        <div class="font-medium">6:30 PM</div>
+                                        <div class="text-sm text-slate-500 dark:text-slate-400">Today</div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="font-medium">Mike & Angela</div>
+                                        <div class="text-sm text-slate-500 dark:text-slate-400">Couples Session</div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="therapist-avatar bg-gradient-to-br from-blue-500 to-cyan-500">SM</div>
+                                            <div class="therapist-avatar bg-gradient-to-br from-purple-500 to-pink-500">MR</div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="font-medium">Couples Massage</div>
+                                        <div class="text-sm text-slate-500 dark:text-slate-400">90 min</div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="text-sm">Runda, Nairobi</div>
+                                        <div class="text-xs text-slate-500 dark:text-slate-400">Home Visit</div>
+                                    </td>
+                                    <td class="py-4 px-4 font-bold">Ksh 6,500</td>
+                                    <td class="py-4 px-4">
+                                        <span class="status-badge status-confirmed">Confirmed</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- View All Button -->
+                    <div class="mt-6 pt-6 border-t border-slate-100 dark:border-slate-700">
+                        <button class="w-full py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl font-medium transition-colors">
+                            View All Bookings (24)
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Widgets -->
+            <div class="space-y-8">
+                <!-- Payment Widget -->
+                <div class="dashboard-card rounded-2xl p-6 animate-slide-up" style="animation-delay: 0.2s">
+                    <h2 class="text-xl font-bold mb-6">Payment History</h2>
+                    
+                    <!-- Payment Stats -->
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                            <div class="text-2xl font-bold text-green-500 mb-1">Ksh 124,500</div>
+                            <div class="text-sm text-slate-600 dark:text-slate-400">Today's Revenue</div>
+                        </div>
+                        <div class="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                            <div class="text-2xl font-bold text-blue-500 mb-1">Ksh 892,300</div>
+                            <div class="text-sm text-slate-600 dark:text-slate-400">This Month</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Payment List -->
+                    <div class="space-y-4">
+                        <!-- Payment 1 -->
+                        <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                            <div>
+                                <div class="font-medium">John Mwangi</div>
+                                <div class="text-sm text-slate-500 dark:text-slate-400">Deep Tissue • 10:30 AM</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-bold">Ksh 2,500</div>
+                                <div class="text-sm">
+                                    <span class="payment-status payment-paid"></span>
+                                    <span class="text-green-500">Paid</span>
+                                </div>
+                            </div>
+                        </div>
                         
-                        <!-- Quick Action Buttons -->
-                        <div class="flex items-center gap-2 mt-4 overflow-x-auto pb-2">
-                            <button class="px-4 py-2 bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl text-sm whitespace-nowrap transition-colors" onclick="quickResponse('Book an appointment')">
-                                📅 Book Appointment
-                            </button>
-                            <button class="px-4 py-2 bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl text-sm whitespace-nowrap transition-colors" onclick="quickResponse('What services do you offer?')">
-                                💆 Services Offered
-                            </button>
-                            <button class="px-4 py-2 bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl text-sm whitespace-nowrap transition-colors" onclick="quickResponse('Pricing information')">
-                                💰 Pricing Info
-                            </button>
-                            <button class="px-4 py-2 bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl text-sm whitespace-nowrap transition-colors" onclick="quickResponse('Cancel my booking')">
-                                ❌ Cancel Booking
-                            </button>
+                        <!-- Payment 2 -->
+                        <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                            <div>
+                                <div class="font-medium">Lisa Wang</div>
+                                <div class="text-sm text-slate-500 dark:text-slate-400">Swedish • 12:00 PM</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-bold">Ksh 3,200</div>
+                                <div class="text-sm">
+                                    <span class="payment-status payment-pending"></span>
+                                    <span class="text-amber-500">Pending</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Payment 3 -->
+                        <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                            <div>
+                                <div class="font-medium">Sarah Johnson</div>
+                                <div class="text-sm text-slate-500 dark:text-slate-400">Sports • 4:00 PM</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-bold">Ksh 2,800</div>
+                                <div class="text-sm">
+                                    <span class="payment-status payment-paid"></span>
+                                    <span class="text-green-500">Paid</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Payment 4 -->
+                        <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                            <div>
+                                <div class="font-medium">David Kim</div>
+                                <div class="text-sm text-slate-500 dark:text-slate-400">Aromatherapy • Yesterday</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-bold">Ksh 2,100</div>
+                                <div class="text-sm">
+                                    <span class="payment-status payment-refunded"></span>
+                                    <span class="text-purple-500">Refunded</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Payment 5 -->
+                        <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                            <div>
+                                <div class="font-medium">Grace Wambui</div>
+                                <div class="text-sm text-slate-500 dark:text-slate-400">Hot Stone • Oct 22</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-bold">Ksh 3,800</div>
+                                <div class="text-sm">
+                                    <span class="payment-status payment-cancelled"></span>
+                                    <span class="text-red-500">Cancelled</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- View All Payments -->
+                    <div class="mt-6 pt-6 border-t border-slate-100 dark:border-slate-700">
+                        <button class="w-full py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl font-medium transition-colors">
+                            View All Payments
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Live Chat Widget -->
+                <div class="dashboard-card rounded-2xl p-6 animate-slide-up" style="animation-delay: 0.3s">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-bold">Live Chat</h2>
+                        <div class="flex items-center gap-2">
+                            <div class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+                            <span class="text-sm text-green-500 font-medium">Active</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Chat Status -->
+                    <div class="mb-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="text-sm text-slate-600 dark:text-slate-400">Active Conversations</div>
+                            <div class="font-bold text-primary">3</div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 60%"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Active Chats -->
+                    <div class="space-y-4 mb-6">
+                        <!-- Chat 1 -->
+                        <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white font-bold">
+                                    JD
+                                </div>
+                                <div>
+                                    <div class="font-medium">John Doe</div>
+                                    <div class="text-sm text-slate-500 dark:text-slate-400">Booking inquiry...</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-xs text-slate-500 dark:text-slate-400">2 min ago</div>
+                                <div class="w-2 h-2 rounded-full bg-primary mt-1 ml-auto"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Chat 2 -->
+                        <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold">
+                                    SJ
+                                </div>
+                                <div>
+                                    <div class="font-medium">Sarah Johnson</div>
+                                    <div class="text-sm text-slate-500 dark:text-slate-400">Therapist request</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-xs text-slate-500 dark:text-slate-400">5 min ago</div>
+                                <div class="w-2 h-2 rounded-full bg-primary mt-1 ml-auto"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Chat 3 -->
+                        <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center text-white font-bold">
+                                    MW
+                                </div>
+                                <div>
+                                    <div class="font-medium">Michael Wang</div>
+                                    <div class="text-sm text-slate-500 dark:text-slate-400">Payment issue</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-xs text-slate-500 dark:text-slate-400">12 min ago</div>
+                                <!-- No notification dot -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Chat Activation -->
+                    <div class="space-y-4">
+                        <button id="activateChatBtn" class="w-full py-3 bg-primary text-white font-medium rounded-xl hover:bg-primary-dark transition-colors flex items-center justify-center gap-2">
+                            <span class="material-icons-outlined">chat</span>
+                            <span>Open Chat Dashboard</span>
+                        </button>
+                        
+                        <div class="text-center text-sm text-slate-600 dark:text-slate-400">
+                            Average response time: <span class="font-medium text-primary">2.4 minutes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Row - Additional Widgets -->
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Therapist Performance -->
+            <div class="dashboard-card rounded-2xl p-6 animate-slide-up" style="animation-delay: 0.4s">
+                <h2 class="text-xl font-bold mb-6">Therapist Performance</h2>
+                
+                <div class="space-y-4">
+                    <!-- Therapist 1 -->
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="therapist-avatar bg-gradient-to-br from-blue-500 to-cyan-500">SM</div>
+                            <div>
+                                <div class="font-medium">Sarah Martin</div>
+                                <div class="text-sm text-slate-500 dark:text-slate-400">8 sessions today</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="font-bold text-green-500">Ksh 18,500</div>
+                            <div class="text-sm text-slate-500 dark:text-slate-400">Revenue</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Therapist 2 -->
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="therapist-avatar bg-gradient-to-br from-purple-500 to-pink-500">MR</div>
+                            <div>
+                                <div class="font-medium">Michael Rodriguez</div>
+                                <div class="text-sm text-slate-500 dark:text-slate-400">6 sessions today</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="font-bold text-green-500">Ksh 14,200</div>
+                            <div class="text-sm text-slate-500 dark:text-slate-400">Revenue</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Therapist 3 -->
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="therapist-avatar bg-gradient-to-br from-green-500 to-emerald-500">LW</div>
+                            <div>
+                                <div class="font-medium">Lisa Wang</div>
+                                <div class="text-sm text-slate-500 dark:text-slate-400">5 sessions today</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="font-bold text-green-500">Ksh 12,800</div>
+                            <div class="text-sm text-slate-500 dark:text-slate-400">Revenue</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Therapist 4 -->
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="therapist-avatar bg-gradient-to-br from-orange-500 to-amber-500">JA</div>
+                            <div>
+                                <div class="font-medium">James Anderson</div>
+                                <div class="text-sm text-slate-500 dark:text-slate-400">4 sessions today</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="font-bold text-green-500">Ksh 9,600</div>
+                            <div class="text-sm text-slate-500 dark:text-slate-400">Revenue</div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Status Bar -->
-                <div class="mt-6 flex items-center justify-between text-sm text-slate-600 dark:text-slate-400 px-2">
-                    <div class="flex items-center gap-2">
-                        <span class="material-icons-outlined text-sm text-primary">lock</span>
-                        <span>End-to-end encrypted • Your conversations are private</span>
+                <div class="mt-6 pt-6 border-t border-slate-100 dark:border-slate-700">
+                    <button class="w-full py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl font-medium transition-colors">
+                        View All Therapists
+                    </button>
+                </div>
+            </div>
+
+            <!-- Revenue Chart -->
+            <div class="dashboard-card rounded-2xl p-6 animate-slide-up" style="animation-delay: 0.5s">
+                <h2 class="text-xl font-bold mb-6">Revenue Trend</h2>
+                
+                <!-- Simple Chart -->
+                <div class="chart-container flex items-end gap-2 mb-6">
+                    <div class="flex-1 flex flex-col items-center">
+                        <div class="w-full bg-primary/20 rounded-t-lg" style="height: 80%"></div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400 mt-2">Mon</div>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <span class="material-icons-outlined text-sm text-primary">schedule</span>
-                        <span>Response time: 1-2 min</span>
+                    <div class="flex-1 flex flex-col items-center">
+                        <div class="w-full bg-primary/30 rounded-t-lg" style="height: 90%"></div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400 mt-2">Tue</div>
+                    </div>
+                    <div class="flex-1 flex flex-col items-center">
+                        <div class="w-full bg-primary/40 rounded-t-lg" style="height: 70%"></div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400 mt-2">Wed</div>
+                    </div>
+                    <div class="flex-1 flex flex-col items-center">
+                        <div class="w-full bg-primary/50 rounded-t-lg" style="height: 95%"></div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400 mt-2">Thu</div>
+                    </div>
+                    <div class="flex-1 flex flex-col items-center">
+                        <div class="w-full bg-primary/60 rounded-t-lg" style="height: 85%"></div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400 mt-2">Fri</div>
+                    </div>
+                    <div class="flex-1 flex flex-col items-center">
+                        <div class="w-full bg-primary/70 rounded-t-lg" style="height: 100%"></div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400 mt-2">Sat</div>
+                    </div>
+                    <div class="flex-1 flex flex-col items-center">
+                        <div class="w-full bg-primary/80 rounded-t-lg" style="height: 75%"></div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400 mt-2">Sun</div>
+                    </div>
+                </div>
+                
+                <!-- Revenue Stats -->
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                        <div class="text-lg font-bold text-primary mb-1">+24%</div>
+                        <div class="text-sm text-slate-600 dark:text-slate-400">Weekly Growth</div>
+                    </div>
+                    <div class="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                        <div class="text-lg font-bold text-green-500 mb-1">Ksh 892K</div>
+                        <div class="text-sm text-slate-600 dark:text-slate-400">Monthly Revenue</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="dashboard-card rounded-2xl p-6 animate-slide-up" style="animation-delay: 0.6s">
+                <h2 class="text-xl font-bold mb-6">Quick Actions</h2>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <button class="p-4 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl transition-colors flex flex-col items-center justify-center">
+                        <span class="material-icons-outlined text-primary text-2xl mb-2">add_circle</span>
+                        <span class="font-medium">New Booking</span>
+                    </button>
+                    
+                    <button class="p-4 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl transition-colors flex flex-col items-center justify-center">
+                        <span class="material-icons-outlined text-green-500 text-2xl mb-2">payments</span>
+                        <span class="font-medium">Process Payment</span>
+                    </button>
+                    
+                    <button class="p-4 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl transition-colors flex flex-col items-center justify-center">
+                        <span class="material-icons-outlined text-blue-500 text-2xl mb-2">assignment</span>
+                        <span class="font-medium">Generate Report</span>
+                    </button>
+                    
+                    <button class="p-4 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl transition-colors flex flex-col items-center justify-center">
+                        <span class="material-icons-outlined text-purple-500 text-2xl mb-2">support_agent</span>
+                        <span class="font-medium">Support</span>
+                    </button>
+                </div>
+                
+                <!-- System Status -->
+                <div class="mt-6 pt-6 border-t border-slate-100 dark:border-slate-700">
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="text-slate-600 dark:text-slate-400">System Status</span>
+                        <div class="flex items-center gap-2">
+                            <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                            <span class="font-medium text-green-500">All Systems OK</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </main>
+
+    <!-- Floating Live Chat Widget -->
+    <div id="floatingChatWidget" class="floating-widget hidden">
+        <div class="relative">
+            <button class="w-16 h-16 bg-primary rounded-2xl shadow-2xl flex items-center justify-center live-chat-widget">
+                <span class="material-icons-outlined text-white text-2xl">chat</span>
+            </button>
+            <div class="notification-badge">3</div>
+        </div>
     </div>
 
-    <!-- Emoji Picker (Simple) -->
-    <div id="emojiPicker" class="fixed bottom-24 right-6 bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-4 hidden z-20 animate-fade-in">
-        <div class="grid grid-cols-6 gap-2 mb-3">
-            <button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl text-xl" onclick="addEmoji('😊')">😊</button>
-            <button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl text-xl" onclick="addEmoji('👍')">👍</button>
-            <button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl text-xl" onclick="addEmoji('❤️')">❤️</button>
-            <button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl text-xl" onclick="addEmoji('🎯')">🎯</button>
-            <button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl text-xl" onclick="addEmoji('💆')">💆</button>
-            <button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl text-xl" onclick="addEmoji('🌿')">🌿</button>
-            <button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl text-xl" onclick="addEmoji('✅')">✅</button>
-            <button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl text-xl" onclick="addEmoji('❌')">❌</button>
-            <button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl text-xl" onclick="addEmoji('💰')">💰</button>
-            <button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl text-xl" onclick="addEmoji('📅')">📅</button>
-            <button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl text-xl" onclick="addEmoji('⭐')">⭐</button>
-            <button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl text-xl" onclick="addEmoji('💬')">💬</button>
+    <!-- Live Chat Modal -->
+    <div id="chatModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white dark:bg-slate-800 rounded-3xl w-full max-w-4xl mx-4 animate-fade-in">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+                        <span class="material-icons-outlined text-white">chat</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">Live Chat Dashboard</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">Manage customer conversations</p>
+                    </div>
+                </div>
+                <button onclick="closeChatModal()" class="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl">
+                    <span class="material-icons-outlined">close</span>
+                </button>
+            </div>
+            
+            <div class="p-6">
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Active Conversations -->
+                    <div class="md:col-span-2">
+                        <h4 class="font-bold mb-4">Active Conversations (3)</h4>
+                        <div class="space-y-4">
+                            <div class="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white font-bold">
+                                            JD
+                                        </div>
+                                        <div>
+                                            <div class="font-medium">John Doe</div>
+                                            <div class="text-sm text-slate-500 dark:text-slate-400">Deep tissue inquiry</div>
+                                        </div>
+                                    </div>
+                                    <span class="status-badge status-pending">Waiting</span>
+                                </div>
+                                <div class="text-sm text-slate-600 dark:text-slate-400 mb-3">"What's the difference between Swedish and deep tissue massage?"</div>
+                                <button class="w-full py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">
+                                    Respond Now
+                                </button>
+                            </div>
+                            
+                            <div class="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold">
+                                            SJ
+                                        </div>
+                                        <div>
+                                            <div class="font-medium">Sarah Johnson</div>
+                                            <div class="text-sm text-slate-500 dark:text-slate-400">Therapist request</div>
+                                        </div>
+                                    </div>
+                                    <span class="status-badge status-confirmed">Active</span>
+                                </div>
+                                <div class="text-sm text-slate-600 dark:text-slate-400 mb-3">"Can I request Sarah for my appointment tomorrow?"</div>
+                                <button class="w-full py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">
+                                    Continue Chat
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Chat Stats -->
+                    <div>
+                        <h4 class="font-bold mb-4">Chat Statistics</h4>
+                        <div class="space-y-4">
+                            <div class="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                                <div class="text-2xl font-bold text-primary mb-1">2.4 min</div>
+                                <div class="text-sm text-slate-600 dark:text-slate-400">Avg Response Time</div>
+                            </div>
+                            <div class="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                                <div class="text-2xl font-bold text-green-500 mb-1">94%</div>
+                                <div class="text-sm text-slate-600 dark:text-slate-400">Satisfaction Rate</div>
+                            </div>
+                            <div class="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                                <div class="text-2xl font-bold text-blue-500 mb-1">28</div>
+                                <div class="text-sm text-slate-600 dark:text-slate-400">Chats Today</div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6">
+                            <button class="w-full py-3 bg-primary text-white rounded-xl font-medium hover:bg-primary-dark transition-colors flex items-center justify-center gap-2">
+                                <span class="material-icons-outlined">settings</span>
+                                <span>Chat Settings</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="text-center text-xs text-slate-500 dark:text-slate-400">Tap to add emoji</div>
     </div>
 
     <script>
-        // Chat System
-        class SpecialistChat {
-            constructor() {
-                this.messages = [
-                    {
-                        sender: 'specialist',
-                        text: "Hello! I'm Samantha, your personal spa specialist at Touch Spa. 🌿 I'm here to help you create the perfect relaxation experience. How can I assist you today?",
-                        time: "10:30 AM"
-                    },
-                    {
-                        sender: 'user',
-                        text: "Hi Samantha! I'm looking for a deep tissue massage but not sure which therapist to choose. Can you help?",
-                        time: "10:31 AM"
-                    },
-                    {
-                        sender: 'specialist',
-                        text: "Absolutely! For deep tissue, I recommend <span class='font-semibold text-primary'>Sarah Martin</span> - she has 8 years of experience and specializes in therapeutic massage. 🎯<br><br>Would you like me to check her availability for this week?",
-                        time: "10:32 AM"
-                    }
-                ];
-                
-                this.specialistResponses = [
-                    "Perfect! Let me check Sarah's schedule. She's available tomorrow at 2 PM or Thursday at 4 PM. Which works better for you? 🗓️",
-                    "I'd be happy to recommend someone else! For deep tissue, we also have <strong>Michael Rodriguez</strong> who specializes in sports therapy, or <strong>Lisa Wang</strong> who's excellent with chronic pain. Who would you like to know more about? 💆",
-                    "Sarah has been with us for 8 years and specializes in therapeutic, deep tissue, and trigger point therapy. She's certified in 5 different massage techniques and has over 2,000 client reviews averaging 4.9 stars! ⭐",
-                    "Our deep tissue massage starts at Ksh 2,500 for 60 minutes. We also offer packages: 5 sessions for Ksh 11,000 (save Ksh 1,500) or 10 sessions for Ksh 20,000 (save Ksh 5,000). 💰",
-                    "I can help with that! Please provide your booking reference number or the email you used to book. I'll process the cancellation immediately. ⚡",
-                    "We offer deep tissue, Swedish, hot stone, aromatherapy, and couples massage. Each session includes consultation, 60 minutes of therapy, and post-massage recommendations. Which one interests you? 🧘",
-                    "I've sent you a booking link via SMS. Click it to confirm your appointment! You'll receive a reminder 24 hours before. 📲",
-                    "For the best experience, I recommend drinking plenty of water before and after, wearing comfortable clothing, and letting us know about any areas needing special attention. 🚰",
-                    "Yes! We offer gift certificates starting from Ksh 2,000. They're digital and can be sent instantly via email or SMS. Perfect for birthdays! 🎁",
-                    "All our therapists are certified, fully vaccinated, and bring sterilized equipment. We also conduct daily health checks. Your safety is our priority! 🛡️"
-                ];
-                
-                this.initialize();
-            }
-            
-            initialize() {
-                this.renderMessages();
-                this.setupEventListeners();
-            }
-            
-            setupEventListeners() {
-                // Send message on Enter (without Shift)
-                document.getElementById('chatInput').addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter' && !e.shiftKey) {
-                        e.preventDefault();
-                        this.sendMessage();
-                    }
-                });
-                
-                // Click outside to close emoji picker
-                document.addEventListener('click', (e) => {
-                    const emojiPicker = document.getElementById('emojiPicker');
-                    const emojiBtn = document.querySelector('.emoji-picker-btn');
-                    if (!emojiPicker.contains(e.target) && !emojiBtn.contains(e.target)) {
-                        emojiPicker.classList.add('hidden');
-                    }
-                });
-            }
-            
-            addMessage(sender, text, isHtml = false) {
-                const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                this.messages.push({ sender, text, time, isHtml });
-                this.renderMessages();
-                
-                // Auto-scroll to bottom
-                setTimeout(() => {
-                    const chatContainer = document.getElementById('chatMessages');
-                    chatContainer.scrollTop = chatContainer.scrollHeight;
-                }, 100);
-                
-                // Play sound for new messages
-                if (sender === 'specialist' && !document.getElementById('muteBtn').classList.contains('text-red-500')) {
-                    this.playNotificationSound();
-                }
-            }
-            
-            renderMessages() {
-                const chatMessages = document.getElementById('chatMessages');
-                const messagesContainer = chatMessages.querySelectorAll('.flex.items-start.gap-3, .flex.items-start.gap-3.justify-end');
-                
-                // Remove existing messages (except welcome and typing indicator)
-                messagesContainer.forEach((msg, index) => {
-                    if (index > 2) { // Keep welcome messages
-                        msg.remove();
-                    }
-                });
-                
-                // Add new messages starting from index 3
-                this.messages.slice(3).forEach(msg => {
-                    const messageDiv = document.createElement('div');
-                    messageDiv.className = `flex items-start gap-3 mb-6 ${msg.sender === 'user' ? 'justify-end' : ''}`;
-                    
-                    if (msg.sender === 'specialist') {
-                        messageDiv.innerHTML = `
-                            <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink:0">
-                                <span class="material-icons-outlined text-white">spa</span>
-                            </div>
-                            <div class="max-w-xs md:max-w-md">
-                                <div class="message-bubble-specialist px-5 py-4 mb-1">
-                                    <p class="text-sm leading-relaxed">${msg.isHtml ? msg.text : msg.text}</p>
-                                </div>
-                                <div class="message-time pl-1">Samantha • ${msg.time}</div>
-                            </div>
-                        `;
-                    } else {
-                        messageDiv.innerHTML = `
-                            <div class="max-w-xs md:max-w-md text-right">
-                                <div class="message-bubble-user px-5 py-4 mb-1">
-                                    <p class="text-sm leading-relaxed">${msg.text}</p>
-                                </div>
-                                <div class="message-time pr-1">You • ${msg.time}</div>
-                            </div>
-                            <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink:0">
-                                <span class="material-icons-outlined text-white">person</span>
-                            </div>
-                        `;
-                    }
-                    
-                    chatMessages.appendChild(messageDiv);
-                });
-            }
-            
-            getSpecialistResponse(userMessage) {
-                // Simple response logic based on keywords
-                const message = userMessage.toLowerCase();
-                
-                if (message.includes('price') || message.includes('cost') || message.includes('how much')) {
-                    return this.specialistResponses[3];
-                } else if (message.includes('cancel')) {
-                    return this.specialistResponses[4];
-                } else if (message.includes('service') || message.includes('offer')) {
-                    return this.specialistResponses[5];
-                } else if (message.includes('book') || message.includes('appointment')) {
-                    return this.specialistResponses[6];
-                } else if (message.includes('recommend') || message.includes('another')) {
-                    return this.specialistResponses[1];
-                } else if (message.includes('experience') || message.includes('about')) {
-                    return this.specialistResponses[2];
-                } else if (message.includes('available') || message.includes('check')) {
-                    return this.specialistResponses[0];
-                } else if (message.includes('gift') || message.includes('present')) {
-                    return this.specialistResponses[8];
-                } else if (message.includes('safe') || message.includes('hygiene')) {
-                    return this.specialistResponses[9];
-                } else {
-                    // Random helpful response
-                    return this.specialistResponses[Math.floor(Math.random() * this.specialistResponses.length)];
-                }
-            }
-            
-            playNotificationSound() {
-                // Create a simple notification sound
-                try {
-                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                    const oscillator = audioContext.createOscillator();
-                    const gainNode = audioContext.createGain();
-                    
-                    oscillator.connect(gainNode);
-                    gainNode.connect(audioContext.destination);
-                    
-                    oscillator.frequency.value = 523.25; // C5
-                    oscillator.type = 'sine';
-                    
-                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
-                    
-                    oscillator.start(audioContext.currentTime);
-                    oscillator.stop(audioContext.currentTime + 0.5);
-                } catch (e) {
-                    console.log("Audio context not supported");
-                }
-            }
+        // Update Date & Time
+        function updateDateTime() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            document.getElementById('currentDateTime').textContent = 
+                now.toLocaleDateString('en-US', options);
         }
         
-        // Initialize chat
-        const specialistChat = new SpecialistChat();
+        // Update every minute
+        updateDateTime();
+        setInterval(updateDateTime, 60000);
         
-        // Global Functions
-        function sendMessage() {
-            const chatInput = document.getElementById('chatInput');
-            const message = chatInput.value.trim();
-            
-            if (!message) return;
-            
-            // Add user message
-            specialistChat.addMessage('user', message);
-            
-            // Clear input
-            chatInput.value = '';
-            chatInput.focus();
-            
-            // Show typing indicator
-            const typingIndicator = document.getElementById('typingIndicator');
-            typingIndicator.classList.remove('hidden');
-            
-            // Auto-scroll
-            const chatContainer = document.getElementById('chatMessages');
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-            
-            // Simulate specialist response after delay
-            setTimeout(() => {
-                typingIndicator.classList.add('hidden');
-                const response = specialistChat.getSpecialistResponse(message);
-                specialistChat.addMessage('specialist', response, true);
-            }, 1000 + Math.random() * 1000);
+        // Chat Modal Functions
+        function openChatModal() {
+            document.getElementById('chatModal').classList.remove('hidden');
+            document.getElementById('floatingChatWidget').classList.add('hidden');
+            document.getElementById('unreadCount').classList.add('hidden');
         }
         
-        function quickResponse(text) {
-            const chatInput = document.getElementById('chatInput');
-            chatInput.value = text;
-            sendMessage();
+        function closeChatModal() {
+            document.getElementById('chatModal').classList.add('hidden');
+            document.getElementById('floatingChatWidget').classList.remove('hidden');
         }
         
-        function toggleEmojiPicker() {
-            const emojiPicker = document.getElementById('emojiPicker');
-            emojiPicker.classList.toggle('hidden');
-        }
-        
-        function addEmoji(emoji) {
-            const chatInput = document.getElementById('chatInput');
-            chatInput.value += emoji;
-            chatInput.focus();
-            document.getElementById('emojiPicker').classList.add('hidden');
-        }
-        
-        function attachFile() {
-            // Simulate file attachment
-            const attachmentPreview = document.getElementById('attachmentPreview');
-            attachmentPreview.classList.remove('hidden');
-            showNotification('File attached successfully', 'success');
-        }
-        
-        function removeAttachment() {
-            const attachmentPreview = document.getElementById('attachmentPreview');
-            attachmentPreview.classList.add('hidden');
-        }
-        
-        function toggleMute() {
-            const muteBtn = document.getElementById('muteBtn');
-            const icon = muteBtn.querySelector('.material-icons-outlined');
-            
-            if (muteBtn.classList.contains('text-red-500')) {
-                muteBtn.classList.remove('text-red-500');
-                icon.textContent = 'volume_up';
-                showNotification('Chat sounds unmuted', 'success');
+        // Toggle Floating Widget
+        function toggleFloatingWidget() {
+            const widget = document.getElementById('floatingChatWidget');
+            if (widget.classList.contains('hidden')) {
+                widget.classList.remove('hidden');
             } else {
-                muteBtn.classList.add('text-red-500');
-                icon.textContent = 'volume_off';
-                showNotification('Chat sounds muted', 'info');
+                widget.classList.add('hidden');
             }
         }
         
-        function clearChat() {
-            if (confirm('Clear chat history? This cannot be undone.')) {
-                // Reset to initial messages
-                specialistChat.messages = specialistChat.messages.slice(0, 3);
-                specialistChat.renderMessages();
-                showNotification('Chat history cleared', 'info');
-            }
-        }
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up event listeners
+            document.getElementById('liveChatToggle').addEventListener('click', openChatModal);
+            document.getElementById('activateChatBtn').addEventListener('click', openChatModal);
+            
+            // Show floating widget after a delay
+            setTimeout(() => {
+                document.getElementById('floatingChatWidget').classList.remove('hidden');
+            }, 3000);
+            
+            // Simulate live updates
+            setInterval(() => {
+                // Randomly update active bookings count
+                const activeBookings = document.querySelector('.stat-card:nth-child(2) .text-3xl');
+                const currentCount = parseInt(activeBookings.textContent);
+                const newCount = Math.max(5, Math.min(10, currentCount + Math.floor(Math.random() * 3) - 1));
+                if (newCount !== currentCount) {
+                    activeBookings.textContent = newCount;
+                }
+                
+                // Update unread count
+                const unreadCount = document.getElementById('unreadCount');
+                const currentUnread = parseInt(unreadCount.textContent) || 0;
+                if (Math.random() > 0.7 && currentUnread < 5) {
+                    const newUnread = currentUnread + 1;
+                    unreadCount.textContent = newUnread;
+                    unreadCount.classList.remove('hidden');
+                }
+            }, 10000);
+            
+            // Add hover effects to dashboard cards
+            const cards = document.querySelectorAll('.dashboard-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Add click effects to stat cards
+            const statCards = document.querySelectorAll('.stat-card');
+            statCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'translateY(-3px) scale(0.99)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-3px)';
+                    }, 150);
+                });
+            });
+        });
         
-        function showNotification(message, type) {
+        // Simulate notification
+        function showNotification(message, type = 'info') {
             const notification = document.createElement('div');
-            notification.className = `fixed top-6 right-6 z-50 px-6 py-4 rounded-2xl shadow-lg flex items-center gap-3 animate-fade-in ${type === 'success' ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200' : 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200'}`;
+            notification.className = `fixed top-6 right-6 z-50 px-6 py-4 rounded-xl shadow-lg flex items-center gap-3 animate-fade-in ${
+                type === 'success' ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200' :
+                type === 'warning' ? 'bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200' :
+                'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200'
+            }`;
             
             const icon = document.createElement('span');
             icon.className = 'material-icons-outlined';
-            icon.textContent = type === 'success' ? 'check_circle' : 'info';
+            icon.textContent = type === 'success' ? 'check_circle' : type === 'warning' ? 'warning' : 'info';
             
             const text = document.createElement('span');
             text.textContent = message;
@@ -881,33 +1120,25 @@
             }, 3000);
         }
         
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add sample conversation after load
-            setTimeout(() => {
-                if (specialistChat.messages.length === 3) {
-                    // Add a welcome tip
-                    specialistChat.addMessage('specialist', "💡 <strong>Pro Tip:</strong> Book your massage in the morning for the freshest therapists and best availability!", true);
+        // Simulate random notifications
+        setTimeout(() => {
+            const messages = [
+                "New booking received from Karen area",
+                "Payment of Ksh 3,800 successfully processed",
+                "Sarah completed session with 5-star rating",
+                "New customer signed up via referral"
+            ];
+            
+            const types = ['success', 'info'];
+            
+            setInterval(() => {
+                if (Math.random() > 0.5) {
+                    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+                    const randomType = types[Math.floor(Math.random() * types.length)];
+                    showNotification(randomMessage, randomType);
                 }
-            }, 5000);
-            
-            // Add enter key support
-            document.getElementById('chatInput').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault();
-                    sendMessage();
-                }
-            });
-            
-            // Focus on input
-            document.getElementById('chatInput').focus();
-            
-            // Make profile card sticky
-            const profileCard = document.querySelector('.sticky');
-            if (profileCard) {
-                profileCard.style.top = '2rem';
-            }
-        });
+            }, 15000);
+        }, 5000);
     </script>
 </body>
 </html>
