@@ -65,10 +65,52 @@
 <button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" id="theme-toggle">
 <span class="material-icons-outlined text-lg">dark_mode</span>
 </button>
-<a href="login.html" class="hidden sm:block text-sm font-medium hover:text-primary">Log In</a>
-<a href="signup.html" class="bg-primary text-white px-6 py-2.5 rounded-full font-semibold text-sm hover:opacity-90 transition-opacity shadow-sm">
-                        Sign Up
-                    </a>
+<script>
+(function() {
+    'use strict';
+    
+    // Check session
+    const session = localStorage.getItem('touchspa_user_session');
+    let isLoggedIn = false;
+    let userInitial = 'U';
+    
+    try {
+        if (session) {
+            const userData = JSON.parse(session);
+            isLoggedIn = userData && userData.isAuthenticated === true;
+            if (userData.user && userData.user.firstName) {
+                userInitial = userData.user.firstName.charAt(0).toUpperCase();
+            }
+        }
+    } catch (e) {
+        console.log('Session check error:', e);
+    }
+    
+    // Find where to insert buttons (look for common header patterns)
+    const header = document.querySelector('header');
+    const nav = document.querySelector('nav');
+    const container = header || nav || document.body;
+    
+    if (container && isLoggedIn) {
+        // Insert profile button at the end of header/nav
+        const profileBtn = document.createElement('a');
+        profileBtn.href = 'user-dashboard.html';
+        profileBtn.className = 'w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-semibold hover:scale-105 transition-transform ml-4';
+        profileBtn.title = 'My Dashboard';
+        profileBtn.textContent = userInitial;
+        
+        // Try to find a container to append to
+        const lastNavItem = container.querySelector('.flex.items-center:last-child') ||
+                           container.querySelector('.flex:last-child') ||
+                           container.querySelector('div:last-child');
+        
+        if (lastNavItem) {
+            lastNavItem.appendChild(profileBtn);
+        } else {
+            container.appendChild(profileBtn);
+        }
+    }
+})();  </script>
 </div>
 </div>
 </div>

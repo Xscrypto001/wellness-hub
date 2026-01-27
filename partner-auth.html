@@ -3,20 +3,23 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Touch Spa | Welcome</title>
+    <title>Touch Spa | Partner Onboarding</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        primary: "#00E676",
-                        "primary-light": "#66FFA6",
-                        "primary-dark": "#00B248",
-                        "background-light": "#F9FAFB",
+                        primary: "#2563EB", // Changed to blue
+                        "primary-light": "#60A5FA",
+                        "primary-dark": "#1D4ED8",
+                        "partner-blue": "#1E40AF",
+                        "partner-light": "#3B82F6",
+                        "background-light": "#F0F9FF",
                         "background-dark": "#0F172A",
                         "card-light": "#FFFFFF",
                         "card-dark": "#1E293B",
@@ -31,6 +34,7 @@
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'fade-in': 'fadeIn 0.5s ease-out',
+                        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
                     },
                     keyframes: {
                         float: {
@@ -40,6 +44,10 @@
                         fadeIn: {
                             '0%': { opacity: '0', transform: 'translateY(10px)' },
                             '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(37, 99, 235, 0.3)' },
+                            '50%': { boxShadow: '0 0 30px rgba(37, 99, 235, 0.6)' },
                         }
                     }
                 },
@@ -73,14 +81,14 @@
         }
         
         .gradient-text {
-            background: linear-gradient(90deg, #00E676 0%, #00BFA5 100%);
+            background: linear-gradient(90deg, #2563EB 0%, #3B82F6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
         .input-focus-effect:focus {
-            box-shadow: 0 0 0 3px rgba(0, 230, 118, 0.2);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
         }
         
         .floating-element {
@@ -90,6 +98,63 @@
         .floating-element-delay {
             animation: float 6s ease-in-out infinite;
             animation-delay: 2s;
+        }
+        
+        /* Partner Onboarding Styles */
+        .step-indicator {
+            counter-reset: step;
+        }
+        
+        .step-item {
+            position: relative;
+            flex: 1;
+            text-align: center;
+            padding: 0 10px;
+        }
+        
+        .step-item:before {
+            content: counter(step);
+            counter-increment: step;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 50%;
+            background: #E2E8F0;
+            color: #64748B;
+            font-weight: bold;
+            margin: 0 auto 10px;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        
+        .step-item.active:before {
+            background: #2563EB;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .step-item.completed:before {
+            background: #10B981;
+            color: white;
+        }
+        
+        .step-item.completed:after {
+            content: '✓';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-weight: bold;
+        }
+        
+        .step-content {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .step-content.active {
+            display: block;
         }
     </style>
 </head>
@@ -306,165 +371,424 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Floating Support Widget Section -->
-<section class="floating-support-section">
-    <!-- Floating Support Widget -->
-    <div class="support-widget" id="supportWidget">
-        <a href="support.html" class="widget-link">
-            <div class="widget-icon">
-                <i class="fas fa-headset"></i>
+        
+        <!-- Premium Partner Onboarding Section -->
+        <section class="partner-onboarding-section mt-16 mb-8">
+            <div class="partner-container bg-gradient-to-br from-blue-50 to-white dark:from-slate-900 dark:to-slate-800 rounded-3xl p-8 lg:p-12 shadow-2xl border border-blue-100 dark:border-slate-700">
+                <!-- Header -->
+                <div class="text-center mb-12">
+                    <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-partner-blue to-partner-light rounded-2xl mb-6 shadow-lg animate-pulse-glow">
+                        <i class="fas fa-handshake text-white text-3xl"></i>
+                    </div>
+                    <h2 class="text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+                        Join Our <span class="bg-gradient-to-r from-partner-blue to-partner-light bg-clip-text text-transparent">Elite Partner Network</span>
+                    </h2>
+                    <p class="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+                        Transform your spa career with Touch Spa's premium partner program. Earn more, work smarter, and grow your business with our support.
+                    </p>
+                </div>
+                
+                <!-- Benefits Highlights -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-blue-100 dark:border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                        <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900 rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-money-bill-wave text-partner-blue text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Higher Earnings</h3>
+                        <p class="text-slate-600 dark:text-slate-300">Keep <span class="font-bold text-partner-blue">85% of all earnings</span> with our industry-leading commission structure.</p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-blue-100 dark:border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                        <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900 rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-users text-partner-blue text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Premium Clientele</h3>
+                        <p class="text-slate-600 dark:text-slate-300">Access verified high-value clients with <span class="font-bold text-partner-blue">45% repeat booking rate</span>.</p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-blue-100 dark:border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                        <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900 rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-shield-alt text-partner-blue text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Complete Protection</h3>
+                        <p class="text-slate-600 dark:text-slate-300">Full insurance coverage and <span class="font-bold text-partner-blue">24/7 safety support</span> for all partners.</p>
+                    </div>
+                </div>
+                
+                <!-- Step-by-Step Onboarding -->
+                <div class="onboarding-steps-section bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-xl border border-blue-100 dark:border-slate-700">
+                    <h3 class="text-3xl font-bold text-center text-slate-900 dark:text-white mb-10">
+                        Simple <span class="text-partner-blue">4-Step</span> Onboarding Process
+                    </h3>
+                    
+                    <!-- Step Indicators -->
+                    <div class="step-indicator flex justify-between mb-12 relative">
+                        <div class="absolute top-5 left-0 right-0 h-1 bg-slate-200 dark:bg-slate-700 -z-10"></div>
+                        <div class="step-item active">
+                            <div class="step-title font-semibold text-slate-900 dark:text-white">Profile</div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-title font-semibold text-slate-900 dark:text-white">Experience</div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-title font-semibold text-slate-900 dark:text-white">Location</div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-title font-semibold text-slate-900 dark:text-white">Verification</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 1: Profile Information -->
+                    <div id="step1" class="step-content active">
+                        <h4 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
+                            <span class="w-10 h-10 bg-partner-blue rounded-full flex items-center justify-center text-white">1</span>
+                            Personal & Professional Profile
+                        </h4>
+                        
+                        <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300">Full Name *</label>
+                                <input type="text" class="w-full p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-partner-blue transition-all" placeholder="Enter your full name" required>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300">Professional Email *</label>
+                                <input type="email" class="w-full p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-partner-blue transition-all" placeholder="yourname@professional.com" required>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300">Phone Number *</label>
+                                <input type="tel" class="w-full p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-partner-blue transition-all" placeholder="(123) 456-7890" required>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300">Years of Experience *</label>
+                                <select class="w-full p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-partner-blue transition-all" required>
+                                    <option value="">Select experience level</option>
+                                    <option value="3-5">3-5 years</option>
+                                    <option value="5-8">5-8 years</option>
+                                    <option value="8-12">8-12 years</option>
+                                    <option value="12+">12+ years</option>
+                                </select>
+                            </div>
+                            
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300">Certifications *</label>
+                                <textarea class="w-full p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-partner-blue transition-all" rows="3" placeholder="List your professional certifications and licenses" required></textarea>
+                            </div>
+                            
+                            <div class="md:col-span-2 flex justify-end mt-4">
+                                <button type="button" class="px-8 py-4 bg-gradient-to-r from-partner-blue to-partner-light text-white font-bold rounded-xl hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300" onclick="nextStep(2)">
+                                    Next: Experience Details <i class="fas fa-arrow-right ml-2"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Step 2: Experience & Specialization -->
+                    <div id="step2" class="step-content">
+                        <h4 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
+                            <span class="w-10 h-10 bg-partner-blue rounded-full flex items-center justify-center text-white">2</span>
+                            Experience & Specialization
+                        </h4>
+                        
+                        <form class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-semibold mb-4 text-slate-700 dark:text-slate-300">Primary Specializations *</label>
+                                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                                    <label class="flex items-center p-4 border border-slate-200 dark:border-slate-700 rounded-xl cursor-pointer hover:bg-blue-50 dark:hover:bg-slate-900 transition-all">
+                                        <input type="checkbox" class="mr-3 h-5 w-5 text-partner-blue">
+                                        <span>Swedish Massage</span>
+                                    </label>
+                                    <label class="flex items-center p-4 border border-slate-200 dark:border-slate-700 rounded-xl cursor-pointer hover:bg-blue-50 dark:hover:bg-slate-900 transition-all">
+                                        <input type="checkbox" class="mr-3 h-5 w-5 text-partner-blue">
+                                        <span>Deep Tissue</span>
+                                    </label>
+                                    <label class="flex items-center p-4 border border-slate-200 dark:border-slate-700 rounded-xl cursor-pointer hover:bg-blue-50 dark:hover:bg-slate-900 transition-all">
+                                        <input type="checkbox" class="mr-3 h-5 w-5 text-partner-blue">
+                                        <span>Hot Stone</span>
+                                    </label>
+                                    <label class="flex items-center p-4 border border-slate-200 dark:border-slate-700 rounded-xl cursor-pointer hover:bg-blue-50 dark:hover:bg-slate-900 transition-all">
+                                        <input type="checkbox" class="mr-3 h-5 w-5 text-partner-blue">
+                                        <span>Sports Massage</span>
+                                    </label>
+                                    <label class="flex items-center p-4 border border-slate-200 dark:border-slate-700 rounded-xl cursor-pointer hover:bg-blue-50 dark:hover:bg-slate-900 transition-all">
+                                        <input type="checkbox" class="mr-3 h-5 w-5 text-partner-blue">
+                                        <span>Aromatherapy</span>
+                                    </label>
+                                    <label class="flex items-center p-4 border border-slate-200 dark:border-slate-700 rounded-xl cursor-pointer hover:bg-blue-50 dark:hover:bg-slate-900 transition-all">
+                                        <input type="checkbox" class="mr-3 h-5 w-5 text-partner-blue">
+                                        <span>Reflexology</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300">Hourly Rate Preference *</label>
+                                <div class="flex items-center gap-4">
+                                    <div class="flex-1">
+                                        <input type="range" min="40" max="120" value="75" class="w-full" id="rateSlider">
+                                        <div class="flex justify-between text-sm text-slate-500 mt-2">
+                                            <span>$40</span>
+                                            <span id="rateValue" class="font-bold text-partner-blue">$75/hr</span>
+                                            <span>$120</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-sm bg-blue-50 dark:bg-blue-900 p-3 rounded-lg">
+                                        <div class="font-bold text-partner-blue">85% Partner Share</div>
+                                        <div class="text-slate-600 dark:text-slate-300">You keep: <span id="partnerEarn" class="font-bold">$63.75/hr</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300">Weekly Availability *</label>
+                                    <select class="w-full p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-partner-blue transition-all" required>
+                                        <option value="">Select hours per week</option>
+                                        <option value="20-30">20-30 hours</option>
+                                        <option value="30-40" selected>30-40 hours</option>
+                                        <option value="40+">40+ hours</option>
+                                        <option value="flexible">Flexible schedule</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300">Preferred Session Types</label>
+                                    <select class="w-full p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-partner-blue transition-all" multiple>
+                                        <option value="60min" selected>60 Minute Sessions</option>
+                                        <option value="90min" selected>90 Minute Sessions</option>
+                                        <option value="120min">120 Minute Sessions</option>
+                                        <option value="couples">Couples Sessions</option>
+                                        <option value="corporate">Corporate Sessions</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="flex justify-between mt-8">
+                                <button type="button" class="px-8 py-4 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-bold rounded-xl hover:bg-slate-50 dark:hover:bg-slate-900 transition-all duration-300" onclick="prevStep(1)">
+                                    <i class="fas fa-arrow-left mr-2"></i> Back
+                                </button>
+                                <button type="button" class="px-8 py-4 bg-gradient-to-r from-partner-blue to-partner-light text-white font-bold rounded-xl hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300" onclick="nextStep(3)">
+                                    Next: Location & Service Area <i class="fas fa-arrow-right ml-2"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Step 3: Location & Service Area -->
+                    <div id="step3" class="step-content">
+                        <h4 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
+                            <span class="w-10 h-10 bg-partner-blue rounded-full flex items-center justify-center text-white">3</span>
+                            Location & Service Area
+                        </h4>
+                        
+                        <form class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300">Primary Service City *</label>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                    <label class="flex items-center p-4 border border-slate-200 dark:border-slate-700 rounded-xl cursor-pointer hover:bg-blue-50 dark:hover:bg-slate-900 transition-all has-checked:border-partner-blue">
+                                        <input type="radio" name="city" class="mr-3 h-5 w-5 text-partner-blue" checked>
+                                        <span>New York</span>
+                                    </label>
+                                    <label class="flex items-center p-4 border border-slate-200 dark:border-slate-700 rounded-xl cursor-pointer hover:bg-blue-50 dark:hover:bg-slate-900 transition-all">
+                                        <input type="radio" name="city" class="mr-3 h-5 w-5 text-partner-blue">
+                                        <span>Los Angeles</span>
+                                    </label>
+                                    <label class="flex items-center p-4 border border-slate-200 dark:border-slate-700 rounded-xl cursor-pointer hover:bg-blue-50 dark:hover:bg-slate-900 transition-all">
+                                        <input type="radio" name="city" class="mr-3 h-5 w-5 text-partner-blue">
+                                        <span>Chicago</span>
+                                    </label>
+                                    <label class="flex items-center p-4 border border-slate-200 dark:border-slate-700 rounded-xl cursor-pointer hover:bg-blue-50 dark:hover:bg-slate-900 transition-all">
+                                        <input type="radio" name="city" class="mr-3 h-5 w-5 text-partner-blue">
+                                        <span>Miami</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300">Service Radius *</label>
+                                <div class="bg-blue-50 dark:bg-blue-900 p-6 rounded-2xl">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <span class="font-semibold">How far are you willing to travel?</span>
+                                        <span id="radiusValue" class="text-2xl font-bold text-partner-blue">20 miles</span>
+                                    </div>
+                                    <input type="range" min="5" max="50" value="20" class="w-full" id="radiusSlider">
+                                    <div class="flex justify-between text-sm text-slate-500 mt-2">
+                                        <span>5 miles (Local)</span>
+                                        <span>50 miles (Extended)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300">Zip Codes Covered *</label>
+                                    <input type="text" class="w-full p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-partner-blue transition-all" placeholder="10001, 10002, 10003" required>
+                                    <p class="text-sm text-slate-500 mt-2">Enter primary zip codes separated by commas</p>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300">Travel Fee Preference</label>
+                                    <select class="w-full p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-partner-blue transition-all">
+                                        <option value="none">No travel fee</option>
+                                        <option value="flat10" selected>Flat $10 fee >10 miles</option>
+                                        <option value="flat15">Flat $15 fee >15 miles</option>
+                                        <option value="mileage">$0.50 per additional mile</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="flex justify-between mt-8">
+                                <button type="button" class="px-8 py-4 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-bold rounded-xl hover:bg-slate-50 dark:hover:bg-slate-900 transition-all duration-300" onclick="prevStep(2)">
+                                    <i class="fas fa-arrow-left mr-2"></i> Back
+                                </button>
+                                <button type="button" class="px-8 py-4 bg-gradient-to-r from-partner-blue to-partner-light text-white font-bold rounded-xl hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300" onclick="nextStep(4)">
+                                    Next: Verification <i class="fas fa-arrow-right ml-2"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Step 4: Verification & Account Setup -->
+                    <div id="step4" class="step-content">
+                        <h4 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
+                            <span class="w-10 h-10 bg-partner-blue rounded-full flex items-center justify-center text-white">4</span>
+                            Verification & Account Setup
+                        </h4>
+                        
+                        <form class="space-y-6">
+                            <div class="bg-blue-50 dark:bg-blue-900 p-6 rounded-2xl">
+                                <h5 class="font-bold text-lg text-slate-900 dark:text-white mb-4">Required Documents</h5>
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between p-4 bg-white dark:bg-slate-800 rounded-xl">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-10 h-10 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center">
+                                                <i class="fas fa-id-card text-green-600 dark:text-green-400"></i>
+                                            </div>
+                                            <div>
+                                                <div class="font-semibold">Professional License</div>
+                                                <div class="text-sm text-slate-500">Upload valid certification</div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="px-4 py-2 bg-partner-blue text-white rounded-lg hover:bg-partner-light transition-colors">
+                                            Upload
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="flex items-center justify-between p-4 bg-white dark:bg-slate-800 rounded-xl">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center">
+                                                <i class="fas fa-shield-alt text-blue-600 dark:text-blue-400"></i>
+                                            </div>
+                                            <div>
+                                                <div class="font-semibold">Liability Insurance</div>
+                                                <div class="text-sm text-slate-500">Proof of coverage required</div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="px-4 py-2 bg-partner-blue text-white rounded-lg hover:bg-partner-light transition-colors">
+                                            Upload
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="flex items-center justify-between p-4 bg-white dark:bg-slate-800 rounded-xl">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-10 h-10 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center">
+                                                <i class="fas fa-user-check text-purple-600 dark:text-purple-400"></i>
+                                            </div>
+                                            <div>
+                                                <div class="font-semibold">Background Check</div>
+                                                <div class="text-sm text-slate-500">We'll initiate this process</div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="px-4 py-2 bg-slate-300 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg">
+                                            Pending
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300">Create Password *</label>
+                                    <input type="password" class="w-full p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-partner-blue transition-all" placeholder="Minimum 8 characters" required>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300">Confirm Password *</label>
+                                    <input type="password" class="w-full p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-partner-blue transition-all" placeholder="Confirm your password" required>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl">
+                                <div class="flex items-start gap-4">
+                                    <input type="checkbox" id="partnerAgreement" class="mt-1 h-5 w-5 text-partner-blue" required>
+                                    <div>
+                                        <label for="partnerAgreement" class="font-semibold text-slate-900 dark:text-white">Partner Agreement Acceptance</label>
+                                        <p class="text-slate-600 dark:text-slate-300 mt-2">
+                                            I agree to the <a href="#" class="text-partner-blue font-semibold">Partner Terms of Service</a>, 
+                                            <a href="#" class="text-partner-blue font-semibold">Commission Structure</a>, and 
+                                            <a href="#" class="text-partner-blue font-semibold">Professional Code of Conduct</a>. 
+                                            I understand that Touch Spa takes 15% commission on all bookings, provides full insurance coverage, 
+                                            and requires maintaining a 4.5+ star rating.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex justify-between mt-8">
+                                <button type="button" class="px-8 py-4 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-bold rounded-xl hover:bg-slate-50 dark:hover:bg-slate-900 transition-all duration-300" onclick="prevStep(3)">
+                                    <i class="fas fa-arrow-left mr-2"></i> Back
+                                </button>
+                                <button type="submit" class="px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-green-500/30 transition-all duration-300 animate-pulse-glow">
+                                    <i class="fas fa-rocket mr-2"></i> Submit Application
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Success Message (Hidden by default) -->
+                <div id="successMessage" class="hidden text-center py-12">
+                    <div class="w-24 h-24 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse-glow">
+                        <i class="fas fa-check text-white text-4xl"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-slate-900 dark:text-white mb-4">Application Submitted!</h3>
+                    <p class="text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto mb-8">
+                        Thank you for applying to become a Touch Spa Partner. Our team will review your application and contact you within <span class="font-bold text-green-600">24-48 business hours</span>.
+                    </p>
+                    <div class="bg-blue-50 dark:bg-blue-900 p-6 rounded-2xl max-w-md mx-auto">
+                        <div class="font-bold text-lg text-slate-900 dark:text-white mb-2">Next Steps:</div>
+                        <ol class="text-left text-slate-600 dark:text-slate-300 space-y-3">
+                            <li class="flex items-center gap-3"><i class="fas fa-envelope text-partner-blue"></i> Verification email sent</li>
+                            <li class="flex items-center gap-3"><i class="fas fa-phone text-partner-blue"></i> Background check initiated</li>
+                            <li class="flex items-center gap-3"><i class="fas fa-video text-partner-blue"></i> Quick onboarding call</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <!-- Partner Stats -->
+                <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="text-center p-6 bg-white dark:bg-slate-800 rounded-2xl border border-blue-100 dark:border-slate-700">
+                        <div class="text-3xl font-bold text-partner-blue mb-2">850+</div>
+                        <div class="text-slate-600 dark:text-slate-300">Active Partners</div>
+                    </div>
+                    <div class="text-center p-6 bg-white dark:bg-slate-800 rounded-2xl border border-blue-100 dark:border-slate-700">
+                        <div class="text-3xl font-bold text-partner-blue mb-2">$2.1M+</div>
+                        <div class="text-slate-600 dark:text-slate-300">Partner Earnings</div>
+                    </div>
+                    <div class="text-center p-6 bg-white dark:bg-slate-800 rounded-2xl border border-blue-100 dark:border-slate-700">
+                        <div class="text-3xl font-bold text-partner-blue mb-2">94%</div>
+                        <div class="text-slate-600 dark:text-slate-300">Satisfaction Rate</div>
+                    </div>
+                    <div class="text-center p-6 bg-white dark:bg-slate-800 rounded-2xl border border-blue-100 dark:border-slate-700">
+                        <div class="text-3xl font-bold text-partner-blue mb-2">48h</div>
+                        <div class="text-slate-600 dark:text-slate-300">Avg. Approval</div>
+                    </div>
+                </div>
             </div>
-            <div class="widget-tooltip">Need help? Click here for support</div>
-        </a>
+        </section>
     </div>
-</section>
-
-<style>
-    /* Floating Support Widget Styles */
-    .floating-support-section {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        z-index: 1000;
-    }
-    
-    .support-widget {
-        position: relative;
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #4a6cf7, #6a11cb);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        cursor: pointer;
-        transition: all 0.3s ease;
-        animation: float 3s ease-in-out infinite;
-    }
-    
-    .support-widget:hover {
-        transform: scale(1.1);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-    }
-    
-    .support-widget:active {
-        transform: scale(0.95);
-    }
-    
-    .widget-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-        text-decoration: none;
-        border-radius: 50%;
-    }
-    
-    .widget-icon {
-        color: white;
-        font-size: 24px;
-    }
-    
-    .widget-tooltip {
-        position: absolute;
-        bottom: 70px;
-        right: 0;
-        background: #333;
-        color: white;
-        padding: 8px 12px;
-        border-radius: 6px;
-        font-size: 14px;
-        white-space: nowrap;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    }
-    
-    .widget-tooltip:after {
-        content: '';
-        position: absolute;
-        top: 100%;
-        right: 20px;
-        border-width: 6px;
-        border-style: solid;
-        border-color: #333 transparent transparent transparent;
-    }
-    
-    .support-widget:hover .widget-tooltip {
-        opacity: 1;
-        visibility: visible;
-        bottom: 75px;
-    }
-    
-    /* Floating animation */
-    @keyframes float {
-        0%, 100% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(-10px);
-        }
-    }
-    
-    /* Responsive styles */
-    @media (max-width: 768px) {
-        .floating-support-section {
-            bottom: 20px;
-            right: 20px;
-        }
-        
-        .support-widget {
-            width: 50px;
-            height: 50px;
-        }
-        
-        .widget-icon {
-            font-size: 20px;
-        }
-        
-        .widget-tooltip {
-            font-size: 12px;
-            padding: 6px 10px;
-            white-space: normal;
-            width: 120px;
-            right: -40px;
-        }
-        
-        .widget-tooltip:after {
-            right: 50px;
-        }
-    }
-</style>
-
-<script>
-    // Optional: Add click confirmation and analytics
-    document.addEventListener('DOMContentLoaded', function() {
-        const supportWidget = document.getElementById('supportWidget');
-        const widgetLink = document.querySelector('.widget-link');
-        
-        // Optional: Add click confirmation for better UX
-        widgetLink.addEventListener('click', function(e) {
-            // Optional: You can add confirmation or analytics here
-            console.log('Support widget clicked, redirecting to support page');
-            
-            // The redirect happens naturally via the href attribute
-            // You could also prevent default and redirect programmatically if needed:
-            // e.preventDefault();
-            // setTimeout(() => { window.location.href = 'support.html'; }, 300);
-        });
-        
-        // Optional: Add widget visibility control for specific pages
-        function hideWidgetOnSupportPage() {
-            if (window.location.pathname.includes('support.html')) {
-                supportWidget.style.display = 'none';
-            }
-        }
-        
-        hideWidgetOnSupportPage();
-    });
-</script>
 
     <!-- Dark/Light mode toggle -->
     <button class="fixed bottom-6 right-6 p-4 glass-effect rounded-full shadow-lg z-50 transition-all hover:scale-110" onclick="document.documentElement.classList.toggle('dark')">
@@ -633,8 +957,10 @@
             loginForm.classList.add('hidden');
         }
         
-        loginTab.addEventListener('click', switchToLogin);
-        signupTab.addEventListener('click', switchToSignup);
+        if (loginTab && signupTab) {
+            loginTab.addEventListener('click', switchToLogin);
+            signupTab.addEventListener('click', switchToSignup);
+        }
         
         // Toggle password visibility
         function togglePassword(inputId) {
@@ -676,88 +1002,208 @@
         }
         
         // Form submission handlers
-        loginForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-            const rememberMe = document.getElementById('rememberMe').checked;
-            
-            // Validate inputs
-            if (!email || !password) {
-                showNotification('Please fill in all required fields', 'error');
-                return;
-            }
-            
-            // Authenticate user
-            const result = SessionManager.authenticateUser(email, password, rememberMe);
-            
-            if (result.success) {
-                showNotification('Successfully logged in! Redirecting to checkout...', 'success');
+        if (loginForm) {
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                const rememberMe = document.getElementById('rememberMe').checked;
                 
-                // Store session info for debugging (optional)
-                console.log('User session created:', result.session);
-                console.log('Current session:', SessionManager.getSession());
+                // Validate inputs
+                if (!email || !password) {
+                    showNotification('Please fill in all required fields', 'error');
+                    return;
+                }
                 
-                // Redirect to checkout page
-                redirectToCheckout();
-            } else {
-                showNotification(result.message || 'Invalid email or password', 'error');
-            }
-        });
-        
-        signupForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const firstName = document.getElementById('firstName').value;
-            const lastName = document.getElementById('lastName').value;
-            const email = document.getElementById('signupEmail').value;
-            const password = document.getElementById('signupPassword').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            const termsAgreed = document.getElementById('termsAgreement').checked;
-            
-            // Basic validation
-            if (!firstName || !lastName || !email || !password || !confirmPassword) {
-                showNotification('Please fill in all required fields', 'error');
-                return;
-            }
-            
-            if (!termsAgreed) {
-                showNotification('Please agree to the Terms of Service and Privacy Policy', 'error');
-                return;
-            }
-            
-            if (password !== confirmPassword) {
-                showNotification('Passwords do not match!', 'error');
-                return;
-            }
-            
-            if (password.length < 8) {
-                showNotification('Password must be at least 8 characters long', 'error');
-                return;
-            }
-            
-            // Register user
-            const result = SessionManager.registerUser({
-                firstName,
-                lastName,
-                email,
-                password
+                // Authenticate user
+                const result = SessionManager.authenticateUser(email, password, rememberMe);
+                
+                if (result.success) {
+                    showNotification('Successfully logged in! Redirecting to dashboard...', 'success');
+                    
+                    // Store session info for debugging (optional)
+                    console.log('User session created:', result.session);
+                    console.log('Current session:', SessionManager.getSession());
+                    
+                    // Redirect to dashboard page
+                    redirectToCheckout();
+                } else {
+                    showNotification(result.message || 'Invalid email or password', 'error');
+                }
             });
-            
-            if (result.success) {
-                showNotification('Account created successfully! Logging you in...', 'success');
+        }
+        
+        if (signupForm) {
+            signupForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const firstName = document.getElementById('firstName').value;
+                const lastName = document.getElementById('lastName').value;
+                const email = document.getElementById('signupEmail').value;
+                const password = document.getElementById('signupPassword').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                const termsAgreed = document.getElementById('termsAgreement').checked;
                 
-                // Auto-login after registration
-                setTimeout(() => {
-                    const loginResult = SessionManager.authenticateUser(email, password);
-                    if (loginResult.success) {
-                        showNotification('Welcome to Touch Spa! Redirecting to checkout...', 'success');
-                        redirectToCheckout();
-                    }
-                }, 1000);
-            } else {
-                showNotification(result.message || 'Registration failed. Please try again.', 'error');
+                // Basic validation
+                if (!firstName || !lastName || !email || !password || !confirmPassword) {
+                    showNotification('Please fill in all required fields', 'error');
+                    return;
+                }
+                
+                if (!termsAgreed) {
+                    showNotification('Please agree to the Terms of Service and Privacy Policy', 'error');
+                    return;
+                }
+                
+                if (password !== confirmPassword) {
+                    showNotification('Passwords do not match!', 'error');
+                    return;
+                }
+                
+                if (password.length < 8) {
+                    showNotification('Password must be at least 8 characters long', 'error');
+                    return;
+                }
+                
+                // Register user
+                const result = SessionManager.registerUser({
+                    firstName,
+                    lastName,
+                    email,
+                    password
+                });
+                
+                if (result.success) {
+                    showNotification('Account created successfully! Logging you in...', 'success');
+                    
+                    // Auto-login after registration
+                    setTimeout(() => {
+                        const loginResult = SessionManager.authenticateUser(email, password);
+                        if (loginResult.success) {
+                            showNotification('Welcome to Touch Spa! Redirecting to dashboard...', 'success');
+                            redirectToCheckout();
+                        }
+                    }, 1000);
+                } else {
+                    showNotification(result.message || 'Registration failed. Please try again.', 'error');
+                }
+            });
+        }
+        
+        // Partner Onboarding Step Functions
+        let currentStep = 1;
+        
+        function updateStepIndicators(step) {
+            const indicators = document.querySelectorAll('.step-item');
+            indicators.forEach((indicator, index) => {
+                indicator.classList.remove('active', 'completed');
+                if (index + 1 === step) {
+                    indicator.classList.add('active');
+                } else if (index + 1 < step) {
+                    indicator.classList.add('completed');
+                }
+            });
+        }
+        
+        function showStep(step) {
+            // Hide all steps
+            for (let i = 1; i <= 4; i++) {
+                const stepElement = document.getElementById('step' + i);
+                if (stepElement) {
+                    stepElement.classList.remove('active');
+                }
             }
-        });
+            
+            // Show current step
+            const currentStepElement = document.getElementById('step' + step);
+            if (currentStepElement) {
+                currentStepElement.classList.add('active');
+            }
+            
+            updateStepIndicators(step);
+            currentStep = step;
+        }
+        
+        function nextStep(step) {
+            // Validate current step before proceeding
+            if (currentStep === 1) {
+                // Validate step 1 fields
+                const requiredFields = document.querySelectorAll('#step1 [required]');
+                let isValid = true;
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        field.classList.add('border-red-500');
+                    } else {
+                        field.classList.remove('border-red-500');
+                    }
+                });
+                
+                if (!isValid) {
+                    showNotification('Please fill in all required fields', 'error');
+                    return;
+                }
+            }
+            
+            showStep(step);
+            
+            // Scroll to top of step section
+            const stepSection = document.querySelector('.onboarding-steps-section');
+            if (stepSection) {
+                stepSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+        
+        function prevStep(step) {
+            showStep(step);
+        }
+        
+        // Partner form submission
+        const partnerForm = document.querySelector('#step4 form');
+        if (partnerForm) {
+            partnerForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show success message
+                const successMessage = document.getElementById('successMessage');
+                const stepSection = document.querySelector('.onboarding-steps-section');
+                
+                if (successMessage && stepSection) {
+                    stepSection.style.display = 'none';
+                    successMessage.classList.remove('hidden');
+                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                
+                // In a real app, you would submit to a server here
+                console.log('Partner application submitted successfully!');
+                
+                // Show notification
+                showNotification('Partner application submitted! Our team will contact you within 24-48 hours.', 'success');
+            });
+        }
+        
+        // Rate slider functionality
+        const rateSlider = document.getElementById('rateSlider');
+        const rateValue = document.getElementById('rateValue');
+        const partnerEarn = document.getElementById('partnerEarn');
+        
+        if (rateSlider && rateValue && partnerEarn) {
+            rateSlider.addEventListener('input', function() {
+                const rate = parseInt(this.value);
+                const partnerShare = rate * 0.85;
+                rateValue.textContent = '$' + rate + '/hr';
+                partnerEarn.textContent = '$' + partnerShare.toFixed(2) + '/hr';
+            });
+        }
+        
+        // Radius slider functionality
+        const radiusSlider = document.getElementById('radiusSlider');
+        const radiusDisplay = document.getElementById('radiusValue');
+        
+        if (radiusSlider && radiusDisplay) {
+            radiusSlider.addEventListener('input', function() {
+                radiusDisplay.textContent = this.value + ' miles';
+            });
+        }
         
         // Check if user is already logged in
         function checkExistingSession() {
@@ -766,10 +1212,10 @@
                 console.log('User already logged in:', session.user.email);
                 
                 // Pre-fill login form with user's email
-                document.getElementById('loginEmail').value = session.user.email;
-                
-                // Optional: Show a message that user is already logged in
-                // showNotification(`Welcome back, ${session.user.firstName}! You can proceed to checkout.`, 'success');
+                const loginEmail = document.getElementById('loginEmail');
+                if (loginEmail) {
+                    loginEmail.value = session.user.email;
+                }
             }
         }
         
@@ -784,6 +1230,9 @@
             // Set default form
             switchToLogin();
             
+            // Initialize partner onboarding
+            showStep(1);
+            
             // Add some subtle animation to form inputs
             const inputs = document.querySelectorAll('input');
             inputs.forEach(input => {
@@ -796,9 +1245,15 @@
                 });
             });
             
-            // Log current session state for debugging
-            console.log('Current session:', SessionManager.getSession());
-            console.log('All registered users:', SessionManager.getAllUsers());
+            // Add custom CSS for checked radio/checkbox
+            const style = document.createElement('style');
+            style.textContent = `
+                .has-checked:has(input:checked) {
+                    border-color: #1E40AF;
+                    background-color: rgba(30, 64, 175, 0.05);
+                }
+            `;
+            document.head.appendChild(style);
         });
     </script>
 </body>
