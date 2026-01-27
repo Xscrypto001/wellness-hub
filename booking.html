@@ -97,6 +97,98 @@
 </div>
 </div>
 </div>
+
+
+
+<!-- Normal Chat Widget Section -->
+<section class="chat-section">
+    <div class="chat-container">
+        <a href="chat.html" class="chat-button">
+            <i class="fas fa-comment-dots"></i>
+            Chat Now
+        </a>
+        <p class="chat-note">Average response time: <strong>2 minutes</strong></p>
+    </div>
+</section>
+
+<style>
+   
+    
+    .chat-section p {
+        color: #6c757d;
+        font-size: 18px;
+        margin-bottom: 30px;
+        line-height: 1.6;
+    }
+    
+    .chat-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        background: linear-gradient(135deg, #28a745, #20c997);
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 18px;
+        padding: 16px 40px;
+        border-radius: 50px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2);
+        margin-bottom: 20px;
+    }
+    
+    .chat-button:hover {
+        background: linear-gradient(135deg, #218838, #1da57a);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(40, 167, 69, 0.3);
+        color: white;
+    }
+    
+    .chat-button:active {
+        transform: translateY(0);
+    }
+    
+    .chat-button i {
+        font-size: 20px;
+    }
+    
+    .chat-note {
+        font-size: 16px;
+        color: #6c757d;
+        margin-top: 10px;
+        margin-bottom: 0;
+    }
+    
+    .chat-note strong {
+        color: #28a745;
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        .chat-section {
+            padding: 30px 20px;
+            margin: 30px 20px;
+        }
+        
+        .chat-section h2 {
+            font-size: 24px;
+        }
+        
+        .chat-section p {
+            font-size: 16px;
+        }
+        
+        .chat-button {
+            font-size: 16px;
+            padding: 14px 30px;
+            width: 100%;
+        }
+    }
+</style>
+
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 <div class="lg:col-span-2 space-y-8">
 <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800">
