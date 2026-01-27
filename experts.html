@@ -275,6 +275,163 @@
 <li><a class="hover:text-primary" href="#">Facials</a></li>
 </ul>
 </div>
+<!-- Floating Support Widget Section -->
+<section class="floating-support-section">
+    <!-- Floating Support Widget -->
+    <div class="support-widget" id="supportWidget">
+        <a href="support.html" class="widget-link">
+            <div class="widget-icon">
+                <i class="fas fa-headset">S</i>
+            </div>
+            <div class="widget-tooltip">Need help? Click here for support</div>
+        </a>
+    </div>
+</section>
+
+<style>
+    /* Floating Support Widget Styles */
+    .floating-support-section {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 1000;
+    }
+    
+    .support-widget {
+        position: relative;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        animation: float 3s ease-in-out infinite;
+    }
+    
+    .support-widget:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .support-widget:active {
+        transform: scale(0.95);
+    }
+    
+    .widget-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        border-radius: 50%;
+    }
+    
+    .widget-icon {
+        color: white;
+        font-size: 24px;
+    }
+    
+    .widget-tooltip {
+        position: absolute;
+        bottom: 70px;
+        right: 0;
+        background: #333;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 14px;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .widget-tooltip:after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        right: 20px;
+        border-width: 6px;
+        border-style: solid;
+        border-color: #333 transparent transparent transparent;
+    }
+    
+    .support-widget:hover .widget-tooltip {
+        opacity: 1;
+        visibility: visible;
+        bottom: 75px;
+    }
+    
+    /* Floating animation */
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        .floating-support-section {
+            bottom: 20px;
+            right: 20px;
+        }
+        
+        .support-widget {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .widget-icon {
+            font-size: 20px;
+        }
+        
+        .widget-tooltip {
+            font-size: 12px;
+            padding: 6px 10px;
+            white-space: normal;
+            width: 120px;
+            right: -40px;
+        }
+        
+        .widget-tooltip:after {
+            right: 50px;
+        }
+    }
+</style>
+
+<script>
+    // Optional: Add click confirmation and analytics
+    document.addEventListener('DOMContentLoaded', function() {
+        const supportWidget = document.getElementById('supportWidget');
+        const widgetLink = document.querySelector('.widget-link');
+        
+        // Optional: Add click confirmation for better UX
+        widgetLink.addEventListener('click', function(e) {
+            // Optional: You can add confirmation or analytics here
+            console.log('Support widget clicked, redirecting to support page');
+            
+            // The redirect happens naturally via the href attribute
+            // You could also prevent default and redirect programmatically if needed:
+            // e.preventDefault();
+            // setTimeout(() => { window.location.href = 'support.html'; }, 300);
+        });
+        
+        // Optional: Add widget visibility control for specific pages
+        function hideWidgetOnSupportPage() {
+            if (window.location.pathname.includes('support.html')) {
+                supportWidget.style.display = 'none';
+            }
+        }
+        
+        hideWidgetOnSupportPage();
+    });
+</script>
+
 <div>
 <h5 class="font-bold text-sm uppercase tracking-wider mb-6">Support</h5>
 <ul class="space-y-4 text-sm text-slate-500 dark:text-slate-400">
