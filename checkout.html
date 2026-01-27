@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Secure Checkout - Touch Spa</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00E676",
+                        "background-light": "#F9FAFB",
+                        "background-dark": "#111827",
+                    },
+                    fontFamily: {
+                        display: ["Plus Jakarta Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "12px",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .payment-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 transition-colors duration-200">
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                    <span class="material-icons-outlined text-white text-sm">spa</span>
+                </div>
+                <span class="font-bold text-xl tracking-tight">Touch Spa</span>
+            </div>
+            <div class="flex items-center gap-4 text-sm font-medium">
+                <span class="hidden md:inline text-slate-500 dark:text-slate-400">Step 3 of 3: Payment</span>
+                <button class="flex items-center gap-1 text-slate-600 dark:text-slate-300 hover:text-primary transition-colors" onclick="cancelPayment()">
+                    <span class="material-icons-outlined text-lg">close</span>
+                    <span>Cancel</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="payment-container px-4 py-8 lg:py-12">
+        <div class="space-y-8">
+            <div class="text-center">
+                <h1 class="text-3xl font-bold mb-2">Secure Checkout</h1>
+                <p class="text-slate-500 dark:text-slate-400">Complete your booking for a relaxing experience.</p>
+            </div>
+            
+            
+                
+                <!-- Paystack Payment Form -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm p-6">
+                    <h2 class="text-xl font-bold mb-4">Payment Details</h2>
+                    
+                    <form id="paymentForm" class="space-y-6">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2" for="email">Email Address</label>
+                                <input type="email" id="email-address" required class="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="your@email.com" value="customer@example.com"/>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2" for="amount">Amount (KES)</label>
+                                <input type="text" id="amount" readonly class="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-slate-50 dark:bg-slate-700 font-bold text-lg" value="2125"/>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2" for="first-name">First Name</label>
+                                <input type="text" id="first-name" required class="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="John" value="John"/>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2" for="last-name">Last Name</label>
+                                <input type="text" id="last-name" required class="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Doe" value="Doe"/>
+                            </div>
+                        </div>
+                        
+                        <div class="pt-4 border-t border-slate-100 dark:border-slate-700">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-lg font-bold">Total Amount</span>
+                                <span class="text-2xl font-bold">ksh 2,125</span>
+                            </div>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">By proceeding, you agree to our Terms of Service and Cancellation Policy.</p>
+                            
+                            <button type="button" onclick="payWithPaystack()" class="w-full py-4 bg-primary hover:bg-[#00D169] text-white font-bold rounded-lg text-lg transition-all duration-200 flex items-center justify-center gap-2">
+                                <span class="material-icons-outlined">lock</span>
+                                <span>Confirm & Pay with Paystack</span>
+                            </button>
+                            
+                            <div class="mt-4 text-center">
+                                <p class="text-xs text-slate-500 dark:text-slate-400 flex items-center justify-center gap-1">
+                                    <span class="material-icons-outlined text-sm">verified_user</span>
+                                    Secured by Paystack
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Booking Summary -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+                    <div class="p-6 border-b border-slate-100 dark:border-slate-700">
+                        <h2 class="text-xl font-bold mb-4">Booking Summary</h2>
+                        <div class="flex items-center gap-4">
+                            <img alt="Sarah Martin" class="w-16 h-16 rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsWLQPtTMNAriK2bGzgPk97sXQaNL52ueVLmb7w_oFxJu2u7pJnzwHKZJ9G7Dh9tQeH0r5qBbLlxPL6jNxaQ7NqpCuuH8jINQCRNGUC5nBxeFOCePaJS5qlbRR3bH0y4M06aFncrhInbj5IoiGRiH_xsLhVB515kVV7XtXzLr2NhTrdus6l94pcf6DSm-eF9VT9smEYJ74SAjAzRxh_jAUxnhZNlh9ApoYx-0HIY6QRHK0hMrpYjGnw-zM0gUtj_bI9iXWjPv5YFQ"/>
+                            <div>
+                                <h3 class="font-bold">Deep Tissue Massage</h3>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Sarah Martin • 60 min session</p>
+                                <div class="flex items-center gap-1 mt-1">
+                                    <span class="material-icons-outlined text-amber-400 text-sm">star</span>
+                                    <span class="text-sm font-medium">4.9</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-6">
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                                <span class="material-icons-outlined text-slate-400">calendar_today</span>
+                                <span class="text-sm">Wednesday, October 24, 2024</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                                <span class="material-icons-outlined text-slate-400">schedule</span>
+                                <span class="text-sm">2:30 PM (Home Visit)</span>
+                            </div>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 dark:border-slate-700 space-y-3">
+                            <div class="flex justify-between text-slate-600 dark:text-slate-400">
+                                <span>Service Subtotal</span>
+                                <span>ksh 2,500</span>
+                            </div>
+                            <div class="flex justify-between text-primary font-medium">
+                                <span>New Customer Discount (15%)</span>
+                                <span>- ksh 375</span>
+                            </div>
+                            <div class="flex justify-between text-slate-600 dark:text-slate-400">
+                                <span>Service Fee</span>
+                                <span>ksh 0.00</span>
+                            </div>
+                        </div>
+                        <div class="pt-2">
+                            <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Applied Promo Code</label>
+                            <div class="flex items-center justify-between p-3 bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-900 rounded-lg">
+                                <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
+                                    <span class="material-icons-outlined text-sm">local_offer</span>
+                                    <span class="font-bold text-sm">TOUCH15</span>
+                                </div>
+                                <button class="text-emerald-600 dark:text-emerald-400 text-sm font-semibold hover:underline">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="max-w-7xl mx-auto px-4 py-8 text-center space-y-4">
+        <div class="flex flex-wrap items-center justify-center gap-6">
+            <div class="flex items-center gap-2 text-slate-400">
+                <span class="material-icons-outlined">verified_user</span>
+                <span class="text-sm">Bank-level Security</span>
+            </div>
+            <div class="flex items-center gap-2 text-slate-400">
+                <span class="material-icons-outlined">sentiment_satisfied</span>
+                <span class="text-sm">Happiness Guaranteed</span>
+            </div>
+            <div class="flex items-center gap-2 text-slate-400">
+                <span class="material-icons-outlined">support_agent</span>
+                <span class="text-sm">24/7 Concierge Support</span>
+            </div>
+        </div>
+        <p class="text-xs text-slate-400 dark:text-slate-500 max-w-2xl mx-auto">
+            © 2026 Touch Spa Inc. All rights reserved. By clicking "Confirm &amp; Pay", you agree to our Terms of Service and Cancellation Policy. You will be charged ksh 2,125.
+        </p>
+    </footer>
+
+    <button class="fixed bottom-6 right-6 p-3 bg-white dark:bg-slate-800 rounded-full shadow-lg border border-slate-200 dark:border-slate-700 z-50" onclick="document.documentElement.classList.toggle('dark')">
+        <span class="material-icons-outlined block dark:hidden">dark_mode</span>
+        <span class="material-icons-outlined hidden dark:block text-primary">light_mode</span>
+    </button>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white dark:bg-slate-800 rounded-xl p-8 max-w-md w-full mx-4">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="material-icons-outlined text-green-600 dark:text-green-400 text-3xl">check_circle</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-2">Payment Successful!</h3>
+                <p class="text-slate-600 dark:text-slate-400 mb-6">Your booking has been confirmed. A receipt has been sent to your email.</p>
+                <button onclick="closePaymentModal()" class="px-6 py-3 bg-primary hover:bg-[#00D169] text-white font-medium rounded-lg transition-colors">
+                    Continue to Booking Details
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Paystack Configuration
+        const paystackPublicKey = "pk_live_YOUR_PUBLIC_KEY_HERE"; // Replace with your Paystack public key
+        const amountInKobo = 2125 * 100; // Convert KSH to kobo (Paystack uses kobo for Naira, but for other currencies use the smallest unit)
+        
+        function selectPaymentMethod(method) {
+            const cardOption = document.querySelector('label[onclick="selectPaymentMethod(\'card\')"]');
+            const mobileOption = document.querySelector('label[onclick="selectPaymentMethod(\'mobile\')"]');
+            
+            if (method === 'card') {
+                cardOption.classList.add('border-2', 'border-primary', 'bg-primary/5', 'dark:bg-primary/10');
+                mobileOption.classList.remove('border-2', 'border-primary', 'bg-primary/5', 'dark:bg-primary/10');
+                mobileOption.classList.add('border', 'border-slate-200', 'dark:border-slate-700');
+            } else {
+                mobileOption.classList.add('border-2', 'border-primary', 'bg-primary/5', 'dark:bg-primary/10');
+                cardOption.classList.remove('border-2', 'border-primary', 'bg-primary/5', 'dark:bg-primary/10');
+                cardOption.classList.add('border', 'border-slate-200', 'dark:border-slate-700');
+            }
+        }
+        
+        function payWithPaystack() {
+            const email = document.getElementById("email-address").value;
+            const firstName = document.getElementById("first-name").value;
+            const lastName = document.getElementById("last-name").value;
+            const amount = document.getElementById("amount").value;
+            
+            // Validate inputs
+            if (!email || !firstName || !lastName) {
+                alert("Please fill in all required fields.");
+                return;
+            }
+            
+            // Convert amount to smallest currency unit (kobo for Naira)
+            const amountInSmallestUnit = amount * 100;
+            
+            // Initialize Paystack
+            const handler = PaystackPop.setup({
+                key: paystackPublicKey,
+                email: email,
+                amount: amountInSmallestUnit,
+                currency: "KES", // Kenyan Shilling
+                firstname: firstName,
+                lastname: lastName,
+                ref: 'SPA_' + Math.floor((Math.random() * 1000000000) + 1),
+                metadata: {
+                    booking_id: 'SPA12345',
+                    service: 'Deep Tissue Massage',
+                    therapist: 'Sarah Martin'
+                },
+                callback: function(response) {
+                    // Payment successful
+                    console.log("Payment successful!", response);
+                    showPaymentSuccess();
+                },
+                onClose: function() {
+                    // Payment modal closed
+                    console.log("Payment modal closed.");
+                }
+            });
+            
+            handler.openIframe();
+        }
+        
+        function showPaymentSuccess() {
+            document.getElementById('paymentModal').classList.remove('hidden');
+        }
+        
+        function closePaymentModal() {
+            document.getElementById('paymentModal').classList.add('hidden');
+        }
+        
+        function cancelPayment() {
+            if (confirm("Are you sure you want to cancel this payment? Your booking will not be confirmed.")) {
+                window.location.href = "/";
+            }
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set default payment method
+            selectPaymentMethod('card');
+        });
+    </script>
+</body>
+</html>
