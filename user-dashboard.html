@@ -16,7 +16,7 @@
                         primary: "#00E676",
                         "primary-light": "#66FFA6",
                         "primary-dark": "#00B248",
-                        "secondary": "#00BFA5",
+                        "secondary: "#00BFA5",
                         "background-light": "#F9FAFB",
                         "background-dark": "#0F172A",
                         "chat-bg": "#F0F9FF",
@@ -33,7 +33,8 @@
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'fade-in': 'fadeIn 0.3s ease-out',
-                        'slide-in': 'slideIn 0.4s ease-out',
+                        'slide-in-left': 'slideInLeft 0.5s ease-out',
+                        'slide-in-right': 'slideInRight 0.5s ease-out',
                         'pulse-subtle': 'pulseSubtle 2s ease-in-out infinite',
                         'wave': 'wave 1.8s ease-in-out infinite',
                     },
@@ -46,7 +47,11 @@
                             '0%': { opacity: '0' },
                             '100%': { opacity: '1' },
                         },
-                        slideIn: {
+                        slideInLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-20px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        slideInRight: {
                             '0%': { opacity: '0', transform: 'translateX(20px)' },
                             '100%': { opacity: '1', transform: 'translateX(0)' },
                         },
@@ -76,10 +81,12 @@
         }
         
         .chat-container {
-            height: full;
-            min-width: 380px;
-            max-width: 500px;
-            margin: 0 auto;
+            height: 600px;
+            min-width: 450px;
+        }
+        
+        .profile-container {
+            min-width: 350px;
         }
         
         .message-bubble-user {
@@ -136,13 +143,13 @@
         }
         
         .specialist-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.2);
         }
         
         .dark .specialist-card {
-            background: linear-gradient(135deg, rgba(30,41,59,0.9) 0%, rgba(15,23,42,0.7) 100%);
+            background: linear-gradient(135deg, rgba(30,41,59,0.95) 0%, rgba(15,23,42,0.85) 100%);
             border: 1px solid rgba(255,255,255,0.1);
         }
         
@@ -205,9 +212,23 @@
             background: linear-gradient(to bottom, #00E676, #00BFA5);
             border-radius: 10px;
         }
+        
+        .stat-card {
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 230, 118, 0.1);
+        }
+        
+        .availability-badge {
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.1) 0%, rgba(0, 191, 165, 0.1) 100%);
+            border: 1px solid rgba(0, 230, 118, 0.2);
+        }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 transition-colors duration-300 min-h-screen flex items-center justify-center p-4">
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 transition-colors duration-300 min-h-screen p-4">
     <!-- Background Elements -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none">
         <div class="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-primary/5 blur-3xl"></div>
@@ -225,223 +246,335 @@
         </div>
     </div>
 
-    <!-- Main Chat Container -->
-    
+    <!-- Main Container - Split Layout -->
+    <div class="relative z-10 max-w-7xl mx-auto">
+        <!-- Header -->
+        <div class="mb-8 text-center">
+            <div class="flex items-center justify-center gap-3 mb-4">
+                <div class="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center">
+                    <span class="material-icons-outlined text-white text-2xl">spa</span>
+                </div>
+                <span class="font-bold text-3xl tracking-tight">Touch Spa</span>
+            </div>
+            <h1 class="text-4xl font-bold mb-2">Premium Spa Consultation</h1>
+            <p class="text-xl text-slate-600 dark:text-slate-300">Chat directly with our head spa specialist</p>
+        </div>
 
-        <!-- Chat Container -->
-        <div class="chat-container bg-white dark:bg-slate-800 rounded-3xl shadow-2xl shadow-primary/10 overflow-hidden animate-slide-in">
-            <!-- Chat Header -->
-            <div class="bg-gradient-to-r from-primary/5 to-secondary/5 p-6 border-b border-slate-100 dark:border-slate-700">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="relative">
-                            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- LEFT COLUMN - Specialist Profile -->
+            <div class="lg:w-2/5 profile-container animate-slide-in-left">
+                <div class="specialist-card rounded-3xl shadow-2xl shadow-primary/10 overflow-hidden sticky top-8">
+                    <!-- Profile Header -->
+                    <div class="bg-gradient-to-r from-primary/10 to-secondary/10 p-8">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex items-center gap-4">
+                                <div class="relative">
+                                    <div class="w-24 h-24 rounded-3xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-2xl">
+                                        <span class="material-icons-outlined text-white text-5xl">spa</span>
+                                    </div>
+                                    <div class="status-online absolute -bottom-1 -right-1 border-4 border-white dark:border-slate-800"></div>
+                                </div>
+                                <div>
+                                    <h1 class="text-2xl font-bold mb-1">Samantha Chen</h1>
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="text-lg font-medium gradient-text">Head Spa Specialist</span>
+                                    </div>
+                                    <div class="flex items-center gap-3 text-sm">
+                                        <span class="flex items-center gap-1 text-slate-600 dark:text-slate-400">
+                                            <span class="material-icons-outlined text-base text-amber-400">star</span>
+                                            <span>4.9/5.0</span>
+                                        </span>
+                                        <span class="text-slate-400">•</span>
+                                        <span class="flex items-center gap-1 text-slate-600 dark:text-slate-400">
+                                            <span class="material-icons-outlined text-base text-primary">verified</span>
+                                            <span>Certified Expert</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="availability-badge inline-flex items-center gap-2 px-4 py-2 rounded-full">
+                            <div class="unread-indicator"></div>
+                            <span class="font-medium text-primary">Available Now</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Profile Details -->
+                    <div class="p-8">
+                        <div class="mb-8">
+                            <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                                <span class="material-icons-outlined text-primary">person</span>
+                                About Samantha
+                            </h3>
+                            <p class="text-slate-600 dark:text-slate-400 mb-4">
+                                With over 15 years of experience in therapeutic massage and spa treatments, Samantha specializes in creating personalized wellness plans. She's certified in 8 different massage techniques and has helped over 2,000 clients achieve relaxation and pain relief.
+                            </p>
+                            <div class="space-y-2">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-icons-outlined text-primary text-sm">school</span>
+                                    <span class="text-sm text-slate-600 dark:text-slate-400">Certified in Deep Tissue, Swedish, Hot Stone, and Aromatherapy</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="material-icons-outlined text-primary text-sm">workspace_premium</span>
+                                    <span class="text-sm text-slate-600 dark:text-slate-400">International Spa Association Member since 2015</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="material-icons-outlined text-primary text-sm">translate</span>
+                                    <span class="text-sm text-slate-600 dark:text-slate-400">Fluent in English, French, and Mandarin</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Stats Grid -->
+                        <div class="grid grid-cols-2 gap-4 mb-8">
+                            <div class="stat-card p-4 bg-white dark:bg-slate-800 rounded-2xl text-center">
+                                <div class="text-2xl font-bold text-primary mb-1">98%</div>
+                                <div class="text-sm text-slate-600 dark:text-slate-400">Client Satisfaction</div>
+                            </div>
+                            <div class="stat-card p-4 bg-white dark:bg-slate-800 rounded-2xl text-center">
+                                <div class="text-2xl font-bold text-primary mb-1">2 min</div>
+                                <div class="text-sm text-slate-600 dark:text-slate-400">Avg Response</div>
+                            </div>
+                            <div class="stat-card p-4 bg-white dark:bg-slate-800 rounded-2xl text-center">
+                                <div class="text-2xl font-bold text-primary mb-1">2,148+</div>
+                                <div class="text-sm text-slate-600 dark:text-slate-400">Clients Helped</div>
+                            </div>
+                            <div class="stat-card p-4 bg-white dark:bg-slate-800 rounded-2xl text-center">
+                                <div class="text-2xl font-bold text-primary mb-1">15 yrs</div>
+                                <div class="text-sm text-slate-600 dark:text-slate-400">Experience</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Specializations -->
+                        <div class="mb-6">
+                            <h3 class="text-lg font-bold mb-3 flex items-center gap-2">
+                                <span class="material-icons-outlined text-primary">workspace_premium</span>
+                                Specializations
+                            </h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Deep Tissue</span>
+                                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Sports Therapy</span>
+                                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Chronic Pain</span>
+                                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Stress Relief</span>
+                                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Posture Correction</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Contact Info -->
+                        <div class="border-t border-slate-100 dark:border-slate-700 pt-6">
+                            <div class="flex items-center justify-between text-sm text-slate-600 dark:text-slate-400">
+                                <span class="flex items-center gap-2">
+                                    <span class="material-icons-outlined text-base text-primary">schedule</span>
+                                    <span>Typically replies in 1-2 minutes</span>
+                                </span>
+                                <button class="p-2 bg-slate-100 dark:bg-slate-800 rounded-xl hover:scale-105 transition-transform" onclick="document.documentElement.classList.toggle('dark')">
+                                    <span class="material-icons-outlined block dark:hidden">dark_mode</span>
+                                    <span class="material-icons-outlined hidden dark:block text-primary">light_mode</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN - Chat Interface -->
+            <div class="lg:w-3/5 animate-slide-in-right">
+                <div class="chat-container bg-white dark:bg-slate-800 rounded-3xl shadow-2xl shadow-primary/10 overflow-hidden">
+                    <!-- Chat Header -->
+                    <div class="bg-gradient-to-r from-primary/5 to-secondary/5 p-6 border-b border-slate-100 dark:border-slate-700">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="relative">
+                                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                                        <span class="material-icons-outlined text-white">spa</span>
+                                    </div>
+                                    <div class="status-online absolute -bottom-1 -right-1 border-3 border-white dark:border-slate-800"></div>
+                                </div>
+                                <div>
+                                    <h2 class="font-bold text-lg">Live Chat with Samantha</h2>
+                                    <div class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+                                        <span>Online • Head Spa Specialist</span>
+                                        <span>•</span>
+                                        <span class="flex items-center gap-1">
+                                            <span class="material-icons-outlined text-sm text-amber-400">star</span>
+                                            <span>4.9</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl transition-colors" onclick="toggleMute()" id="muteBtn">
+                                    <span class="material-icons-outlined text-slate-500">volume_up</span>
+                                </button>
+                                <button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl transition-colors" onclick="clearChat()">
+                                    <span class="material-icons-outlined text-slate-500">delete</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Chat Messages Area -->
+                    <div class="flex-1 p-6 overflow-y-auto chat-scrollbar" id="chatMessages" style="height: 400px;">
+                        <!-- Welcome Message -->
+                        <div class="text-center mb-8">
+                            <div class="inline-block px-4 py-2 bg-slate-100 dark:bg-slate-900 rounded-full text-sm text-slate-600 dark:text-slate-400">
+                                Today, 10:30 AM
+                            </div>
+                        </div>
+                        
+                        <!-- Specialist Welcome -->
+                        <div class="flex items-start gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink:0">
                                 <span class="material-icons-outlined text-white">spa</span>
                             </div>
-                            <div class="status-online absolute -bottom-1 -right-1 border-3 border-white dark:border-slate-800"></div>
-                        </div>
-                        <div>
-                            <h2 class="font-bold text-lg">Chat with Samantha</h2>
-                            <div class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
-                                <span>Online • Head Spa Specialist</span>
+                            <div class="max-w-xs md:max-w-md">
+                                <div class="message-bubble-specialist px-5 py-4 mb-1">
+                                    <p class="text-sm leading-relaxed">Hello! I'm Samantha, your personal spa specialist at Touch Spa. 🌿 I'm here to help you create the perfect relaxation experience. How can I assist you today?</p>
+                                </div>
+                                <div class="message-time pl-1">Samantha • 10:30 AM</div>
                             </div>
                         </div>
+                        
+                        <!-- User Message -->
+                        <div class="flex items-start gap-3 justify-end mb-6">
+                            <div class="max-w-xs md:max-w-md text-right">
+                                <div class="message-bubble-user px-5 py-4 mb-1">
+                                    <p class="text-sm leading-relaxed">Hi Samantha! I'm looking for a deep tissue massage but not sure which therapist to choose. Can you help?</p>
+                                </div>
+                                <div class="message-time pr-1">You • 10:31 AM</div>
+                            </div>
+                            <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink:0">
+                                <span class="material-icons-outlined text-white">person</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Specialist Response -->
+                        <div class="flex items-start gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink:0">
+                                <span class="material-icons-outlined text-white">spa</span>
+                            </div>
+                            <div class="max-w-xs md:max-w-md">
+                                <div class="message-bubble-specialist px-5 py-4 mb-1">
+                                    <p class="text-sm leading-relaxed">Absolutely! For deep tissue, I recommend <span class="font-semibold text-primary">Sarah Martin</span> - she has 8 years of experience and specializes in therapeutic massage. 🎯</p>
+                                    <p class="text-sm leading-relaxed mt-2">Would you like me to check her availability for this week?</p>
+                                </div>
+                                <div class="message-time pl-1">Samantha • 10:32 AM</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Quick Options (Suggested by Specialist) -->
+                        <div class="flex items-start gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink:0">
+                                <span class="material-icons-outlined text-white">spa</span>
+                            </div>
+                            <div class="max-w-xs md:max-w-md">
+                                <div class="message-bubble-specialist px-5 py-4 mb-1">
+                                    <p class="text-sm font-medium mb-3">Quick options:</p>
+                                    <div class="space-y-2">
+                                        <button class="quick-action-btn w-full text-left px-4 py-3 bg-primary/5 hover:bg-primary/10 rounded-xl text-sm transition-all" onclick="quickResponse('Yes, please check Sarah\'s availability')">
+                                            ✅ Yes, check Sarah's availability
+                                        </button>
+                                        <button class="quick-action-btn w-full text-left px-4 py-3 bg-primary/5 hover:bg-primary/10 rounded-xl text-sm transition-all" onclick="quickResponse('Can you recommend someone else?')">
+                                            🔄 Recommend another therapist
+                                        </button>
+                                        <button class="quick-action-btn w-full text-left px-4 py-3 bg-primary/5 hover:bg-primary/10 rounded-xl text-sm transition-all" onclick="quickResponse('Tell me more about Sarah\'s experience')">
+                                            ℹ️ More about Sarah's experience
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="message-time pl-1">Samantha • 10:33 AM</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Typing Indicator -->
+                        <div id="typingIndicator" class="flex items-start gap-3 mb-6 hidden">
+                            <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink:0">
+                                <span class="material-icons-outlined text-white">spa</span>
+                            </div>
+                            <div class="message-bubble-specialist px-5 py-4">
+                                <div class="typing-indicator">
+                                    <div class="typing-dot"></div>
+                                    <div class="typing-dot"></div>
+                                    <div class="typing-dot"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Attachment Preview -->
+                    <div id="attachmentPreview" class="px-6 py-3 bg-slate-50 dark:bg-slate-900 border-t border-slate-100 dark:border-slate-700 hidden">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="attachment-preview w-12 h-12 bg-primary/10 flex items-center justify-center">
+                                    <span class="material-icons-outlined text-primary">image</span>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium">massage_preference.jpg</p>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">1.2 MB • Ready to send</p>
+                                </div>
+                            </div>
+                            <button class="p-2 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl" onclick="removeAttachment()">
+                                <span class="material-icons-outlined text-slate-500">close</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Chat Input Area -->
+                    <div class="p-4 border-t border-slate-100 dark:border-slate-700">
+                        <div class="flex items-center gap-3">
+                            <!-- Attachment Button -->
+                            <button class="p-3 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-2xl transition-colors" onclick="attachFile()">
+                                <span class="material-icons-outlined text-slate-500">attach_file</span>
+                            </button>
+                            
+                            <!-- Emoji Button -->
+                            <button class="p-3 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-2xl transition-colors emoji-picker-btn" onclick="toggleEmojiPicker()">
+                                <span class="material-icons-outlined text-slate-500">mood</span>
+                            </button>
+                            
+                            <!-- Message Input -->
+                            <div class="flex-1">
+                                <input type="text" id="chatInput" placeholder="Type your message here..." class="w-full px-5 py-4 chat-input rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all" autocomplete="off"/>
+                            </div>
+                            
+                            <!-- Send Button -->
+                            <button class="p-4 bg-gradient-to-r from-primary to-secondary text-white rounded-2xl hover:shadow-lg hover:shadow-primary/30 transition-all duration-300" onclick="sendMessage()" id="sendBtn">
+                                <span class="material-icons-outlined">send</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Quick Action Buttons -->
+                        <div class="flex items-center gap-2 mt-4 overflow-x-auto pb-2">
+                            <button class="px-4 py-2 bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl text-sm whitespace-nowrap transition-colors" onclick="quickResponse('Book an appointment')">
+                                📅 Book Appointment
+                            </button>
+                            <button class="px-4 py-2 bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl text-sm whitespace-nowrap transition-colors" onclick="quickResponse('What services do you offer?')">
+                                💆 Services Offered
+                            </button>
+                            <button class="px-4 py-2 bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl text-sm whitespace-nowrap transition-colors" onclick="quickResponse('Pricing information')">
+                                💰 Pricing Info
+                            </button>
+                            <button class="px-4 py-2 bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl text-sm whitespace-nowrap transition-colors" onclick="quickResponse('Cancel my booking')">
+                                ❌ Cancel Booking
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Status Bar -->
+                <div class="mt-6 flex items-center justify-between text-sm text-slate-600 dark:text-slate-400 px-2">
+                    <div class="flex items-center gap-2">
+                        <span class="material-icons-outlined text-sm text-primary">lock</span>
+                        <span>End-to-end encrypted • Your conversations are private</span>
                     </div>
                     <div class="flex items-center gap-2">
-                        <button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl transition-colors" onclick="toggleMute()" id="muteBtn">
-                            <span class="material-icons-outlined text-slate-500">volume_up</span>
-                        </button>
-                        <button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl transition-colors" onclick="clearChat()">
-                            <span class="material-icons-outlined text-slate-500">delete</span>
-                        </button>
+                        <span class="material-icons-outlined text-sm text-primary">schedule</span>
+                        <span>Response time: 1-2 min</span>
                     </div>
-                </div>
-            </div>
-            
-            <!-- Chat Messages Area -->
-            <div class="flex-1 p-6 overflow-y-auto chat-scrollbar" id="chatMessages" style="height: 350px;">
-                <!-- Welcome Message -->
-                <div class="text-center mb-8">
-                    <div class="inline-block px-4 py-2 bg-slate-100 dark:bg-slate-900 rounded-full text-sm text-slate-600 dark:text-slate-400">
-                        Today, 10:30 AM
-                    </div>
-                </div>
-                
-                <!-- Specialist Welcome -->
-                <div class="flex items-start gap-3 mb-6">
-                    <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink:0">
-                        <span class="material-icons-outlined text-white">spa</span>
-                    </div>
-                    <div class="max-w-xs md:max-w-md">
-                        <div class="message-bubble-specialist px-5 py-4 mb-1">
-                            <p class="text-sm leading-relaxed">Hello! I'm Samantha, your personal spa specialist at Touch Spa. 🌿 I'm here to help you create the perfect relaxation experience. How can I assist you today?</p>
-                        </div>
-                        <div class="message-time pl-1">Samantha • 10:30 AM</div>
-                    </div>
-                </div>
-                
-                <!-- User Message -->
-                <div class="flex items-start gap-3 justify-end mb-6">
-                    <div class="max-w-xs md:max-w-md text-right">
-                        <div class="message-bubble-user px-5 py-4 mb-1">
-                            <p class="text-sm leading-relaxed">Hi Samantha! I'm looking for a deep tissue massage but not sure which therapist to choose. Can you help?</p>
-                        </div>
-                        <div class="message-time pr-1">You • 10:31 AM</div>
-                    </div>
-                    <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink:0">
-                        <span class="material-icons-outlined text-white">person</span>
-                    </div>
-                </div>
-                
-                <!-- Specialist Response -->
-                <div class="flex items-start gap-3 mb-6">
-                    <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink:0">
-                        <span class="material-icons-outlined text-white">spa</span>
-                    </div>
-                    <div class="max-w-xs md:max-w-md">
-                        <div class="message-bubble-specialist px-5 py-4 mb-1">
-                            <p class="text-sm leading-relaxed">Absolutely! For deep tissue, I recommend <span class="font-semibold text-primary">Sarah Martin</span> - she has 8 years of experience and specializes in therapeutic massage. 🎯</p>
-                            <p class="text-sm leading-relaxed mt-2">Would you like me to check her availability for this week?</p>
-                        </div>
-                        <div class="message-time pl-1">Samantha • 10:32 AM</div>
-                    </div>
-                </div>
-                
-                <!-- Quick Options (Suggested by Specialist) -->
-                <div class="flex items-start gap-3 mb-6">
-                    <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink:0">
-                        <span class="material-icons-outlined text-white">spa</span>
-                    </div>
-                    <div class="max-w-xs md:max-w-md">
-                        <div class="message-bubble-specialist px-5 py-4 mb-1">
-                            <p class="text-sm font-medium mb-3">Quick options:</p>
-                            <div class="space-y-2">
-                                <button class="quick-action-btn w-full text-left px-4 py-3 bg-primary/5 hover:bg-primary/10 rounded-xl text-sm transition-all" onclick="quickResponse('Yes, please check Sarah\'s availability')">
-                                    ✅ Yes, check Sarah's availability
-                                </button>
-                                <button class="quick-action-btn w-full text-left px-4 py-3 bg-primary/5 hover:bg-primary/10 rounded-xl text-sm transition-all" onclick="quickResponse('Can you recommend someone else?')">
-                                    🔄 Recommend another therapist
-                                </button>
-                                <button class="quick-action-btn w-full text-left px-4 py-3 bg-primary/5 hover:bg-primary/10 rounded-xl text-sm transition-all" onclick="quickResponse('Tell me more about Sarah\'s experience')">
-                                    ℹ️ More about Sarah's experience
-                                </button>
-                            </div>
-                        </div>
-                        <div class="message-time pl-1">Samantha • 10:33 AM</div>
-                    </div>
-                </div>
-                
-                <!-- Typing Indicator -->
-                <div id="typingIndicator" class="flex items-start gap-3 mb-6 hidden">
-                    <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink:0">
-                        <span class="material-icons-outlined text-white">spa</span>
-                    </div>
-                    <div class="message-bubble-specialist px-5 py-4">
-                        <div class="typing-indicator">
-                            <div class="typing-dot"></div>
-                            <div class="typing-dot"></div>
-                            <div class="typing-dot"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Attachment Preview -->
-            <div id="attachmentPreview" class="px-6 py-3 bg-slate-50 dark:bg-slate-900 border-t border-slate-100 dark:border-slate-700 hidden">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="attachment-preview w-12 h-12 bg-primary/10 flex items-center justify-center">
-                            <span class="material-icons-outlined text-primary">image</span>
-                        </div>
-                        <div>
-                            <p class="text-sm font-medium">massage_preference.jpg</p>
-                            <p class="text-xs text-slate-500 dark:text-slate-400">1.2 MB • Ready to send</p>
-                        </div>
-                    </div>
-                    <button class="p-2 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl" onclick="removeAttachment()">
-                        <span class="material-icons-outlined text-slate-500">close</span>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Chat Input Area -->
-            <div class="p-4 border-t border-slate-100 dark:border-slate-700">
-                <div class="flex items-center gap-3">
-                    <!-- Attachment Button -->
-                    <button class="p-3 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-2xl transition-colors" onclick="attachFile()">
-                        <span class="material-icons-outlined text-slate-500">attach_file</span>
-                    </button>
-                    
-                    <!-- Emoji Button -->
-                    <button class="p-3 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-2xl transition-colors emoji-picker-btn" onclick="toggleEmojiPicker()">
-                        <span class="material-icons-outlined text-slate-500">mood</span>
-                    </button>
-                    
-                    <!-- Message Input -->
-                    <div class="flex-1">
-                        <input type="text" id="chatInput" placeholder="Type your message here..." class="w-full px-5 py-4 chat-input rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all" autocomplete="off"/>
-                    </div>
-                    
-                    <!-- Send Button -->
-                    <button class="p-4 bg-gradient-to-r from-primary to-secondary text-white rounded-2xl hover:shadow-lg hover:shadow-primary/30 transition-all duration-300" onclick="sendMessage()" id="sendBtn">
-                        <span class="material-icons-outlined">send</span>
-                    </button>
-                </div>
-                
-                <!-- Quick Action Buttons -->
-                <div class="flex items-center gap-2 mt-4 overflow-x-auto pb-2">
-                    <button class="px-4 py-2 bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl text-sm whitespace-nowrap transition-colors" onclick="quickResponse('Book an appointment')">
-                        📅 Book Appointment
-                    </button>
-                    <button class="px-4 py-2 bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl text-sm whitespace-nowrap transition-colors" onclick="quickResponse('What services do you offer?')">
-                        💆 Services Offered
-                    </button>
-                    <button class="px-4 py-2 bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl text-sm whitespace-nowrap transition-colors" onclick="quickResponse('Pricing information')">
-                        💰 Pricing Info
-                    </button>
-                    <button class="px-4 py-2 bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl text-sm whitespace-nowrap transition-colors" onclick="quickResponse('Cancel my booking')">
-                        ❌ Cancel Booking
-                    </button>
                 </div>
             </div>
         </div>
-        
-      <div class="specialist-card rounded-3xl p-8 mb-8 shadow-2xl shadow-primary/10 animate-fade-in">
-            <div class="flex items-center justify-between mb-6">
-                <div class="flex items-center gap-4">
-                    <div class="relative">
-                        <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg">
-                            <span class="material-icons-outlined text-white text-4xl">spa</span>
-                        </div>
-                        <div class="status-online absolute -bottom-1 -right-1 border-4 border-white dark:border-slate-800"></div>
-                    </div>
-                    <div>
-                        <h1 class="text-3xl font-bold mb-1">Samantha Chen</h1>
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="text-lg font-medium gradient-text">Head Spa Specialist</span>
-                            <div class="px-3 py-1 bg-primary/10 rounded-full text-sm font-medium text-primary">
-                                15+ years experience
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4 text-sm text-slate-600 dark:text-slate-400">
-                            <span class="flex items-center gap-1">
-                                <span class="material-icons-outlined text-base text-amber-400">star</span>
-                                <span>4.9 (2,148 reviews)</span>
-                            </span>
-                            <span>•</span>
-                            <span class="flex items-center gap-1">
-                                <span class="material-icons-outlined text-base text-primary">verified</span>
-                                <span>Certified Expert</span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <button class="p-3 bg-slate-100 dark:bg-slate-800 rounded-2xl hover:scale-105 transition-transform" onclick="document.documentElement.classList.toggle('dark')">
-                    <span class="material-icons-outlined block dark:hidden">dark_mode</span>
-                    <span class="material-icons-outlined hidden dark:block text-primary">light_mode</span>
-                </button>
-            </div>
-            
     </div>
 
     <!-- Emoji Picker (Simple) -->
@@ -768,6 +901,12 @@
             
             // Focus on input
             document.getElementById('chatInput').focus();
+            
+            // Make profile card sticky
+            const profileCard = document.querySelector('.sticky');
+            if (profileCard) {
+                profileCard.style.top = '2rem';
+            }
         });
     </script>
 </body>
