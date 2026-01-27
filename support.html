@@ -180,11 +180,13 @@
                 <span class="font-bold text-2xl tracking-tight">Touch Spa</span>
             </div>
             <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
-                <a href="#" class="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">Home</a>
-                <a href="#" class="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">Services</a>
-                <a href="#" class="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">Book Now</a>
-                <a href="#" class="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">Policies</a>
-                <a href="#" class="text-primary font-semibold">Support</a>
+            
+            <a class="text-sm font-medium hover:text-primary transition-colors" href="/">Home</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="services.html">Services</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="location.html">Locations</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="experts.html">Consultants</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="discover.html">Discover</a>
+
             </nav>
             <button class="p-3 bg-slate-100 dark:bg-slate-800 rounded-xl hover:scale-105 transition-transform" onclick="document.documentElement.classList.toggle('dark')">
                 <span class="material-icons-outlined block dark:hidden">dark_mode</span>
@@ -644,4 +646,266 @@
                         </p>
                         <p class="flex items-center gap-2">
                             <span class="material-icons-outlined text-sm">schedule</span>
-                            <
+                            <span>24/7 Support Available</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Business Hours</h4>
+                    <div class="space-y-2 text-slate-400">
+                        <p>Support: 24/7</p>
+                        <p>Bookings: 6:00 AM - 11:00 PM</p>
+                        <p>Emergency: 24/7</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-slate-800 text-center text-slate-500 text-sm">
+                <p>© 2024 Touch Spa. All rights reserved. | Response time guarantee: 2 minutes for chat, 15 minutes for callbacks.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Call Request Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 max-w-md w-full mx-4 animate-fade-in">
+            <div class="text-center">
+                <div class="w-20 h-20 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span class="material-icons-outlined text-green-600 dark:text-green-400 text-4xl">check_circle</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Call Request Submitted!</h3>
+                <p class="text-slate-600 dark:text-slate-400 mb-6">
+                    We'll call you at <span id="callbackPhone" class="font-bold">+254 700 123 456</span> within 15 minutes. Keep your phone nearby!
+                </p>
+                <div class="space-y-3">
+                    <p class="text-sm text-slate-500 dark:text-slate-400 flex items-center justify-center gap-2">
+                        <span class="material-icons-outlined text-sm text-primary">receipt</span>
+                        Request ID: <span class="font-mono">CALL-<span id="requestId">78945</span></span>
+                    </p>
+                    <button onclick="closeSuccessModal()" class="w-full py-3 bg-primary text-white font-bold rounded-xl hover:bg-primary-dark transition-colors">
+                        Got it, thanks!
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Chat System
+        class ChatSystem {
+            constructor() {
+                this.messages = [];
+                this.agentResponses = [
+                    "I understand. Let me check that for you right away.",
+                    "Thanks for providing that information. I'll help you with that.",
+                    "Perfect! I've updated your booking as requested.",
+                    "I can definitely help with that. Let me transfer you to our payment specialist.",
+                    "Just to confirm, you'd like to reschedule for tomorrow at 3 PM?",
+                    "I've noted your concern and will escalate it to our quality team.",
+                    "Your refund has been processed and will reflect in 1-5 business days.",
+                    "Is there anything else I can help you with today?",
+                    "I recommend booking at least 24 hours in advance for best availability.",
+                    "Our therapists bring all necessary equipment, so you don't need to prepare anything."
+                ];
+                this.initialize();
+            }
+            
+            initialize() {
+                // Add initial messages
+                this.messages = [
+                    { sender: 'agent', text: "Hello! I'm Sarah from Touch Spa support. How can I help you today?", time: "10:30 AM" },
+                    { sender: 'user', text: "Hi! I need help rescheduling my massage appointment for tomorrow.", time: "10:31 AM" },
+                    { sender: 'agent', text: "I can help with that! Could you please provide your booking reference number or the email used for booking?", time: "10:32 AM" }
+                ];
+                
+                // Render initial messages
+                this.renderMessages();
+            }
+            
+            addMessage(sender, text) {
+                const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                this.messages.push({ sender, text, time });
+                this.renderMessages();
+                
+                // Auto-scroll to bottom
+                setTimeout(() => {
+                    const chatContainer = document.querySelector('.chat-container');
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                }, 100);
+            }
+            
+            renderMessages() {
+                const chatMessages = document.getElementById('chatMessages');
+                chatMessages.innerHTML = '';
+                
+                this.messages.forEach(msg => {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = `flex items-start gap-3 ${msg.sender === 'user' ? 'justify-end' : ''}`;
+                    
+                    if (msg.sender === 'agent') {
+                        messageDiv.innerHTML = `
+                            <div class="w-8 h-8 rounded-full bg-secondary flex items-center justify-center flex-shrink:0">
+                                <span class="material-icons-outlined text-white text-sm">support_agent</span>
+                            </div>
+                            <div>
+                                <div class="chat-bubble-agent px-4 py-3 max-w-xs md:max-w-md">
+                                    <p class="text-sm">${msg.text}</p>
+                                </div>
+                                <span class="text-xs text-slate-500 dark:text-slate-400 mt-1 block">Sarah • ${msg.time}</span>
+                            </div>
+                        `;
+                    } else {
+                        messageDiv.innerHTML = `
+                            <div>
+                                <div class="chat-bubble-user px-4 py-3 max-w-xs md:max-w-md">
+                                    <p class="text-sm">${msg.text}</p>
+                                </div>
+                                <span class="text-xs text-slate-500 dark:text-slate-400 mt-1 block text-right">You • ${msg.time}</span>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink:0">
+                                <span class="material-icons-outlined text-white text-sm">person</span>
+                            </div>
+                        `;
+                    }
+                    
+                    chatMessages.appendChild(messageDiv);
+                });
+            }
+            
+            getAgentResponse() {
+                return this.agentResponses[Math.floor(Math.random() * this.agentResponses.length)];
+            }
+        }
+        
+        // Initialize chat system
+        const chatSystem = new ChatSystem();
+        
+        // Call Request Form
+        document.getElementById('callRequestForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('callName').value;
+            const phone = document.getElementById('callPhone').value;
+            const reason = document.getElementById('callReason').value;
+            const details = document.getElementById('callDetails').value;
+            const callTime = document.querySelector('input[name="callTime"]:checked').value;
+            
+            // Generate random request ID
+            const requestId = Math.floor(10000 + Math.random() * 90000);
+            
+            // Show success modal
+            document.getElementById('callbackPhone').textContent = phone;
+            document.getElementById('requestId').textContent = requestId;
+            document.getElementById('successModal').classList.remove('hidden');
+            
+            // Log the request (simulated backend call)
+            console.log('Call request submitted:', {
+                name,
+                phone,
+                reason,
+                details,
+                callTime,
+                requestId: `CALL-${requestId}`,
+                timestamp: new Date().toISOString()
+            });
+            
+            // Show notification
+            showNotification('Call request submitted successfully!', 'success');
+            
+            // Reset form (optional)
+            // this.reset();
+        });
+        
+        // Chat Form
+        document.getElementById('chatForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const chatInput = document.getElementById('chatInput');
+            const message = chatInput.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            chatSystem.addMessage('user', message);
+            
+            // Clear input
+            chatInput.value = '';
+            
+            // Show typing indicator
+            const typingIndicator = document.getElementById('typingIndicator');
+            typingIndicator.classList.remove('hidden');
+            
+            // Auto-scroll
+            const chatContainer = document.querySelector('.chat-container');
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+            
+            // Simulate agent response after delay
+            setTimeout(() => {
+                typingIndicator.classList.add('hidden');
+                const response = chatSystem.getAgentResponse();
+                chatSystem.addMessage('agent', response);
+            }, 1500 + Math.random() * 1000);
+        });
+        
+        // Quick response buttons
+        function quickResponse(text) {
+            const chatInput = document.getElementById('chatInput');
+            chatInput.value = text;
+            chatInput.focus();
+        }
+        
+        // Show notification
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-6 right-6 z-50 px-6 py-4 rounded-xl shadow-lg flex items-center gap-3 animate-fade-in ${type === 'success' ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200' : 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200'}`;
+            
+            const icon = document.createElement('span');
+            icon.className = 'material-icons-outlined';
+            icon.textContent = type === 'success' ? 'check_circle' : 'error';
+            
+            const text = document.createElement('span');
+            text.textContent = message;
+            
+            notification.appendChild(icon);
+            notification.appendChild(text);
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+        
+        // Close success modal
+        function closeSuccessModal() {
+            document.getElementById('successModal').classList.add('hidden');
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add some interactivity to support cards
+            const cards = document.querySelectorAll('.support-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Auto-scroll chat to bottom
+            const chatContainer = document.querySelector('.chat-container');
+            if (chatContainer) {
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+            
+            // Add demo chat history
+            setTimeout(() => {
+                chatSystem.addMessage('agent', "By the way, we're currently offering 15% off for first-time customers!");
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

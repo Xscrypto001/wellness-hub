@@ -331,11 +331,94 @@
 <span class="text-2xl font-black text-primary">Ksh.910.80</span>
 </div>
 </div>
-<button class="w-full bg-primary hover:bg-emerald-500 text-white py-4 rounded-2xl font-bold text-lg shadow-lg shadow-primary/20 transition-all transform hover:-translate-y-1 active:scale-[0.98]">
-               
-    <a href="checkout.html">
-    Confirm Booking Details
-                   </a>     </button>
+
+<button id="confirmBookingBtn" class="w-full bg-primary hover:bg-emerald-500 text-white py-4 rounded-2xl font-bold text-lg shadow-lg shadow-primary/20 transition-all transform hover:-translate-y-1 active:scale-[0.98] flex items-center justify-center gap-2">
+    <span class="material-icons-outlined">lock</span>
+    <span>Confirm Booking Details</span>
+</button>
+
+
+<script>
+// Session Manager Class (add this to your JavaScript)
+class SessionManager {
+    static SESSION_KEY = 'touchspa_user_session';
+    
+    // Check if user is logged in
+    static isLoggedIn() {
+        const sessionStr = localStorage.getItem(this.SESSION_KEY);
+        if (!sessionStr) return false;
+        
+        try {
+            const session = JSON.parse(sessionStr);
+            
+            // Check if session is expired
+            if (session.expiresAt && new Date(session.expiresAt) < new Date()) {
+                this.clearSession();
+                return false;
+            }
+            
+            return session.isAuthenticated === true;
+        } catch (e) {
+            console.error('Error parsing session:', e);
+            return false;
+        }
+    }
+    
+    // Get current session
+    static getSession() {
+        const sessionStr = localStorage.getItem(this.SESSION_KEY);
+        return sessionStr ? JSON.parse(sessionStr) : null;
+    }
+    
+    // Clear session
+    static clearSession() {
+        localStorage.removeItem(this.SESSION_KEY);
+    }
+    
+    // Create session (for demo/testing)
+    static createDemoSession() {
+        const session = {
+            user: {
+                id: 'user_' + Date.now(),
+                firstName: 'John',
+                lastName: 'Doe',
+                email: 'john@example.com',
+                createdAt: new Date().toISOString()
+            },
+            token: 'demo_token_' + Math.random().toString(36).substr(2),
+            expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+            isAuthenticated: true
+        };
+        
+        localStorage.setItem(this.SESSION_KEY, JSON.stringify(session));
+        return session;
+    }
+}
+
+// Button click handler
+document.addEventListener('DOMContentLoaded', function() {
+    const confirmBookingBtn = document.getElementById('confirmBookingBtn');
+    
+    if (confirmBookingBtn) {
+        confirmBookingBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Check if user is logged in
+            if (SessionManager.isLoggedIn()) {
+                window.location.href = 'checkout.html';
+            } else {
+                
+                localStorage.setItem('redirectAfterLogin', 'checkout.html');
+                window.location.href = 'login.html';
+            }
+        });
+    }
+    
+  
+});
+</script>
+
+
 <p class="text-center text-xs text-slate-400">You won't be charged yet</p>
 </div>
 </div>
