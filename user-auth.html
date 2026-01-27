@@ -184,7 +184,7 @@
                             <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300" for="loginEmail">Email Address</label>
                             <div class="relative">
                                 <span class="material-icons-outlined absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400">email</span>
-                                <input type="email" id="loginEmail" required class="w-full pl-12 pr-4 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-primary input-focus-effect transition-all" placeholder="your@email.com"/>
+                                <input type="email" id="loginEmail" required class="w-full pl-12 pr-4 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-primary input-focus-effect transition-all" placeholder="your@email.com" value="john@example.com"/>
                             </div>
                         </div>
                         
@@ -192,7 +192,7 @@
                             <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300" for="loginPassword">Password</label>
                             <div class="relative">
                                 <span class="material-icons-outlined absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400">lock</span>
-                                <input type="password" id="loginPassword" required class="w-full pl-12 pr-12 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-primary input-focus-effect transition-all" placeholder="Enter your password"/>
+                                <input type="password" id="loginPassword" required class="w-full pl-12 pr-12 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-primary input-focus-effect transition-all" placeholder="Enter your password" value="password123"/>
                                 <button type="button" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-primary" onclick="togglePassword('loginPassword')">
                                     <span class="material-icons-outlined">visibility</span>
                                 </button>
@@ -201,7 +201,7 @@
                         
                         <div class="flex items-center justify-between">
                             <label class="flex items-center gap-2 cursor-pointer">
-                                <input type="checkbox" class="w-5 h-5 rounded-lg border-2 border-slate-300 dark:border-slate-600 checked:bg-primary focus:ring-primary"/>
+                                <input type="checkbox" id="rememberMe" class="w-5 h-5 rounded-lg border-2 border-slate-300 dark:border-slate-600 checked:bg-primary focus:ring-primary"/>
                                 <span class="text-sm text-slate-600 dark:text-slate-400">Remember me</span>
                             </label>
                             <a href="#" class="text-sm font-medium text-primary hover:text-primary-dark transition-colors">Forgot password?</a>
@@ -232,7 +232,11 @@
                                 <span>Google</span>
                             </button>
                             <button type="button" class="py-3 border border-slate-200 dark:border-slate-700 rounded-xl flex items-center justify-center gap-2 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-                              
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                                <span>GitHub</span>
+                            </button>
                         </div>
                     </form>
                     
@@ -243,7 +247,7 @@
                                 <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300" for="firstName">First Name</label>
                                 <div class="relative">
                                     <span class="material-icons-outlined absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400">person</span>
-                                    <input type="text" id="firstName" required class="w-full pl-12 pr-4 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-primary input-focus-effect transition-all" placeholder="John"/>
+                                    <input type="text" id="firstName" required class="w-full pl-12 pr-4 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-primary input-focus-effect transition-all" placeholder="John" value="John"/>
                                 </div>
                             </div>
                             
@@ -251,7 +255,7 @@
                                 <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300" for="lastName">Last Name</label>
                                 <div class="relative">
                                     <span class="material-icons-outlined absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400">person</span>
-                                    <input type="text" id="lastName" required class="w-full pl-12 pr-4 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-primary input-focus-effect transition-all" placeholder="Doe"/>
+                                    <input type="text" id="lastName" required class="w-full pl-12 pr-4 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-primary input-focus-effect transition-all" placeholder="Doe" value="Doe"/>
                                 </div>
                             </div>
                         </div>
@@ -260,7 +264,7 @@
                             <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300" for="signupEmail">Email Address</label>
                             <div class="relative">
                                 <span class="material-icons-outlined absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400">email</span>
-                                <input type="email" id="signupEmail" required class="w-full pl-12 pr-4 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-primary input-focus-effect transition-all" placeholder="your@email.com"/>
+                                <input type="email" id="signupEmail" required class="w-full pl-12 pr-4 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-primary input-focus-effect transition-all" placeholder="your@email.com" value="john@example.com"/>
                             </div>
                         </div>
                         
@@ -268,7 +272,7 @@
                             <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300" for="signupPassword">Password</label>
                             <div class="relative">
                                 <span class="material-icons-outlined absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400">lock</span>
-                                <input type="password" id="signupPassword" required class="w-full pl-12 pr-12 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-primary input-focus-effect transition-all" placeholder="Create a strong password"/>
+                                <input type="password" id="signupPassword" required class="w-full pl-12 pr-12 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-primary input-focus-effect transition-all" placeholder="Create a strong password" value="password123"/>
                                 <button type="button" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-primary" onclick="togglePassword('signupPassword')">
                                     <span class="material-icons-outlined">visibility</span>
                                 </button>
@@ -280,12 +284,12 @@
                             <label class="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300" for="confirmPassword">Confirm Password</label>
                             <div class="relative">
                                 <span class="material-icons-outlined absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400">lock</span>
-                                <input type="password" id="confirmPassword" required class="w-full pl-12 pr-4 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-primary input-focus-effect transition-all" placeholder="Confirm your password"/>
+                                <input type="password" id="confirmPassword" required class="w-full pl-12 pr-4 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-primary input-focus-effect transition-all" placeholder="Confirm your password" value="password123"/>
                             </div>
                         </div>
                         
                         <label class="flex items-start gap-3 cursor-pointer">
-                            <input type="checkbox" class="w-5 h-5 mt-1 rounded-lg border-2 border-slate-300 dark:border-slate-600 checked:bg-primary focus:ring-primary"/>
+                            <input type="checkbox" id="termsAgreement" class="w-5 h-5 mt-1 rounded-lg border-2 border-slate-300 dark:border-slate-600 checked:bg-primary focus:ring-primary"/>
                             <span class="text-sm text-slate-600 dark:text-slate-400">I agree to the <a href="#" class="font-medium text-primary hover:text-primary-dark transition-colors">Terms of Service</a> and <a href="#" class="font-medium text-primary hover:text-primary-dark transition-colors">Privacy Policy</a></span>
                         </label>
                         
@@ -311,6 +315,138 @@
     </button>
 
     <script>
+        // Session Management Functions
+        class SessionManager {
+            static SESSION_KEY = 'touchspa_user_session';
+            static USERS_KEY = 'touchspa_users';
+            
+            // Create a fake user session
+            static createSession(userData) {
+                const session = {
+                    user: {
+                        id: this.generateId(),
+                        firstName: userData.firstName,
+                        lastName: userData.lastName,
+                        email: userData.email,
+                        createdAt: new Date().toISOString(),
+                        lastLogin: new Date().toISOString()
+                    },
+                    token: this.generateToken(),
+                    expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(), // 24 hours
+                    isAuthenticated: true
+                };
+                
+                localStorage.setItem(this.SESSION_KEY, JSON.stringify(session));
+                return session;
+            }
+            
+            // Get current session
+            static getSession() {
+                const sessionStr = localStorage.getItem(this.SESSION_KEY);
+                if (!sessionStr) return null;
+                
+                const session = JSON.parse(sessionStr);
+                
+                // Check if session is expired
+                if (new Date(session.expiresAt) < new Date()) {
+                    this.clearSession();
+                    return null;
+                }
+                
+                return session;
+            }
+            
+            // Check if user is logged in
+            static isLoggedIn() {
+                return this.getSession() !== null;
+            }
+            
+            // Clear session (logout)
+            static clearSession() {
+                localStorage.removeItem(this.SESSION_KEY);
+            }
+            
+            // Register new user
+            static registerUser(userData) {
+                const users = this.getAllUsers();
+                const userExists = users.some(user => user.email === userData.email);
+                
+                if (userExists) {
+                    return { success: false, message: 'User already exists' };
+                }
+                
+                const newUser = {
+                    id: this.generateId(),
+                    firstName: userData.firstName,
+                    lastName: userData.lastName,
+                    email: userData.email,
+                    password: userData.password, // In real app, this would be hashed
+                    createdAt: new Date().toISOString(),
+                    bookings: []
+                };
+                
+                users.push(newUser);
+                localStorage.setItem(this.USERS_KEY, JSON.stringify(users));
+                
+                return { success: true, user: newUser };
+            }
+            
+            // Authenticate user
+            static authenticateUser(email, password, rememberMe = false) {
+                const users = this.getAllUsers();
+                const user = users.find(u => u.email === email && u.password === password);
+                
+                if (!user) {
+                    return { success: false, message: 'Invalid email or password' };
+                }
+                
+                // Create session
+                const session = this.createSession(user);
+                
+                // If remember me is checked, store longer expiration (7 days)
+                if (rememberMe) {
+                    session.expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
+                    localStorage.setItem(this.SESSION_KEY, JSON.stringify(session));
+                }
+                
+                return { success: true, session };
+            }
+            
+            // Get all registered users
+            static getAllUsers() {
+                const usersStr = localStorage.getItem(this.USERS_KEY);
+                return usersStr ? JSON.parse(usersStr) : [];
+            }
+            
+            // Generate unique ID
+            static generateId() {
+                return 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            }
+            
+            // Generate fake token
+            static generateToken() {
+                return 'token_' + Math.random().toString(36).substr(2) + Math.random().toString(36).substr(2);
+            }
+            
+            // Initialize with demo user if no users exist
+            static initializeDemoUser() {
+                const users = this.getAllUsers();
+                if (users.length === 0) {
+                    const demoUser = {
+                        id: this.generateId(),
+                        firstName: 'John',
+                        lastName: 'Doe',
+                        email: 'john@example.com',
+                        password: 'password123',
+                        createdAt: new Date().toISOString(),
+                        bookings: []
+                    };
+                    users.push(demoUser);
+                    localStorage.setItem(this.USERS_KEY, JSON.stringify(users));
+                }
+            }
+        }
+        
         // Toggle between Login and Signup forms
         const loginTab = document.getElementById('loginTab');
         const signupTab = document.getElementById('signupTab');
@@ -349,51 +485,6 @@
             passwordInput.setAttribute('type', type);
         }
         
-        // Form submission handlers
-        loginForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-            
-            // Simulate login process
-            console.log('Login attempt with:', { email, password });
-            
-            // Show success message
-            showNotification('Successfully logged in! Redirecting...', 'success');
-            
-            // In a real app, you would submit to your backend here
-            // setTimeout(() => { window.location.href = '/dashboard'; }, 1500);
-        });
-        
-        signupForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const firstName = document.getElementById('firstName').value;
-            const lastName = document.getElementById('lastName').value;
-            const email = document.getElementById('signupEmail').value;
-            const password = document.getElementById('signupPassword').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            
-            // Basic validation
-            if (password !== confirmPassword) {
-                showNotification('Passwords do not match!', 'error');
-                return;
-            }
-            
-            if (password.length < 8) {
-                showNotification('Password must be at least 8 characters long', 'error');
-                return;
-            }
-            
-            // Simulate signup process
-            console.log('Signup attempt with:', { firstName, lastName, email, password });
-            
-            // Show success message
-            showNotification('Account created successfully! Welcome to Touch Spa.', 'success');
-            
-            // In a real app, you would submit to your backend here
-            // setTimeout(() => { window.location.href = '/dashboard'; }, 1500);
-        });
-        
         // Show notification function
         function showNotification(message, type) {
             // Create notification element
@@ -418,8 +509,121 @@
             }, 3000);
         }
         
-        // Initialize with login form visible
+        // Redirect to checkout page
+        function redirectToCheckout() {
+            // In a real app, you might want to pass some data or use a backend redirect
+            setTimeout(() => {
+                window.location.href = 'checkout.html';
+            }, 1500);
+        }
+        
+        // Form submission handlers
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+            
+            // Validate inputs
+            if (!email || !password) {
+                showNotification('Please fill in all required fields', 'error');
+                return;
+            }
+            
+            // Authenticate user
+            const result = SessionManager.authenticateUser(email, password, rememberMe);
+            
+            if (result.success) {
+                showNotification('Successfully logged in! Redirecting to checkout...', 'success');
+                
+                // Store session info for debugging (optional)
+                console.log('User session created:', result.session);
+                console.log('Current session:', SessionManager.getSession());
+                
+                // Redirect to checkout page
+                redirectToCheckout();
+            } else {
+                showNotification(result.message || 'Invalid email or password', 'error');
+            }
+        });
+        
+        signupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const termsAgreed = document.getElementById('termsAgreement').checked;
+            
+            // Basic validation
+            if (!firstName || !lastName || !email || !password || !confirmPassword) {
+                showNotification('Please fill in all required fields', 'error');
+                return;
+            }
+            
+            if (!termsAgreed) {
+                showNotification('Please agree to the Terms of Service and Privacy Policy', 'error');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                showNotification('Passwords do not match!', 'error');
+                return;
+            }
+            
+            if (password.length < 8) {
+                showNotification('Password must be at least 8 characters long', 'error');
+                return;
+            }
+            
+            // Register user
+            const result = SessionManager.registerUser({
+                firstName,
+                lastName,
+                email,
+                password
+            });
+            
+            if (result.success) {
+                showNotification('Account created successfully! Logging you in...', 'success');
+                
+                // Auto-login after registration
+                setTimeout(() => {
+                    const loginResult = SessionManager.authenticateUser(email, password);
+                    if (loginResult.success) {
+                        showNotification('Welcome to Touch Spa! Redirecting to checkout...', 'success');
+                        redirectToCheckout();
+                    }
+                }, 1000);
+            } else {
+                showNotification(result.message || 'Registration failed. Please try again.', 'error');
+            }
+        });
+        
+        // Check if user is already logged in
+        function checkExistingSession() {
+            if (SessionManager.isLoggedIn()) {
+                const session = SessionManager.getSession();
+                console.log('User already logged in:', session.user.email);
+                
+                // Pre-fill login form with user's email
+                document.getElementById('loginEmail').value = session.user.email;
+                
+                // Optional: Show a message that user is already logged in
+                // showNotification(`Welcome back, ${session.user.firstName}! You can proceed to checkout.`, 'success');
+            }
+        }
+        
+        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize session manager with demo user
+            SessionManager.initializeDemoUser();
+            
+            // Check for existing session
+            checkExistingSession();
+            
+            // Set default form
             switchToLogin();
             
             // Add some subtle animation to form inputs
@@ -433,6 +637,10 @@
                     this.parentElement.classList.remove('ring-2', 'ring-primary/20');
                 });
             });
+            
+            // Log current session state for debugging
+            console.log('Current session:', SessionManager.getSession());
+            console.log('All registered users:', SessionManager.getAllUsers());
         });
     </script>
 </body>
